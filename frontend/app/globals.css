@@ -3,6 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Synergy type scale — use with text-[length:var(--sy-text-*)] or utilities below */
+  --sy-text-display: clamp(2rem, 4.4vw, 2.75rem);
+  --sy-text-title-lg: clamp(1.55rem, 2.3vw, 1.875rem);
+  --sy-text-title: clamp(1.2rem, 1.6vw, 1.375rem);
+  --sy-text-lead: 1.0625rem;
+  --sy-text-body: 0.9375rem;
+  --sy-text-ui: 0.8125rem;
+  --sy-text-caption: 0.6875rem;
+  --sy-leading-display: 1.08;
+  --sy-leading-tight: 1.25;
+  --sy-leading-snug: 1.38;
+  --sy-leading-body: 1.55;
+  --sy-leading-relaxed: 1.62;
+  --sy-tracking-overline: 0.14em;
+  --sy-tracking-tight: -0.02em;
 }
 
 @theme inline {
@@ -23,6 +39,53 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--sy-text-body);
+  line-height: var(--sy-leading-body);
+  font-feature-settings: "ss01" on, "cv01" on;
+}
+
+/* Semantic type utilities (landing + dashboards) */
+.sy-type-display {
+  font-size: var(--sy-text-display);
+  line-height: var(--sy-leading-display);
+  letter-spacing: var(--sy-tracking-tight);
+  font-weight: 600;
+}
+
+.sy-type-title-lg {
+  font-size: var(--sy-text-title-lg);
+  line-height: var(--sy-leading-tight);
+  letter-spacing: var(--sy-tracking-tight);
+  font-weight: 600;
+}
+
+.sy-type-title {
+  font-size: var(--sy-text-title);
+  line-height: var(--sy-leading-snug);
+  font-weight: 600;
+}
+
+.sy-type-lead {
+  font-size: var(--sy-text-lead);
+  line-height: var(--sy-leading-relaxed);
+}
+
+.sy-type-body {
+  font-size: var(--sy-text-body);
+  line-height: var(--sy-leading-body);
+}
+
+.sy-type-ui {
+  font-size: var(--sy-text-ui);
+  line-height: var(--sy-leading-snug);
+}
+
+.sy-type-caption {
+  font-size: var(--sy-text-caption);
+  line-height: var(--sy-leading-snug);
+  letter-spacing: var(--sy-tracking-overline);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 html {

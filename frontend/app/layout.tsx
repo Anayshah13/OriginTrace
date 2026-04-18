@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Synergy — Knowledge map",
-  description: "High-tech knowledge mapping canvas",
+  title: "Synergy — Supply chain trace",
+  description:
+    "Multi-tier supply chain reconstruction from open trade data — HSN-anchored graph (Tier 0–6).",
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full overflow-hidden antialiased`}
     >
-      <body className="flex h-full min-h-0 flex-col overflow-hidden bg-[#050505] text-white">
+      <body className="flex h-full min-h-0 flex-col overflow-hidden bg-[#050505] font-sans text-white antialiased [text-rendering:optimizeLegibility]">
         {children}
       </body>
     </html>
