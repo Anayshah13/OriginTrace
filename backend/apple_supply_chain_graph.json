@@ -1,0 +1,179 @@
+{
+  "nodes": [
+    {
+      "Company Name": "apple",
+      "Country": "United States",
+      "Product Category": "Consumer Electronics",
+      "Company Description": "A multinational technology company that designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories.",
+      "Tier": 0
+    },
+    {
+      "Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+      "Country": "Taiwan",
+      "Product Category": "Electronics Manufacturing Services",
+      "Company Description": "The world's largest contract electronics manufacturer and a primary assembler for Apple's iPhone and iPad lines.",
+      "Tier": 1
+    },
+    {
+      "Company Name": "Samsung Electronics Co., Ltd.",
+      "Country": "South Korea",
+      "Product Category": "Semiconductors and Components",
+      "Company Description": "A global leader in memory chips, display panels, and electronic components essential for smartphone and computer assembly.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Country": "Taiwan",
+      "Product Category": "Semiconductors",
+      "Company Description": "The world's largest dedicated independent semiconductor foundry, producing chips designed by Foxconn's clients like Apple and Nvidia.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Murata Manufacturing Co., Ltd.",
+      "Country": "Japan",
+      "Product Category": "Electronic Passive Components",
+      "Company Description": "A leading manufacturer of ceramic passive electronic components, focusing on capacitors and filter products.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "ASML Holding N.V.",
+      "Country": "Netherlands",
+      "Product Category": "Photolithography Equipment",
+      "Company Description": "Leading manufacturer of photolithography systems used to etch circuit patterns onto silicon wafers.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Applied Materials, Inc.",
+      "Country": "United States",
+      "Product Category": "Semiconductor Fabrication Equipment",
+      "Company Description": "Provider of materials engineering solutions used to produce chips and advanced displays.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Shin-Etsu Chemical Co., Ltd.",
+      "Country": "Japan",
+      "Product Category": "Specialty Chemicals",
+      "Company Description": "A major supplier of high-purity silicon wafers and photoresist materials used in semiconductor fabrication.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Goertek Inc.",
+      "Country": "China",
+      "Product Category": "Acoustic Components",
+      "Company Description": "A leading global high-tech company specializing in the R&D and manufacturing of acoustic, optical, and precision components.",
+      "Tier": 1
+    },
+    {
+      "Company Name": "Knowles Corporation",
+      "Country": "USA",
+      "Product Category": "Micro-Acoustic Solutions",
+      "Company Description": "A market leader and global supplier of advanced micro-acoustic, audio processing, and precision device solutions.",
+      "Tier": 2
+    },
+    {
+      "Company Name": "Qualcomm Technologies, Inc.",
+      "Country": "USA",
+      "Product Category": "Semiconductors",
+      "Company Description": "An American multinational corporation that creates semiconductors, software, and services related to wireless technology.",
+      "Tier": 2
+    }
+  ],
+  "edges": [
+    {
+      "Company1": "apple",
+      "Company2": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+      "Product": "iPhone Mobile Devices",
+      "Product Description": "Fully assembled smartphones and sub-assembly electronic components.",
+      "HSN Code of Products": "8517.13",
+      "Possible Shipment Route": "Shenzhen, China to Los Angeles, California, USA"
+    },
+    {
+      "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+      "Company2": "Samsung Electronics Co., Ltd.",
+      "Product": "DRAM and NAND Flash Memory",
+      "Product Description": "High-speed memory modules and storage components used in the assembly of mobile devices and servers.",
+      "HSN Code of Products": "854232",
+      "Possible Shipment Route": "Busan, South Korea to Shenzhen, China"
+    },
+    {
+      "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+      "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Product": "Silicon Wafers / Integrated Circuits",
+      "Product Description": "Custom-designed microchips and application-specific integrated circuits (ASICs) for consumer electronics.",
+      "HSN Code of Products": "854231",
+      "Possible Shipment Route": "Hsinchu, Taiwan to Zhengzhou, China"
+    },
+    {
+      "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+      "Company2": "Murata Manufacturing Co., Ltd.",
+      "Product": "Multilayer Ceramic Capacitors (MLCC)",
+      "Product Description": "Miniature surface-mount capacitors used for energy storage and noise filtering in circuit boards.",
+      "HSN Code of Products": "853224",
+      "Possible Shipment Route": "Kobe, Japan to Shenzhen, China"
+    },
+    {
+      "Company1": "apple",
+      "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Product": "Microchips and Wafers",
+      "Product Description": "Electronic integrated circuits and advanced semiconductor wafers used in computing devices.",
+      "HSN Code of Products": "8542.31",
+      "Possible Shipment Route": "Hsinchu, Taiwan to Zhengzhou, China"
+    },
+    {
+      "Company1": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Company2": "ASML Holding N.V.",
+      "Product": "EUV Lithography Machines",
+      "Product Description": "Extreme Ultraviolet (EUV) lithography systems essential for manufacturing sub-7nm semiconductor nodes.",
+      "HSN Code of Products": "848620",
+      "Possible Shipment Route": "Veldhoven, Netherlands to Hsinchu, Taiwan"
+    },
+    {
+      "Company1": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Company2": "Applied Materials, Inc.",
+      "Product": "Chemical Vapor Deposition (CVD) Systems",
+      "Product Description": "Equipment for depositing thin films of material onto semiconductor wafers during processing.",
+      "HSN Code of Products": "848620",
+      "Possible Shipment Route": "Santa Clara, USA to Taichung, Taiwan"
+    },
+    {
+      "Company1": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "Company2": "Shin-Etsu Chemical Co., Ltd.",
+      "Product": "Polished Silicon Wafers",
+      "Product Description": "High-purity monocrystalline silicon wafers used as the substrate for integrated circuits.",
+      "HSN Code of Products": "381800",
+      "Possible Shipment Route": "Tokyo, Japan to Kaohsiung, Taiwan"
+    },
+    {
+      "Company1": "apple",
+      "Company2": "Goertek Inc.",
+      "Product": "AirPods and Earphones",
+      "Product Description": "Wireless headphones and microphone components for consumer electronics.",
+      "HSN Code of Products": "8518.30",
+      "Possible Shipment Route": "Weifang, China to Anchorage, Alaska, USA"
+    },
+    {
+      "Company1": "Goertek Inc.",
+      "Company2": "Knowles Corporation",
+      "Product": "MEMS Microphones",
+      "Product Description": "High-performance micro-electromechanical systems microphones used in smartphones and wearable devices.",
+      "HSN Code of Products": "851810",
+      "Possible Shipment Route": "Chicago, USA to Qingdao Port, China"
+    },
+    {
+      "Company1": "Goertek Inc.",
+      "Company2": "Murata Manufacturing Co., Ltd.",
+      "Product": "Multilayer Ceramic Capacitors (MLCC)",
+      "Product Description": "Ceramic capacitors used for noise filtering and decoupling in high-density electronic circuits.",
+      "HSN Code of Products": "853224",
+      "Possible Shipment Route": "Osaka, Japan to Weifang, China"
+    },
+    {
+      "Company1": "Goertek Inc.",
+      "Company2": "Qualcomm Technologies, Inc.",
+      "Product": "Snapdragon XR Platforms",
+      "Product Description": "System-on-Chip (SoC) solutions specifically designed for Virtual Reality and Augmented Reality headsets.",
+      "HSN Code of Products": "854231",
+      "Possible Shipment Route": "San Diego, USA to Hong Kong to Shenzhen, China"
+    }
+  ]
+}
