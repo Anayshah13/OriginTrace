@@ -23,6 +23,7 @@ import {
   useEdgesState,
   useNodesState,
 } from '@xyflow/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Map as MapIcon, Network, Search, User, X } from 'lucide-react';
 import '@xyflow/react/dist/style.css';
@@ -642,9 +643,9 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
     <div className="relative flex h-screen w-full overflow-hidden bg-[#06080c] font-sans text-white">
       <Link
         href="/user-dashboard"
-        className="pointer-events-auto absolute right-4 top-4 z-[60] flex items-center gap-2 rounded-xl border border-white/15 bg-[#0b0f18]/92 px-3.5 py-2 text-[13px] font-medium text-zinc-100 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-md transition hover:border-[#00E8FF]/35 hover:bg-[#00E8FF]/10 hover:text-white"
+        className="pointer-events-auto absolute right-4 top-4 z-[60] flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-950/85 px-3.5 py-2 text-[13px] font-medium text-zinc-200 shadow-lg backdrop-blur-md transition hover:border-white/15 hover:bg-zinc-900/90 hover:text-white"
       >
-        <User className="size-[18px] text-[#00E8FF]" strokeWidth={2} aria-hidden />
+        <User className="size-[18px] text-zinc-400" strokeWidth={2} aria-hidden />
         Profile
       </Link>
 
@@ -766,15 +767,30 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
         )}
 
         <div className="pointer-events-none absolute inset-0 z-20 flex flex-col">
-          <div className="pointer-events-auto absolute left-3 top-3 flex items-center gap-2">
-            <div className="flex w-fit gap-0.5 rounded-xl border border-white/[0.08] bg-[#0b0d12]/90 p-1 shadow-lg backdrop-blur-md">
+          <div className="pointer-events-auto absolute left-3 top-3 z-[25] flex items-center gap-3">
+            <Link
+              href="/"
+              className="shrink-0 rounded-lg opacity-95 outline-none ring-offset-2 ring-offset-[#06080c] transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-[#00E8FF]/50"
+              aria-label="ORIGINTRACE home"
+            >
+              <Image
+                src="/ot2.png"
+                alt=""
+                width={156}
+                height={40}
+                className="h-7 w-auto select-none sm:h-8"
+                sizes="156px"
+                draggable={false}
+              />
+            </Link>
+            <div className="flex w-fit gap-0.5 rounded-lg border border-white/10 bg-zinc-950/80 p-0.5 shadow-md backdrop-blur-md">
               <button
                 type="button"
                 onClick={() => setMainView('graph')}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wide transition-colors ${
+                className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wide transition-colors ${
                   mainView === 'graph'
-                    ? 'bg-[#00E8FF] text-black shadow-[0_0_16px_rgba(0,232,255,0.25)]'
-                    : 'text-zinc-500 hover:bg-white/[0.06] hover:text-white'
+                    ? 'bg-white/10 text-white'
+                    : 'text-zinc-500 hover:bg-white/[0.05] hover:text-zinc-200'
                 }`}
                 aria-pressed={mainView === 'graph'}
                 aria-label="Graph view"
@@ -785,10 +801,10 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
               <button
                 type="button"
                 onClick={() => setMainView('map')}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wide transition-colors ${
+                className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wide transition-colors ${
                   mainView === 'map'
-                    ? 'bg-[#00E8FF] text-black shadow-[0_0_16px_rgba(0,232,255,0.25)]'
-                    : 'text-zinc-500 hover:bg-white/[0.06] hover:text-white'
+                    ? 'bg-white/10 text-white'
+                    : 'text-zinc-500 hover:bg-white/[0.05] hover:text-zinc-200'
                 }`}
                 aria-pressed={mainView === 'map'}
                 aria-label="Map view"
@@ -799,7 +815,7 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
             </div>
           </div>
           <div className="pointer-events-auto absolute bottom-7 left-1/2 w-[min(100vw-2rem,28rem)] -translate-x-1/2">
-            <div className="flex items-center gap-3 rounded-2xl border border-white/[0.1] bg-[#0c1018]/95 px-4 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-shadow duration-300 focus-within:border-[#00E8FF]/30 focus-within:shadow-[0_0_0_1px_rgba(0,232,255,0.15)]">
+            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-zinc-950/90 px-4 py-2.5 shadow-lg backdrop-blur-md transition-colors focus-within:border-white/15">
               <Search className="shrink-0 text-zinc-500" size={18} strokeWidth={2} />
               <input
                 value={query}
@@ -809,9 +825,9 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
               />
               {isLoading && (
                 <div className="flex items-center gap-1.5 px-2">
-                  <div className="size-1.5 animate-bounce rounded-full bg-[#00E8FF] [animation-delay:-0.3s]"></div>
-                  <div className="size-1.5 animate-bounce rounded-full bg-[#00E8FF] [animation-delay:-0.15s]"></div>
-                  <div className="size-1.5 animate-bounce rounded-full bg-[#00E8FF]"></div>
+                  <div className="size-1.5 animate-bounce rounded-full bg-zinc-500 [animation-delay:-0.3s]"></div>
+                  <div className="size-1.5 animate-bounce rounded-full bg-zinc-500 [animation-delay:-0.15s]"></div>
+                  <div className="size-1.5 animate-bounce rounded-full bg-zinc-500"></div>
                 </div>
               )}
             </div>
@@ -824,13 +840,13 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
         </div>
       </main>
 
-      <aside className="font-sans z-30 mt-[20vh] flex h-[calc(100vh-20vh)] min-h-0 w-full max-w-[min(100vw,28rem)] shrink-0 flex-col border-l border-white/10 bg-[linear-gradient(165deg,rgba(12,16,24,0.97)_0%,rgba(6,8,12,0.99)_45%,#05070a_100%)] shadow-[-20px_0_60px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+      <aside className="font-sans z-30 mt-[10vh] flex h-[calc(100vh-10vh)] min-h-0 w-full max-w-[min(100vw,28rem)] shrink-0 flex-col border-l border-white/10 bg-[linear-gradient(165deg,rgba(12,16,24,0.97)_0%,rgba(6,8,12,0.99)_45%,#05070a_100%)] shadow-[-20px_0_60px_rgba(0,0,0,0.55)] backdrop-blur-xl">
         <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-6 py-5">
           <div className="min-w-0">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
               Company overview
             </p>
-            <div className="mt-2 h-px w-12 rounded-full bg-gradient-to-r from-[#00E8FF]/80 to-transparent" />
+            <div className="mt-2 h-px w-12 rounded-full bg-gradient-to-r from-white/25 to-transparent" />
           </div>
           <button
             type="button"
@@ -841,7 +857,7 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
               setSelectedProductHsn(null);
               setNodes((nds) => nds.map((n) => ({ ...n, selected: false })));
             }}
-            className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-zinc-400 transition-colors hover:border-[#00E8FF]/25 hover:bg-[#00E8FF]/10 hover:text-white"
+            className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-zinc-400 transition-colors hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
             aria-label="Clear graph selection"
           >
             <X size={18} strokeWidth={2} />
@@ -879,7 +895,7 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
             {tierOneSuppliers.length === 0 ? (
               <p className="mt-3 font-sans text-[15px] text-zinc-500">No direct suppliers in this graph.</p>
             ) : (
-              <ul className="mt-3 list-inside list-disc space-y-2 font-sans text-[15px] leading-relaxed text-zinc-300 marker:text-[#00E8FF]/80">
+              <ul className="mt-3 list-inside list-disc space-y-2 font-sans text-[15px] leading-relaxed text-zinc-300 marker:text-zinc-500">
                 {tierOneSuppliers.map((name) => (
                   <li key={name}>{name}</li>
                 ))}
@@ -924,11 +940,13 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
                         }}
                         className={`flex w-full flex-col gap-1 rounded-xl border px-4 py-3.5 text-left transition-all ${
                           active
-                            ? 'border-[#00E8FF]/45 bg-[#00E8FF]/10 shadow-[0_0_32px_-10px_rgba(0,232,255,0.45)]'
-                            : 'border-white/10 bg-black/20 hover:border-[#00E8FF]/20 hover:bg-white/[0.05]'
+                            ? 'border-white/20 bg-white/[0.06]'
+                            : 'border-white/10 bg-black/20 hover:border-white/15 hover:bg-white/[0.05]'
                         }`}
                       >
-                        <span className="font-mono text-[13px] font-semibold text-[#00E8FF]">
+                        <span
+                          className={`font-mono text-[13px] font-semibold ${active ? 'text-zinc-100' : 'text-zinc-400'}`}
+                        >
                           {row.hsnDisplay}
                         </span>
                         <span className="font-sans text-[14px] font-normal leading-snug text-zinc-300">

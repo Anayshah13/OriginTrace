@@ -14,6 +14,7 @@ import Mapbox, {
   type MapRef,
 } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import type { AnyLayer, Map as MapboxMap } from 'mapbox-gl';
 
 import { getLngLatForSupplyNode } from './country-centroids';
 import { tierAccent, type SupplyNodeData } from './supply-chain-data';
@@ -37,6 +38,77 @@ export type SupplyChainMapViewProps = {
 
 /** Night navigation style — roads & land read clearly; pairs with fog + terrain. */
 const MAP_STYLE = 'mapbox://styles/mapbox/navigation-night-v1';
+
+/** Canvas / ocean fills — near-black with a whisper of cool blue (not flat gray). */
+const GRAPH_MAP_BG = '#070a12';
+
+function clearFillPatternIfAny(map: MapboxMap, layerId: string): void {
+  try {
+    const rm = (
+      map as unknown as {
+        removePaintProperty?: (id: string, name: string) => void;
+      }
+    ).removePaintProperty;
+    rm?.(layerId, 'fill-pattern');
+  } catch {
+    /* ignore */
+  }
+  try {
+    map.setPaintProperty(layerId, 'fill-pattern', '' as unknown as string);
+  } catch {
+    /* ignore */
+  }
+}
+
+function isLikelyWaterOrOceanFill(layer: AnyLayer): boolean {
+  if (layer.type !== 'fill') return false;
+  const id = layer.id.toLowerCase();
+  return (
+    id === 'water' ||
+    id.startsWith('water') ||
+    id.includes('ocean') ||
+    id.includes('bathymetry') ||
+    id.includes('marine') ||
+    /\bsea\b/.test(id)
+  );
+}
+
+/** Solid blue-black oceans + background; navigation-night land/roads unchanged — no dot pattern on the globe. */
+function applyDarkBasemapSkin(map: MapboxMap): void {
+  const style = map.getStyle();
+  const layers = style?.layers;
+  if (layers) {
+    for (const layer of layers) {
+      if (layer.type === 'background') {
+        try {
+          map.setPaintProperty(layer.id, 'background-color', GRAPH_MAP_BG);
+        } catch {
+          /* ignore */
+        }
+        continue;
+      }
+      if (!isLikelyWaterOrOceanFill(layer)) continue;
+      clearFillPatternIfAny(map, layer.id);
+      try {
+        map.setPaintProperty(layer.id, 'fill-color', GRAPH_MAP_BG);
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+
+  try {
+    map.setFog({
+      color: 'rgb(7, 10, 18)',
+      'high-color': 'rgb(12, 14, 24)',
+      'horizon-blend': 0.06,
+      'space-color': GRAPH_MAP_BG,
+      'star-intensity': 0.06,
+    });
+  } catch {
+    /* ignore */
+  }
+}
 
 function useMapToken(): string {
   return process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
@@ -223,13 +295,15 @@ function SupplyChainMapViewInner({
     try {
       map.setLight({
         anchor: 'viewport',
-        color: '#dbeafe',
-        intensity: 0.45,
+        color: '#b8c2d4',
+        intensity: 0.38,
         position: [1.8, 210, 45],
       });
     } catch {
       /* ignore */
     }
+
+    applyDarkBasemapSkin(map);
   }, [initialBounds, dynamicMaxZoom]);
 
   const sortedMarkers = useMemo(() => {
@@ -241,7 +315,7 @@ function SupplyChainMapViewInner({
 
   if (!token) {
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[#06080c] px-6 text-center">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[#070a12] px-6 text-center">
         <p className="text-sm font-medium text-zinc-300">Mapbox token missing</p>
         <p className="max-w-md text-xs leading-relaxed text-zinc-500">
           Set <span className="font-mono text-zinc-400">MAPBOX_API_KEY</span> in{' '}
@@ -256,14 +330,14 @@ function SupplyChainMapViewInner({
   }
 
   const ctrlChrome: CSSProperties = {
-    backgroundColor: 'rgba(8, 11, 18, 0.94)',
-    borderRadius: '12px',
-    border: '1px solid rgba(255,255,255,0.12)',
-    boxShadow: '0 10px 40px rgba(0,0,0,0.45)',
+    backgroundColor: 'rgba(15, 17, 22, 0.92)',
+    borderRadius: '10px',
+    border: '1px solid rgba(255,255,255,0.08)',
+    boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
   };
 
   return (
-    <div className="synergy-map relative h-full w-full min-h-0 bg-[#06080c]">
+    <div className="synergy-map relative h-full w-full min-h-0 bg-[#070a12]">
       <Mapbox
         ref={mapRef}
         mapboxAccessToken={token}
@@ -272,11 +346,11 @@ function SupplyChainMapViewInner({
         reuseMaps
         projection="globe"
         fog={{
-          color: 'rgb(12, 22, 42)',
-          'high-color': 'rgb(56, 128, 242)',
-          'horizon-blend': 0.12,
-          'space-color': 'rgb(6, 10, 22)',
-          'star-intensity': 0.1,
+          color: 'rgb(7, 10, 18)',
+          'high-color': 'rgb(12, 14, 24)',
+          'horizon-blend': 0.06,
+          'space-color': GRAPH_MAP_BG,
+          'star-intensity': 0.06,
         }}
         initialViewState={{
           bounds: initialBounds,

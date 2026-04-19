@@ -1,11 +1,11 @@
 "use client";
 
-import gsap from "gsap";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ScanLine, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { motion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const container = {
   hidden: { opacity: 0 },
@@ -31,23 +31,6 @@ export function GlobalTraceHero() {
   const router = useRouter();
   const [q, setQ] = useState("");
   const [subtitleShown, setSubtitleShown] = useState("");
-  const badgeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = badgeRef.current;
-    if (!el) return;
-    const tween = gsap.to(el, {
-      boxShadow:
-        "0 0 52px -6px rgba(0,242,255,0.55), inset 0 0 24px rgba(0,242,255,0.06)",
-      duration: 2.8,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-    return () => {
-      tween.kill();
-    };
-  }, []);
 
   useEffect(() => {
     let i = 0;
@@ -120,36 +103,23 @@ export function GlobalTraceHero() {
         initial="hidden"
         animate="show"
       >
-        <motion.div
-          ref={badgeRef}
-          variants={item}
-          className="mb-8 grid size-16 place-items-center rounded-2xl border border-[#00F2FF]/25 bg-[linear-gradient(145deg,rgba(10,16,28,0.95),rgba(5,8,14,0.98))] shadow-[0_0_48px_-12px_rgba(0,242,255,0.35)] sm:size-[4.25rem]"
-          style={{
-            clipPath:
-              "polygon(30% 0%,70% 0%,100% 50%,70% 100%,30% 100%,0% 50%)",
-          }}
-        >
-          <ScanLine className="size-8 text-[#00F2FF] sm:size-9" strokeWidth={1.35} />
+        <motion.div variants={item} className="w-full px-2">
+          <h1 className="sr-only">ORIGINTRACE</h1>
+          <Image
+            src="/ot1.png"
+            alt="ORIGINTRACE"
+            width={720}
+            height={405}
+            priority
+            sizes="(max-width: 640px) min(92vw, 28rem), (max-width: 1024px) min(80vw, 36rem), 42rem"
+            className="mx-auto w-full max-w-[min(92vw,28rem)] object-contain drop-shadow-[0_8px_48px_rgba(0,242,255,0.08)] sm:max-w-xl md:max-w-2xl"
+          />
         </motion.div>
 
         <motion.p
           variants={item}
-          className="font-sans text-[0.65rem] font-extralight italic uppercase tracking-[0.42em] text-[#00F2FF]/90"
-        >
-          by SYNERGY
-        </motion.p>
-
-        <motion.h1
-          variants={item}
-          className="font-melodrama mt-4 text-[clamp(3.75rem,16vw,7rem)] font-bold leading-[0.98] tracking-[0.015em] text-white drop-shadow-[0_4px_48px_rgba(0,242,255,0.12)]"
-        >
-          GLOBALTRACE
-        </motion.h1>
-
-        <motion.p
-          variants={item}
           aria-label={SUBTITLE_FULL}
-          className="mt-8 min-h-[5.25rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[4.5rem] sm:text-[0.78rem]"
+          className="mt-10 min-h-[5.25rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[4.5rem] sm:text-[0.78rem]"
         >
           {subtitleShown}
           <span
