@@ -1658,5 +1658,133 @@
         "Prune Reason": ""
       }
     ]
+  },
+  "expand_Universal Display Corporation_s0_e5": {
+    "top_products": [],
+    "hsn_options": [],
+    "selected_anchor_hsn": "",
+    "nodes": [
+      {
+        "Company Name": "Universal Display Corporation",
+        "Canonical Company Name": "Universal Display Corporation",
+        "Node ID": "universal-display-corporation-1",
+        "Country": "USA",
+        "Address": "N/A",
+        "Latitude": 39.8283,
+        "Longitude": -98.5795,
+        "Product Category": "OLED Technology and Materials",
+        "Company Description": "A leader in the research, development, and commercialization of organic light emitting diode (OLED) technologies and materials for use in displays and solid-state lighting.",
+        "Tier": 0,
+        "Source": "expansion",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "PPG Industries, Inc.",
+        "Canonical Company Name": "PPG Industries, Inc.",
+        "Node ID": "ppg-industries-inc-2",
+        "Country": "USA",
+        "Address": "N/A",
+        "Latitude": 39.8283,
+        "Longitude": -98.5795,
+        "Product Category": "Specialty Chemicals",
+        "Company Description": "A global supplier of paints, coatings, and specialty materials; serves as the exclusive manufacturer of UDC's proprietary PHOLED materials.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Idemitsu Kosan Co., Ltd.",
+        "Canonical Company Name": "Idemitsu Kosan Co., Ltd.",
+        "Node ID": "idemitsu-kosan-co-ltd-3",
+        "Country": "Japan",
+        "Address": "N/A",
+        "Latitude": 36.2048,
+        "Longitude": 138.2529,
+        "Product Category": "Petroleum and Chemicals",
+        "Company Description": "Manufacturer of advanced electronic materials, including high-performance OLED host and transport materials.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Duksan Neolux Co., Ltd.",
+        "Canonical Company Name": "Duksan Neolux Co., Ltd.",
+        "Node ID": "duksan-neolux-co-ltd-4",
+        "Country": "South Korea",
+        "Address": "N/A",
+        "Latitude": 35.9078,
+        "Longitude": 127.7669,
+        "Product Category": "Electronic Materials",
+        "Company Description": "Specializes in the production of HTL (Hole Transport Layer) and Red/Green/Blue OLED materials.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Kaneka Corporation",
+        "Canonical Company Name": "Kaneka Corporation",
+        "Node ID": "kaneka-corporation-5",
+        "Country": "Japan",
+        "Address": "N/A",
+        "Latitude": 36.2048,
+        "Longitude": 138.2529,
+        "Product Category": "Functional Plastics",
+        "Company Description": "Diversified chemical company providing thin-film encapsulation materials and moisture barrier solutions.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      }
+    ],
+    "edges": [
+      {
+        "Company1": "Universal Display Corporation",
+        "Company2": "PPG Industries, Inc.",
+        "Product": "UniversalPHOLED Phosphorescent Materials",
+        "Product Description": "High-purity organic electroluminescent dopants and host materials used in the emissive layer of OLED devices.",
+        "HSN Code of Products": "3824.99",
+        "Possible Shipment Route": "Barberton, OH to Ewing, NJ",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Idemitsu Kosan Co., Ltd.",
+        "Product": "OLED Host Materials",
+        "Product Description": "Organic chemical compounds used to host emitting dopants within the OLED stack to improve efficiency and lifetime.",
+        "HSN Code of Products": "2933.39",
+        "Possible Shipment Route": "Tokyo, Japan to Philadelphia Port, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Duksan Neolux Co., Ltd.",
+        "Product": "Hole Transport Layer (HTL) Materials",
+        "Product Description": "Organic semiconductors designed to facilitate the transport of holes into the emissive layer of OLEDs.",
+        "HSN Code of Products": "2934.99",
+        "Possible Shipment Route": "Incheon, South Korea to New York/Newark Port, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Kaneka Corporation",
+        "Product": "Encapsulation Films",
+        "Product Description": "Specialized resin and film layers used to protect organic OLED materials from degradation by oxygen and moisture.",
+        "HSN Code of Products": "3920.69",
+        "Possible Shipment Route": "Osaka, Japan to Philadelphia Port, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      }
+    ]
   }
 }
