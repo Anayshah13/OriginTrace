@@ -23,8 +23,9 @@ import {
   useEdgesState,
   useNodesState,
 } from '@xyflow/react';
-import Image from 'next/image';
 import Link from 'next/link';
+
+import { OriginTraceLogo } from '@/components/brand/origin-trace-logo';
 import { Map as MapIcon, Network, Search, User, X } from 'lucide-react';
 import '@xyflow/react/dist/style.css';
 import {
@@ -37,6 +38,7 @@ import {
 } from './supply-chain-data';
 import { BackendLoadingOverlay } from './backend-loading-overlay';
 import { RiskStatusBadge } from './risk-status-badge';
+import { weatherEmojiFromText } from './weather-emoji';
 
 const SupplyChainMapView = dynamic(() => import('./SupplyChainMapView'), {
   ssr: false,
@@ -803,18 +805,10 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
           <div className="pointer-events-auto absolute left-3 top-3 z-[95] flex items-center gap-3">
             <Link
               href="/"
-              className="shrink-0 rounded-lg opacity-95 outline-none ring-offset-2 ring-offset-[#06080c] transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-[#00E8FF]/50"
+              className="shrink-0 rounded-lg outline-none ring-offset-2 ring-offset-[#06080c] focus-visible:ring-2 focus-visible:ring-[#00E8FF]/50"
               aria-label="ORIGINTRACE home"
             >
-              <Image
-                src="/ot2.png"
-                alt=""
-                width={156}
-                height={40}
-                className="h-7 w-auto select-none sm:h-8"
-                sizes="156px"
-                draggable={false}
-              />
+              <OriginTraceLogo className="h-7 w-auto max-h-8 select-none sm:h-8 sm:max-h-9" />
             </Link>
             <div className="flex w-fit gap-0.5 rounded-lg border border-white/10 bg-zinc-950/80 p-0.5 shadow-md backdrop-blur-md">
               <button
@@ -937,66 +931,87 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
               <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                 Risk detail
               </h3>
-              <dl className="mt-4 grid gap-3 font-sans text-[13px] text-zinc-300 sm:grid-cols-2">
+              <dl className="mt-4 grid gap-3 font-sans text-[13px] sm:grid-cols-2">
                 <div className="rounded-lg border border-white/[0.06] bg-black/25 px-3 py-2">
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
                     Combined
                   </dt>
-                  <dd className="mt-1 font-mono tabular-nums text-zinc-100">
+                  <dd className="mt-1 font-mono tabular-nums text-white">
                     {overviewRisk.combined_score ?? '—'}
                   </dd>
                 </div>
                 <div className="rounded-lg border border-white/[0.06] bg-black/25 px-3 py-2">
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                    SDN / sanctions
+                    SDN / sanctions (score)
                   </dt>
-                  <dd className="mt-1 font-mono tabular-nums text-zinc-100">
+                  <dd className="mt-1 font-mono tabular-nums text-white">
                     {overviewRisk.sdn_score ?? '—'}
                   </dd>
                 </div>
                 <div className="rounded-lg border border-white/[0.06] bg-black/25 px-3 py-2">
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                    Financial (SEC)
+                    Financial (SEC) (score)
                   </dt>
-                  <dd className="mt-1 font-mono tabular-nums text-zinc-100">
+                  <dd className="mt-1 font-mono tabular-nums text-white">
                     {overviewRisk.financial_score ?? '—'}
                   </dd>
                 </div>
                 <div className="rounded-lg border border-white/[0.06] bg-black/25 px-3 py-2">
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                    Weather / climate
+                    Weather / climate (score)
                   </dt>
-                  <dd className="mt-1 font-mono tabular-nums text-zinc-100">
+                  <dd className="mt-1 font-mono tabular-nums text-white">
                     {overviewRisk.weather_score ?? '—'}
                   </dd>
                 </div>
               </dl>
+
+              <div className="mt-5 rounded-xl border border-[#00E8FF]/20 bg-[#00E8FF]/[0.06] px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#00E8FF]/90">
+                  Conditions (API)
+                </p>
+                <p className="mt-2 flex flex-wrap items-center gap-2 font-sans text-[14px] leading-relaxed text-white">
+                  <span className="text-2xl leading-none" title="Condition icon">
+                    {weatherEmojiFromText(overviewRisk.weather_text ?? '')}
+                  </span>
+                  <span>{overviewRisk.weather_text ?? 'No weather text from backend.'}</span>
+                </p>
+              </div>
+
               {overviewRisk.sdn_notes ? (
-                <div className="mt-4">
+                <div className="mt-5">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                    Sanctions notes
+                    Sanctions assessment (full)
                   </p>
-                  <p className="mt-2 font-sans text-[13px] leading-relaxed text-zinc-400">{overviewRisk.sdn_notes}</p>
+                  <p className="mt-2 whitespace-pre-wrap font-sans text-[13px] leading-relaxed text-white">
+                    {overviewRisk.sdn_notes}
+                  </p>
                 </div>
               ) : null}
               {overviewRisk.financial_notes ? (
-                <div className="mt-4">
+                <div className="mt-5">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                    Financial notes
+                    Financial assessment (full)
                   </p>
-                  <p className="mt-2 font-sans text-[13px] leading-relaxed text-zinc-400">
+                  <p className="mt-2 whitespace-pre-wrap font-sans text-[13px] leading-relaxed text-white">
                     {overviewRisk.financial_notes}
                   </p>
                 </div>
               ) : null}
-              {overviewRisk.weather_text ? (
-                <div className="mt-4">
+
+              {overviewRisk.additionalFields && overviewRisk.additionalFields.length > 0 ? (
+                <div className="mt-5 border-t border-white/[0.06] pt-5">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                    Weather context
+                    Additional API fields
                   </p>
-                  <p className="mt-2 font-sans text-[13px] leading-relaxed text-zinc-400">
-                    {overviewRisk.weather_text}
-                  </p>
+                  <dl className="mt-3 space-y-2 font-sans text-[12px]">
+                    {overviewRisk.additionalFields.map((row) => (
+                      <div key={row.key} className="rounded-lg border border-white/[0.05] bg-black/30 px-3 py-2">
+                        <dt className="font-mono text-[10px] uppercase tracking-wide text-zinc-500">{row.key}</dt>
+                        <dd className="mt-1 whitespace-pre-wrap text-white">{row.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
               ) : null}
             </section>

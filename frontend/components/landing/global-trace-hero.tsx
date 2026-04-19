@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+
+import { OriginTraceLogo } from "@/components/brand/origin-trace-logo";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { motion } from "motion/react";
@@ -96,7 +97,7 @@ export function GlobalTraceHero() {
   );
 
   return (
-    <section className="relative z-10 flex min-h-[calc(100dvh-8rem)] flex-col items-center justify-center px-4 pb-24 pt-10 sm:px-6">
+    <section className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-4 sm:px-6 sm:py-5">
       <motion.div
         className="mx-auto flex w-full max-w-3xl flex-col items-center text-center font-sans"
         variants={container}
@@ -105,21 +106,16 @@ export function GlobalTraceHero() {
       >
         <motion.div variants={item} className="w-full px-2">
           <h1 className="sr-only">ORIGINTRACE</h1>
-          <Image
-            src="/ot1.png"
-            alt="ORIGINTRACE"
-            width={720}
-            height={405}
+          <OriginTraceLogo
+            className="mx-auto h-auto w-full max-w-[min(88vw,22rem)] max-h-[min(28vh,11rem)] object-contain sm:max-h-[min(30vh,12rem)] sm:max-w-lg md:max-w-xl"
             priority
-            sizes="(max-width: 640px) min(92vw, 28rem), (max-width: 1024px) min(80vw, 36rem), 42rem"
-            className="mx-auto w-full max-w-[min(92vw,28rem)] object-contain drop-shadow-[0_8px_48px_rgba(0,242,255,0.08)] sm:max-w-xl md:max-w-2xl"
           />
         </motion.div>
 
         <motion.p
           variants={item}
           aria-label={SUBTITLE_FULL}
-          className="mt-10 min-h-[5.25rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[4.5rem] sm:text-[0.78rem]"
+          className="mt-4 min-h-[3.75rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[3.25rem] sm:text-[0.78rem]"
         >
           {subtitleShown}
           <span
@@ -128,11 +124,11 @@ export function GlobalTraceHero() {
           />
         </motion.p>
 
-        <motion.div variants={item} className="mt-12 flex w-full max-w-xl flex-col gap-4">
+        <motion.div variants={item} className="mt-5 flex w-full max-w-xl flex-col gap-2.5 sm:mt-6 sm:gap-3">
           <button
             type="button"
             onClick={() => router.push("/dashboard")}
-            className="w-full rounded-full border border-[#00F2FF]/35 bg-[rgba(8,12,22,0.85)] px-6 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.22em] text-[#00F2FF] shadow-[0_0_48px_-16px_rgba(0,242,255,0.35)] transition hover:border-[#00F2FF]/55 hover:bg-[#00F2FF]/10"
+            className="w-full rounded-full border border-[#00F2FF]/35 bg-[rgba(8,12,22,0.85)] px-6 py-2.5 text-[0.8125rem] font-semibold uppercase tracking-[0.22em] text-[#00F2FF] shadow-[0_0_48px_-16px_rgba(0,242,255,0.35)] transition hover:border-[#00F2FF]/55 hover:bg-[#00F2FF]/10 sm:py-3"
           >
             Continue with demo data
           </button>
@@ -142,7 +138,7 @@ export function GlobalTraceHero() {
           </p>
         </motion.div>
 
-        <motion.form variants={item} onSubmit={onSubmit} className="mt-2 w-full max-w-xl">
+        <motion.form variants={item} onSubmit={onSubmit} className="mt-1 w-full max-w-xl sm:mt-1.5">
           <div className="flex items-stretch rounded-full border border-[#00F2FF]/15 bg-[rgba(8,12,22,0.72)] py-1 pl-1 pr-1 shadow-[0_0_60px_-20px_rgba(0,242,255,0.25)] backdrop-blur-md">
             <span className="hidden shrink-0 items-center gap-3 border-r border-white/10 px-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#00F2FF] sm:flex">
               Target ID
@@ -162,7 +158,7 @@ export function GlobalTraceHero() {
               <Search className="size-5" strokeWidth={2} />
             </button>
           </div>
-          <p className="mt-4 text-center text-[0.65rem] font-normal tracking-wide text-[#6b7280]">
+          <p className="mt-2 text-center text-[0.65rem] font-normal tracking-wide text-[#6b7280]">
             Enter a company to load its chain from the API, or use{" "}
             <Link
               href="/dashboard"

@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { AggregateRiskSummary } from '@/app/components/knowledge-brain/aggregate-risk-summary';
-import type { StoredGraphRecord } from '@/app/components/knowledge-brain/supply-chain-data';
+import { OriginTraceLogo } from '@/components/brand/origin-trace-logo';
+import {
+  parseRiskAssessment,
+  type BackendData,
+  type StoredGraphRecord,
+} from '@/app/components/knowledge-brain/supply-chain-data';
 import {
   ArrowLeft,
   Briefcase,
@@ -34,6 +38,8 @@ type HistoryCompany = {
   tiers: TierBlock[];
   sanctionsNote: string;
   topProducts: ProductLine[];
+  /** Root (or fallback) combined risk score for emphasis in the UI */
+  riskScore?: number;
 };
 
 const DEMO_PROFILE = {
@@ -102,6 +108,107 @@ const SEARCH_HISTORY: HistoryCompany[] = [
 const tierSupplierTotal = (company: HistoryCompany) =>
   company.tiers.reduce((acc, b) => acc + b.suppliers.length, 0);
 
+function maxCombinedRiskAcrossNodes(payload: BackendData): number | undefined {
+  let best: number | undefined;
+  for (const n of payload.nodes ?? []) {
+    const r = parseRiskAssessment(n['Risk Assessment']);
+    const v = r?.combined_score;
+    if (typeof v === 'number' && Number.isFinite(v)) {
+      if (best === undefined || v > best) best = v;
+    }
+  }
+  return best;
+}
+
+function parseTopProductsLine(line: string, fallbackIndex: number): ProductLine {
+  const s = String(line).trim();
+  const hsnMatch = s.match(/\b\d{4}\.\d{2}\b/);
+  const hsn = hsnMatch?.[0];
+  let label = hsnMatch ? s.replace(hsnMatch[0], '').replace(/^[\s.,;:–—-]+/, '').trim() : s;
+  if (!label) label = s || 'Product line';
+  return {
+    label,
+    hsn: hsn ?? `—${fallbackIndex}`,
+  };
+}
+
+function topProductsFromPayload(payload: BackendData, rootCompanyName: string): ProductLine[] {
+  const fromList = (payload.top_products ?? [])
+    .slice(0, 8)
+    .map((line, i) => parseTopProductsLine(String(line), i));
+  if (fromList.length > 0) return fromList;
+
+  const root = rootCompanyName.trim();
+  const seen = new Set<string>();
+  const fromEdges: ProductLine[] = [];
+  for (const e of payload.edges ?? []) {
+    const c1 = String(e.Company1 ?? '').trim();
+    if (root && c1 !== root) continue;
+    const hsn = String(e['HSN Code of Products'] ?? '').trim();
+    const desc = String(e['Product Description'] ?? e.Product ?? '').trim();
+    const key = `${hsn}|${desc}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    fromEdges.push({
+      label: desc || String(e.Product ?? 'Linked product'),
+      hsn: hsn || '—',
+    });
+    if (fromEdges.length >= 6) break;
+  }
+  if (fromEdges.length > 0) return fromEdges;
+
+  const hsnOpts = payload.hsn_options ?? [];
+  if (hsnOpts.length > 0) {
+    return hsnOpts.slice(0, 6).map((h, i) => ({
+      label: String(h),
+      hsn: String(h).match(/\b\d{4}\.\d{2}\b/)?.[0] ?? `—${i}`,
+    }));
+  }
+
+  return [{ label: 'No products listed in cached data', hsn: '—' }];
+}
+
+function storedRecordToHistoryCompany(rec: StoredGraphRecord, index: number): HistoryCompany {
+  const payload = rec.payload;
+  const nodes = payload?.nodes ?? [];
+  const rootNode = nodes.find((n) => n.Tier === 0);
+  const displayName = String(rootNode?.['Company Name'] ?? rec.company_input ?? rec.company_key).trim();
+
+  const rootRisk = rootNode ? parseRiskAssessment(rootNode['Risk Assessment']) : null;
+  const riskScore = rootRisk?.combined_score ?? maxCombinedRiskAcrossNodes(payload);
+
+  const byTier = new Map<number, string[]>();
+  for (const n of nodes) {
+    const t = n.Tier;
+    if (t < 1 || t > 3) continue;
+    const name = String(n['Company Name'] ?? '').trim();
+    if (!name) continue;
+    if (!byTier.has(t)) byTier.set(t, []);
+    const arr = byTier.get(t)!;
+    if (!arr.includes(name)) arr.push(name);
+  }
+
+  const tiers: TierBlock[] = [1, 2, 3].map((tier) => ({
+    tier: tier as 1 | 2 | 3,
+    suppliers: byTier.get(tier) ?? [],
+  }));
+
+  const sdn =
+    rootRisk?.sdn_notes?.trim() ||
+    'No sanctions narrative was returned for this cached graph.';
+
+  const topProducts = topProductsFromPayload(payload, displayName);
+
+  return {
+    id: `${rec.company_key}-${rec.updated_at}-${index}`,
+    name: displayName,
+    tiers,
+    sanctionsNote: sdn,
+    topProducts,
+    riskScore,
+  };
+}
+
 export default function UserDashboardPage() {
   const [cachedGraphs, setCachedGraphs] = useState<StoredGraphRecord[] | null>(null);
 
@@ -136,6 +243,16 @@ export default function UserDashboardPage() {
     return { graphs: cachedGraphs.length, nodes, edges };
   }, [cachedGraphs]);
 
+  /** Deterministic order: newest cached graph first; demo list only when fetch finished with zero graphs. */
+  const savedCompanies = useMemo(() => {
+    if (cachedGraphs === null) return null;
+    if (cachedGraphs.length === 0) return SEARCH_HISTORY;
+    const sorted = [...cachedGraphs].sort(
+      (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
+    );
+    return sorted.map((rec, i) => storedRecordToHistoryCompany(rec, i));
+  }, [cachedGraphs]);
+
   const companyCount = cachedStats?.graphs ?? SEARCH_HISTORY.length;
   const mappedLinks =
     cachedStats?.edges ??
@@ -156,19 +273,8 @@ export default function UserDashboardPage() {
               <span className="hidden sm:inline">Back to graph</span>
               <span className="sm:hidden">Graph</span>
             </Link>
-            <Link
-              href="/"
-              className="shrink-0 opacity-90 transition hover:opacity-100"
-              aria-label="ORIGINTRACE home"
-            >
-              <Image
-                src="/ot2.png"
-                alt="ORIGINTRACE"
-                width={152}
-                height={40}
-                className="h-6 w-auto max-w-[9rem] object-contain object-left sm:h-7 sm:max-w-none"
-                sizes="(max-width:640px) 120px, 152px"
-              />
+            <Link href="/" className="shrink-0" aria-label="ORIGINTRACE home">
+              <OriginTraceLogo className="h-7 w-auto max-h-8 max-w-[10rem] object-contain object-left sm:h-8 sm:max-h-9 sm:max-w-[11rem]" />
             </Link>
           </div>
           <p className="truncate text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-zinc-500">
@@ -263,8 +369,8 @@ export default function UserDashboardPage() {
                   Saved companies
                 </h2>
                 <p className="mt-2 max-w-xl text-[length:var(--sy-text-body)] leading-[var(--sy-leading-snug)] text-zinc-500">
-                  Tap a row to expand tiers, sanctions snapshot, and top HSN products. Same data as before — clearer
-                  layout and touch-friendly disclosure.
+                  Tap a row to expand tiers, sanctions snapshot, combined risk, and top HSN products from your cached
+                  supply graphs (newest first).
                 </p>
               </div>
               <Link
@@ -275,86 +381,108 @@ export default function UserDashboardPage() {
               </Link>
             </div>
 
-            <ul className="mt-8 flex flex-col gap-3">
-              {SEARCH_HISTORY.map((company, index) => (
-                <li key={company.id}>
-                  <details className="group rounded-xl border border-white/[0.1] bg-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition open:border-[#00E8FF]/25 open:shadow-[0_0_0_1px_rgba(0,232,255,0.12)]">
-                    <summary className="flex cursor-pointer list-none items-center gap-4 px-4 py-4 outline-none marker:content-none [&::-webkit-details-marker]:hidden sm:gap-5 sm:px-5">
-                      <span
-                        className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#00E8FF]/40 bg-[#00E8FF]/10 font-sans text-sm font-semibold text-[#00E8FF]"
-                        aria-hidden
-                      >
-                        {index + 1}
-                      </span>
-                      <span className="font-melodrama min-w-0 flex-1 text-left text-[1.15rem] font-medium tracking-[var(--sy-tracking-tight)] text-white sm:text-[1.3rem]">
-                        {company.name}
-                      </span>
-                      <span className="hidden text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500 sm:block">
-                        {tierSupplierTotal(company)} links
-                      </span>
-                      <ChevronDown
-                        className="size-5 shrink-0 text-zinc-500 transition duration-200 group-open:rotate-180 group-open:text-[#00E8FF]"
-                        aria-hidden
-                      />
-                    </summary>
+            {savedCompanies === null ? (
+              <p className="mt-8 text-[length:var(--sy-text-body)] text-zinc-500">Loading saved companies…</p>
+            ) : (
+              <ul className="mt-8 flex flex-col gap-3">
+                {savedCompanies.map((company, index) => (
+                  <li key={company.id}>
+                    <details className="group rounded-xl border border-white/[0.1] bg-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition open:border-[#00E8FF]/25 open:shadow-[0_0_0_1px_rgba(0,232,255,0.12)]">
+                      <summary className="flex cursor-pointer list-none items-center gap-4 px-4 py-4 outline-none marker:content-none [&::-webkit-details-marker]:hidden sm:gap-5 sm:px-5">
+                        <span
+                          className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#00E8FF]/40 bg-[#00E8FF]/10 font-sans text-sm font-semibold text-[#00E8FF]"
+                          aria-hidden
+                        >
+                          {index + 1}
+                        </span>
+                        <span className="font-melodrama min-w-0 flex-1 text-left text-[1.15rem] font-medium tracking-[var(--sy-tracking-tight)] text-white sm:text-[1.3rem]">
+                          {company.name}
+                        </span>
+                        <span className="hidden text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500 sm:block">
+                          {tierSupplierTotal(company)} links
+                        </span>
+                        <ChevronDown
+                          className="size-5 shrink-0 text-zinc-500 transition duration-200 group-open:rotate-180 group-open:text-[#00E8FF]"
+                          aria-hidden
+                        />
+                      </summary>
 
-                    <div className="border-t border-white/10 bg-[#070a10]/95 px-4 py-5 sm:px-5">
-                      <div className="space-y-6 text-left">
-                        {company.tiers.map((block) => (
-                          <div key={block.tier}>
-                            <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-[#00E8FF]/85">
-                              Tier {block.tier}
+                      <div className="border-t border-white/10 bg-[#070a10]/95 px-4 py-5 sm:px-5">
+                        <div className="space-y-6 text-left">
+                          {typeof company.riskScore === 'number' && Number.isFinite(company.riskScore) ? (
+                            <div className="inline-flex min-w-[7.5rem] flex-col rounded-lg border border-[#00E8FF]/40 bg-[linear-gradient(165deg,rgba(0,232,255,0.14),rgba(6,11,18,0.92))] px-3.5 py-2.5 shadow-[0_0_28px_-10px_rgba(0,232,255,0.45)]">
+                              <span className="font-sans text-[9px] font-semibold uppercase tracking-[0.18em] text-[#00E8FF]/90">
+                                Risk score
+                              </span>
+                              <span className="font-melodrama mt-0.5 text-xl font-semibold tabular-nums tracking-tight text-white">
+                                {company.riskScore.toFixed(1)}
+                              </span>
+                            </div>
+                          ) : null}
+
+                          {company.tiers.map((block) => (
+                            <div key={block.tier}>
+                              <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-[#00E8FF]/85">
+                                Tier {block.tier}
+                              </p>
+                              <ul className="mt-2 space-y-1.5 font-sans text-[14px] leading-snug text-zinc-300">
+                                {block.suppliers.length === 0 ? (
+                                  <li className="flex gap-2 text-zinc-500">
+                                    <span className="mt-2 size-1 shrink-0 rounded-full bg-zinc-600" />
+                                    <span>No suppliers at this tier in cached data.</span>
+                                  </li>
+                                ) : (
+                                  block.suppliers.map((s) => (
+                                    <li key={s} className="flex gap-2">
+                                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#00E8FF]/60" />
+                                      <span>{s}</span>
+                                    </li>
+                                  ))
+                                )}
+                              </ul>
+                            </div>
+                          ))}
+
+                          <div className="rounded-lg border border-amber-500/25 bg-amber-500/[0.07] px-3 py-3">
+                            <div className="flex items-start gap-2">
+                              <ShieldAlert className="mt-0.5 size-4 shrink-0 text-amber-400/90" aria-hidden />
+                              <div>
+                                <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-amber-200/90">
+                                  Sanctions & compliance snapshot
+                                </p>
+                                <p className="mt-2 font-sans text-[13px] leading-relaxed text-zinc-400">
+                                  {company.sanctionsNote}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-zinc-500">
+                              Top products (HSN)
                             </p>
-                            <ul className="mt-2 space-y-1.5 font-sans text-[14px] leading-snug text-zinc-300">
-                              {block.suppliers.map((s) => (
-                                <li key={s} className="flex gap-2">
-                                  <span className="mt-2 size-1 shrink-0 rounded-full bg-[#00E8FF]/60" />
-                                  <span>{s}</span>
+                            <ul className="mt-3 divide-y divide-white/[0.06] rounded-lg border border-white/[0.08] bg-black/30 font-sans">
+                              {company.topProducts.map((p, pi) => (
+                                <li
+                                  key={`${company.id}-${p.hsn}-${pi}-${p.label}`}
+                                  className="flex flex-wrap items-baseline justify-between gap-2 px-3 py-2.5 text-[13px] sm:px-4"
+                                >
+                                  <span className="text-zinc-300">{p.label}</span>
+                                  <span className="font-mono text-[12px] font-semibold text-[#00E8FF]">{p.hsn}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
-                        ))}
-
-                        <div className="rounded-lg border border-amber-500/25 bg-amber-500/[0.07] px-3 py-3">
-                          <div className="flex items-start gap-2">
-                            <ShieldAlert className="mt-0.5 size-4 shrink-0 text-amber-400/90" aria-hidden />
-                            <div>
-                              <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-amber-200/90">
-                                Sanctions & compliance snapshot
-                              </p>
-                              <p className="mt-2 font-sans text-[13px] leading-relaxed text-zinc-400">
-                                {company.sanctionsNote}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <p className="font-sans text-[11px] font-semibold uppercase tracking-[var(--sy-tracking-overline)] text-zinc-500">
-                            Top products (HSN)
-                          </p>
-                          <ul className="mt-3 divide-y divide-white/[0.06] rounded-lg border border-white/[0.08] bg-black/30 font-sans">
-                            {company.topProducts.map((p) => (
-                              <li
-                                key={p.hsn}
-                                className="flex flex-wrap items-baseline justify-between gap-2 px-3 py-2.5 text-[13px] sm:px-4"
-                              >
-                                <span className="text-zinc-300">{p.label}</span>
-                                <span className="font-mono text-[12px] font-semibold text-[#00E8FF]">{p.hsn}</span>
-                              </li>
-                            ))}
-                          </ul>
                         </div>
                       </div>
-                    </div>
-                  </details>
-                </li>
-              ))}
-            </ul>
+                    </details>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <p className="mt-8 text-center text-[12px] text-zinc-600 sm:text-left">
-              Preview dataset — persistence and live screening sync when authentication is enabled.
+              Cached graphs drive this list when available; otherwise preview rows are shown.
             </p>
           </section>
         </div>

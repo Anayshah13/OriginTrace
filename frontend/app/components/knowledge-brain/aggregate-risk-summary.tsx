@@ -8,6 +8,7 @@ import {
   riskBandFromCombinedScore,
   type StoredGraphRecord,
 } from './supply-chain-data';
+import { weatherEmojiFromText } from './weather-emoji';
 
 type Props = {
   records: StoredGraphRecord[] | null;
@@ -84,6 +85,18 @@ export function AggregateRiskSummary({ records }: Props) {
     return { recent: recentRows, hotSpots };
   }, [records]);
 
+  const weatherSnapshot = useMemo(() => {
+    if (!records?.length) return null;
+    for (const rec of records) {
+      for (const node of rec.payload?.nodes ?? []) {
+        const r = parseRiskAssessment(node['Risk Assessment']);
+        const w = r?.weather_text?.trim();
+        if (w) return w;
+      }
+    }
+    return null;
+  }, [records]);
+
   if (!records) {
     return (
       <section className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -124,6 +137,15 @@ export function AggregateRiskSummary({ records }: Props) {
           </p>
         </div>
       </div>
+
+      {weatherSnapshot ? (
+        <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl border border-white/[0.06] bg-black/25 px-3 py-2.5 font-sans text-[13px] leading-snug text-white">
+          <span aria-hidden className="text-xl">
+            {weatherEmojiFromText(weatherSnapshot)}
+          </span>
+          <span>{weatherSnapshot}</span>
+        </div>
+      ) : null}
 
       <div className="mt-4 space-y-3">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#00E8FF]/75">

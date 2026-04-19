@@ -17,6 +17,8 @@ export type RiskAssessment = {
   weather_text?: string;
   financial_notes?: string;
   sdn_notes?: string;
+  /** Passthrough for any extra keys returned by the API */
+  additionalFields?: { key: string; value: string }[];
 };
 
 /** Traffic-light band derived from combined_score for UI badges. */
@@ -69,6 +71,27 @@ function strFromUnknown(v: unknown): string | undefined {
   return undefined;
 }
 
+const RISK_ASSESSMENT_STANDARD_KEYS = new Set([
+  'combined_score',
+  'sdn_score',
+  'financial_score',
+  'weather_score',
+  'weather_text',
+  'financial_notes',
+  'sdn_notes',
+]);
+
+function formatRiskValueForDisplay(v: unknown): string {
+  if (v === null || v === undefined) return '';
+  if (typeof v === 'string') return v;
+  if (typeof v === 'number' || typeof v === 'boolean') return String(v);
+  try {
+    return JSON.stringify(v, null, 0);
+  } catch {
+    return String(v);
+  }
+}
+
 /** Normalize backend `Risk Assessment` object (may be empty `{}`). */
 export function parseRiskAssessment(raw: unknown): RiskAssessment | null {
   if (!raw || typeof raw !== 'object') return null;
@@ -77,7 +100,13 @@ export function parseRiskAssessment(raw: unknown): RiskAssessment | null {
   const sdn = numFromUnknown(o.sdn_score);
   const fin = numFromUnknown(o.financial_score);
   const wx = numFromUnknown(o.weather_score);
-  const hasAny =
+  const additionalFields: { key: string; value: string }[] = [];
+  for (const [k, v] of Object.entries(o)) {
+    if (RISK_ASSESSMENT_STANDARD_KEYS.has(k)) continue;
+    const s = formatRiskValueForDisplay(v);
+    if (s) additionalFields.push({ key: k, value: s });
+  }
+  const hasStandard =
     combined !== undefined ||
     sdn !== undefined ||
     fin !== undefined ||
@@ -85,7 +114,8 @@ export function parseRiskAssessment(raw: unknown): RiskAssessment | null {
     strFromUnknown(o.weather_text) ||
     strFromUnknown(o.financial_notes) ||
     strFromUnknown(o.sdn_notes);
-  if (!hasAny) return null;
+  const hasAdditional = additionalFields.length > 0;
+  if (!hasStandard && !hasAdditional) return null;
   return {
     combined_score: combined,
     sdn_score: sdn,
@@ -94,6 +124,7 @@ export function parseRiskAssessment(raw: unknown): RiskAssessment | null {
     weather_text: strFromUnknown(o.weather_text),
     financial_notes: strFromUnknown(o.financial_notes),
     sdn_notes: strFromUnknown(o.sdn_notes),
+    additionalFields: hasAdditional ? additionalFields : undefined,
   };
 }
 

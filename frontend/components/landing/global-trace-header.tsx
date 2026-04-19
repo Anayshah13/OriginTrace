@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+
+import { OriginTraceLogo } from "@/components/brand/origin-trace-logo";
 
 export function GlobalTraceHeader() {
   return (
@@ -13,20 +14,8 @@ export function GlobalTraceHeader() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:h-[3.75rem] sm:px-6">
-        <Link
-          href="/"
-          className="relative flex shrink-0 items-center outline-none"
-          aria-label="ORIGINTRACE home"
-        >
-          <Image
-            src="/ot2.png"
-            alt="ORIGINTRACE"
-            width={168}
-            height={44}
-            className="h-7 w-auto sm:h-8"
-            priority
-            sizes="(max-width: 640px) 140px, 168px"
-          />
+        <Link href="/" className="relative flex shrink-0 items-center outline-none" aria-label="ORIGINTRACE home">
+          <OriginTraceLogo className="h-8 w-auto max-h-9 sm:h-9 sm:max-h-10" priority />
         </Link>
 
         <nav className="flex items-center gap-6 sm:gap-8">
