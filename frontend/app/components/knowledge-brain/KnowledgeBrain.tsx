@@ -1,7 +1,14 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   Background,
   BackgroundVariant,
@@ -27,17 +34,14 @@ import {
   transformBackendDataToGraph,
 } from './supply-chain-data';
 
-const SupplyChainMapView = dynamic(
-  () => import('./SupplyChainMapView'),
-  {
-    ssr: false,
-        loading: () => (
-      <div className="flex h-full w-full items-center justify-center bg-[#06080c] text-sm text-zinc-500">
-        Loading map…
-      </div>
-    ),
-  }
-);
+const SupplyChainMapView = dynamic(() => import('./SupplyChainMapView'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center bg-[#06080c] text-sm text-zinc-500">
+      Loading map…
+    </div>
+  ),
+});
 
 /** @deprecated Use ANCHOR_COMPANY_NAME — kept for imports expecting this name */
 export const KNOWLEDGE_GRAPH_ROOT_NAME = ANCHOR_COMPANY_NAME;
@@ -240,7 +244,24 @@ function computeProductSupplyHighlight(
 const { nodes: seedNodes, edges: seedEdges, rootId: SEED_ROOT_ID } =
   buildSupplyChainGraph();
 
-function BirdsEyesFlow() {
+/** Stagger tier reveal so each depth fades in slowly from the root outward. */
+const TIER_REVEAL_INITIAL_MS = 420;
+const TIER_REVEAL_STEP_MS = 520;
+
+/** Fit/zoom tuned by graph size: small graphs fill the viewport; large graphs zoom out farther. */
+function getGraphViewOptions(nodeCount: number): {
+  padding: number;
+  minZoom: number;
+  maxZoom: number;
+} {
+  const n = Math.max(1, nodeCount);
+  const padding = Math.min(0.48, 0.1 + Math.min(n * 0.017, 0.34));
+  const minZoom = Math.max(0.005, Math.min(0.038, 0.032 - n * 0.00045));
+  const maxZoom = Math.min(3.2, 1.28 + Math.min(n * 0.03, 1.45));
+  return { padding, minZoom, maxZoom };
+}
+
+function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(seedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(seedEdges);
   const [query, setQuery] = useState('');
@@ -275,7 +296,9 @@ function BirdsEyesFlow() {
     return nodes.find((n) => n.id === parentCompanyId)?.data.label ?? null;
   }, [nodes, parentCompanyId]);
 
-  const handleSearch = async (searchTerm: string) => {
+  const viewOpts = useMemo(() => getGraphViewOptions(nodes.length), [nodes.length]);
+
+  const handleSearch = useCallback(async (searchTerm: string) => {
     if (!searchTerm.trim()) return;
     setIsLoading(true);
     setError(null);
@@ -292,7 +315,7 @@ function BirdsEyesFlow() {
         rootId: newRootId,
         hsnOptions,
       } = transformBackendDataToGraph(data);
-      
+      const opts = getGraphViewOptions(newNodes.length);
       setNodes(newNodes);
       setEdges(newEdges);
       setActiveRootId(newRootId);
@@ -302,11 +325,15 @@ function BirdsEyesFlow() {
       setHoveredId(null);
       setSelectedProductHsn(null);
       setRootHsnOptions(hsnOptions);
-      
-      // Auto-fit the view after a short delay to allow React Flow to render
+
       setTimeout(() => {
-        rfRef.current?.fitView({ padding: 0.38, duration: 800 });
-      }, 100);
+        rfRef.current?.fitView({
+          padding: opts.padding,
+          duration: 800,
+          minZoom: opts.minZoom,
+          maxZoom: opts.maxZoom,
+        });
+      }, 120);
     } catch (err: unknown) {
       console.error(err);
       const message = err instanceof Error ? err.message : 'An unexpected error occurred';
@@ -314,7 +341,57 @@ function BirdsEyesFlow() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  const initialFetchDone = useRef<string | null>(null);
+  useEffect(() => {
+    const q = initialQuery?.trim();
+    if (!q) return;
+    if (initialFetchDone.current === q) return;
+    initialFetchDone.current = q;
+    void handleSearch(q);
+  }, [initialQuery, handleSearch]);
+
+  /** Topology-only key so selection/hover does not restart tier reveal. */
+  const graphRevealKey = useMemo(() => {
+    const sig = edges
+      .map((e) => `${e.source}>${e.target}`)
+      .sort()
+      .join('|');
+    return `${activeRootId}:${sig}`;
+  }, [activeRootId, edges]);
+
+  const [revealMaxTier, setRevealMaxTier] = useState(-1);
+  const revealTimersRef = useRef<number[]>([]);
+  const nodesRef = useRef(nodes);
+  nodesRef.current = nodes;
+
+  useEffect(() => {
+    for (const id of revealTimersRef.current) window.clearTimeout(id);
+    revealTimersRef.current = [];
+
+    const nds = nodesRef.current;
+    let maxTier = 0;
+    for (const n of nds) maxTier = Math.max(maxTier, n.data.tier);
+    if (nds.length === 0) {
+      setRevealMaxTier(0);
+      return;
+    }
+
+    setRevealMaxTier(-1);
+    for (let t = 0; t <= maxTier; t++) {
+      const tid = window.setTimeout(
+        () => setRevealMaxTier(t),
+        TIER_REVEAL_INITIAL_MS + t * TIER_REVEAL_STEP_MS
+      );
+      revealTimersRef.current.push(tid);
+    }
+
+    return () => {
+      for (const id of revealTimersRef.current) window.clearTimeout(id);
+      revealTimersRef.current = [];
+    };
+  }, [graphRevealKey]);
 
   const pathHighlightSourceId = lockedPathSourceId ?? hoveredId;
 
@@ -406,6 +483,7 @@ function BirdsEyesFlow() {
       let opacity = 1;
       if (dim) opacity = 0.12;
       else if (offFocusPath) opacity = 0.08;
+      if (d.tier > revealMaxTier) opacity = 0;
       const node: KnowledgeFlowNode = {
         ...n,
         type: 'knowledge',
@@ -417,7 +495,7 @@ function BirdsEyesFlow() {
       };
       return node;
     });
-  }, [nodes, query, pathHighlight, lockedPathSourceId, selectedProductHsn]);
+  }, [nodes, query, pathHighlight, lockedPathSourceId, selectedProductHsn, revealMaxTier]);
 
   const displayEdges = useMemo(() => {
     const hi = pathHighlight?.edgeIds;
@@ -429,6 +507,8 @@ function BirdsEyesFlow() {
       const tierStroke = tierAccent(targetTier);
       const highlighted = active && hi.has(e.id);
       const dimmed = active && !hi.has(e.id);
+      let opacity = active ? (highlighted ? 1 : 0.18) : 0.82;
+      if (targetTier > revealMaxTier) opacity = 0;
       return {
         ...e,
         animated: highlighted,
@@ -436,12 +516,19 @@ function BirdsEyesFlow() {
           ...e.style,
           stroke: tierStroke,
           strokeWidth: highlighted ? 3.35 : dimmed ? 1.25 : 2.15,
-          opacity: active ? (highlighted ? 1 : 0.18) : 0.82,
+          opacity,
           filter: dimmed ? undefined : edgeGlowFilter(tierStroke),
         },
       };
     });
-  }, [edges, pathHighlightSourceId, selectedProductHsn, pathHighlight, tierByNodeId]);
+  }, [
+    edges,
+    pathHighlightSourceId,
+    selectedProductHsn,
+    pathHighlight,
+    tierByNodeId,
+    revealMaxTier,
+  ]);
 
   useEffect(() => {
     if (mainView !== 'graph') return;
@@ -452,10 +539,10 @@ function BirdsEyesFlow() {
       const inst = rfRef.current;
       if (inst) {
         inst.fitView({
-          padding: 0.12,
+          padding: viewOpts.padding,
           duration: 280,
-          minZoom: 0.012,
-          maxZoom: 2.25,
+          minZoom: viewOpts.minZoom,
+          maxZoom: viewOpts.maxZoom,
         });
         return;
       }
@@ -466,7 +553,7 @@ function BirdsEyesFlow() {
       cancelled = true;
       window.clearTimeout(t);
     };
-  }, [mainView]);
+  }, [mainView, viewOpts.padding, viewOpts.minZoom, viewOpts.maxZoom]);
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#06080c] font-sans text-white">
@@ -495,14 +582,14 @@ function BirdsEyesFlow() {
             nodeTypes={KNOWLEDGE_NODE_TYPES}
             fitView
             fitViewOptions={{
-              padding: 0.12,
-              minZoom: 0.012,
-              maxZoom: 2.25,
+              padding: viewOpts.padding,
+              minZoom: viewOpts.minZoom,
+              maxZoom: viewOpts.maxZoom,
               includeHiddenNodes: false,
             }}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            nodesDraggable={false}
+            nodesDraggable
             nodesConnectable={false}
             elementsSelectable
             panOnDrag
@@ -537,10 +624,10 @@ function BirdsEyesFlow() {
               queueMicrotask(() => {
                 rfRef.current?.fitView({
                   nodes: [{ id: node.id }],
-                  padding: 0.5,
+                  padding: Math.min(0.55, viewOpts.padding + 0.14),
                   duration: 520,
-                  maxZoom: 0.95,
-                  minZoom: 0.03,
+                  maxZoom: Math.min(viewOpts.maxZoom * 0.42, 1.05),
+                  minZoom: viewOpts.minZoom,
                 });
               });
             }}
@@ -548,8 +635,8 @@ function BirdsEyesFlow() {
               setSelectedId(sel[0]?.id ?? null);
             }}
             colorMode="dark"
-            minZoom={0.012}
-            maxZoom={2.25}
+            minZoom={viewOpts.minZoom}
+            maxZoom={viewOpts.maxZoom}
             proOptions={{ hideAttribution: true }}
             defaultEdgeOptions={{
               type: 'straight',
@@ -559,12 +646,13 @@ function BirdsEyesFlow() {
             className="!bg-[#06080c]"
             onInit={(inst) => {
               rfRef.current = inst;
+              const vo = getGraphViewOptions(seedNodes.length);
               const fitAll = () =>
                 inst.fitView({
-                  padding: 0.12,
+                  padding: vo.padding,
                   duration: 0,
-                  minZoom: 0.012,
-                  maxZoom: 2.25,
+                  minZoom: vo.minZoom,
+                  maxZoom: vo.maxZoom,
                 });
               queueMicrotask(() => {
                 requestAnimationFrame(() => {
@@ -623,12 +711,7 @@ function BirdsEyesFlow() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleSearch(query);
-                  }
-                }}
-                placeholder="Search company (Enter to discover upstream)…"
+                placeholder="Filter nodes by name, country, HSN, commodity…"
                 className="min-w-0 flex-1 border-none bg-transparent text-sm text-zinc-100 outline-none placeholder:text-zinc-600"
               />
               {isLoading && (
@@ -718,7 +801,8 @@ function BirdsEyesFlow() {
             <ul className="flex flex-col gap-2">
               {productRows.length === 0 ? (
                 <li className="sy-type-body text-zinc-500">
-                  No HSN options received yet. Search a company to load tier-0 products.
+                  No HSN options received yet. Open the dashboard with a company name in the URL to load tier-0
+                  products from the API.
                 </li>
               ) : (
                 productRows.map((row) => {
@@ -733,7 +817,14 @@ function BirdsEyesFlow() {
                           setSelectedProductHsn((prev) =>
                             prev === row.hsnNormalized ? null : row.hsnNormalized
                           );
-                          queueMicrotask(() => rfRef.current?.fitView({ padding: 0.14, duration: 480 }));
+                          queueMicrotask(() =>
+                            rfRef.current?.fitView({
+                              padding: Math.max(0.12, viewOpts.padding * 0.85),
+                              duration: 480,
+                              minZoom: viewOpts.minZoom,
+                              maxZoom: viewOpts.maxZoom,
+                            })
+                          );
                         }}
                         className={`flex w-full flex-col gap-0.5 rounded-xl border px-3.5 py-3 text-left transition-all ${
                           active
@@ -765,10 +856,14 @@ function BirdsEyesFlow() {
   );
 }
 
-export function KnowledgeBrain() {
+export function KnowledgeBrain({
+  initialQuery,
+}: {
+  initialQuery?: string | null;
+} = {}) {
   return (
     <ReactFlowProvider>
-      <BirdsEyesFlow />
+      <BirdsEyesFlow initialQuery={initialQuery ?? undefined} />
     </ReactFlowProvider>
   );
 }

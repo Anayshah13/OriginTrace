@@ -82,13 +82,19 @@ function SupplyChainMapViewInner({
     }
     const lngs = pts.map((p) => p.lng);
     const lats = pts.map((p) => p.lat);
-    const padX = Math.max(8, (Math.max(...lngs) - Math.min(...lngs)) * 0.12);
-    const padY = Math.max(6, (Math.max(...lats) - Math.min(...lats)) * 0.15);
+    const padX = Math.max(10, (Math.max(...lngs) - Math.min(...lngs)) * 0.14);
+    const padY = Math.max(8, (Math.max(...lats) - Math.min(...lats)) * 0.18);
     return [
       [Math.min(...lngs) - padX, Math.min(...lats) - padY],
       [Math.max(...lngs) + padX, Math.max(...lats) + padY],
     ] as [[number, number], [number, number]];
   }, [posById]);
+
+  /** More nodes → allow zooming in closer when fitting bounds / flying to a marker. */
+  const dynamicMaxZoom = useMemo(
+    () => Math.min(6, 3.5 + Math.min(nodes.length * 0.04, 2)),
+    [nodes.length]
+  );
 
   const edgeGeoJson = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -124,8 +130,8 @@ function SupplyChainMapViewInner({
         opacity = 0.06;
         lineWidth = 0.6;
       } else if (!active) {
-        opacity = 0.42;
-        lineWidth = 1.25;
+        opacity = 0.58;
+        lineWidth = 1.45;
       } else if (hiE?.has(e.id)) {
         opacity = 0.95;
         lineWidth = 3.4;
@@ -162,7 +168,7 @@ function SupplyChainMapViewInner({
       const map = mapRef.current?.getMap();
       if (!p || !map) return;
       const tier = tierById.get(id) ?? 0;
-      const zoom = Math.min(6.2, 2.85 + tier * 0.22);
+      const zoom = Math.min(dynamicMaxZoom, 2.75 + tier * 0.24 + Math.min(nodes.length * 0.02, 0.6));
       map.stop();
       map.flyTo({
         center: [p.lng, p.lat],
@@ -172,7 +178,7 @@ function SupplyChainMapViewInner({
         essential: true,
       });
     },
-    [posById, tierById]
+    [posById, tierById, dynamicMaxZoom, nodes.length]
   );
 
   useEffect(() => {
@@ -186,11 +192,15 @@ function SupplyChainMapViewInner({
     if (!map) return;
     map.resize();
     try {
-      map.fitBounds(initialBounds, { padding: 56, maxZoom: 4.2, duration: 0 });
+      map.fitBounds(initialBounds, {
+        padding: 64,
+        maxZoom: Math.min(dynamicMaxZoom, 5.2),
+        duration: 0,
+      });
     } catch {
       /* ignore */
     }
-  }, [initialBounds]);
+  }, [initialBounds, dynamicMaxZoom]);
 
   const sortedMarkers = useMemo(() => {
     const sel = selectedId;
@@ -225,7 +235,10 @@ function SupplyChainMapViewInner({
         reuseMaps
         initialViewState={{
           bounds: initialBounds,
-          fitBoundsOptions: { padding: 64, maxZoom: 4.25 },
+          fitBoundsOptions: {
+            padding: 72,
+            maxZoom: Math.min(dynamicMaxZoom, 5.2),
+          },
         }}
         style={{ width: '100%', height: '100%' }}
         dragRotate={false}
@@ -298,30 +311,32 @@ function SupplyChainMapViewInner({
                   className="pointer-events-none absolute inset-0 rounded-full blur-md transition-opacity duration-300"
                   style={{
                     background: d.accentColor,
-                    opacity: pathOn ? 0.85 : selected ? 0.55 : 0.25,
+                    opacity: pathOn
+                      ? 0.9
+                      : selected
+                        ? 0.68
+                        : isRoot
+                          ? 0.52
+                          : 0.46,
                   }}
                 />
                 <span
-                  className="relative flex size-4 items-center justify-center rounded-full border-[2.5px] shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:size-[18px]"
+                  className="relative flex size-[18px] items-center justify-center rounded-full border-[2.5px] shadow-[0_4px_18px_rgba(0,0,0,0.55)] sm:size-5"
                   style={{
-                    borderColor: pathOn
-                      ? d.accentColor
-                      : selected
-                        ? d.accentColor
-                        : 'rgba(255,255,255,0.18)',
-                    background: 'linear-gradient(180deg, #141820 0%, #0a0c10 100%)',
+                    borderColor: d.accentColor,
+                    background: 'linear-gradient(180deg, #1a2230 0%, #0c0e14 100%)',
                     boxShadow: pathOn
-                      ? `0 0 22px ${d.accentColor}66, inset 0 0 12px ${d.accentColor}22`
+                      ? `0 0 26px ${d.accentColor}77, inset 0 0 14px ${d.accentColor}28`
                       : selected
-                        ? `0 0 18px ${d.accentColor}44`
-                        : undefined,
+                        ? `0 0 22px ${d.accentColor}55, inset 0 0 10px ${d.accentColor}18`
+                        : `0 0 18px ${d.accentColor}44, inset 0 0 8px ${d.accentColor}12`,
                   }}
                 >
                   <span
-                    className="rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.85)]"
+                    className="rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.95)]"
                     style={{
-                      width: isRoot ? 9 : 6,
-                      height: isRoot ? 9 : 6,
+                      width: isRoot ? 9 : 8,
+                      height: isRoot ? 9 : 8,
                     }}
                   />
                 </span>

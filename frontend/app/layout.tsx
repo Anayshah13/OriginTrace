@@ -1,7 +1,24 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+/** Shared with marketing + placeholder pages (GLOBALTRACE serif titles). */
+const globalSerif = Playfair_Display({
+  variable: "--font-global-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Synergy — Supply chain trace",
@@ -17,15 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="dark h-full overflow-hidden antialiased"
-      style={
-        {
-          "--font-geist-sans":
-            'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-          "--font-geist-mono":
-            'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
-        } as CSSProperties
-      }
+      className={`${geistSans.variable} ${geistMono.variable} ${globalSerif.variable} dark h-full overflow-hidden antialiased`}
     >
       <body className="flex h-full min-h-0 flex-col overflow-hidden bg-[#030306] text-zinc-100 antialiased [text-rendering:optimizeLegibility]">
         <Providers>{children}</Providers>
