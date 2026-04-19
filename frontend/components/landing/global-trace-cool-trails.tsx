@@ -215,7 +215,7 @@ export function GlobalTraceCoolTrails() {
           <FluidTrail key={t.id} trail={t} filterId={filterId} />
         ))}
       </svg>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_42%,transparent_18%,rgba(5,7,10,0.38)_58%,rgba(5,7,10,0.72)_88%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_42%,transparent_18%,rgba(10,12,18,0.34)_58%,rgba(10,12,18,0.62)_88%)]" />
     </div>
   );
 }

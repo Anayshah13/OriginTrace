@@ -1,4 +1,5 @@
 {
+  "company_Apple_d3_tNone_l3_hNone": {
   "company_tesla_d3_tNone_l3_hNone": {
     "top_products": [
       "Lithium-ion Battery Cells",
@@ -187,6 +188,8 @@
         "Tier": 2,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Latitude": 35.9078,
+        "Longitude": 127.7669
         "Latitude": 35.9078,
         "Longitude": 127.7669
       },
@@ -449,6 +452,8 @@
         "Confidence": "low",
         "Latitude": 35.0,
         "Longitude": 125.0
+        "Latitude": 35.0,
+        "Longitude": 125.0
       },
       {
         "Company Name": "Samsung Display Co., Ltd. (2)",
@@ -462,6 +467,8 @@
         "Confidence": "medium",
         "Latitude": 35.9078,
         "Longitude": 127.7669
+        "Latitude": 35.9078,
+        "Longitude": 127.7669
       },
       {
         "Company Name": "Corning Precision Materials",
@@ -473,6 +480,8 @@
         "Tier": 2,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Latitude": 35.9078,
+        "Longitude": 127.7669
         "Latitude": 35.9078,
         "Longitude": 127.7669
       },
@@ -1052,6 +1061,10 @@
       }
     ]
   },
+  "expand_Merck KGaA_s0_e5": {
+    "top_products": [],
+    "hsn_options": [],
+    "selected_anchor_hsn": "",
   "company_subaru-canada_d3_tNone_l3_hNone": {
     "top_products": [
       "Passenger Motor Vehicles (HS 8703)",
@@ -1075,6 +1088,15 @@
     "selected_anchor_hsn": "8703.23",
     "nodes": [
       {
+        "Company Name": "Merck KGaA",
+        "Canonical Company Name": "Merck KGaA",
+        "Node ID": "merck-kgaa-1",
+        "Country": "Germany",
+        "Address": "N/A",
+        "Latitude": 51.1657,
+        "Longitude": 10.4515,
+        "Product Category": "Science and Technology",
+        "Company Description": "A global science and technology company operating in healthcare, life science, and electronics sectors.",
         "Company Name": "subaru-canada",
         "Canonical Company Name": "subaru-canada",
         "Node ID": "subaru-canada-1",
@@ -1085,6 +1107,7 @@
         "Product Category": "Automotive Distribution",
         "Company Description": "The national distributor of Subaru vehicles, parts, and accessories in Canada, managing logistics, marketing, and dealer networks for the Japanese brand.",
         "Tier": 0,
+        "Source": "expansion",
         "Source": "user-input",
         "Confidence": "anchor",
         "Risk Assessment": {
@@ -1338,9 +1361,18 @@
         "Possible Shipment Route": "Port of Yokohama, Japan to Port of Vancouver, Canada",
         "Source": "cbp-reverse",
         "Confidence": "medium",
-        "Prune Reason": ""
+        "Risk Assessment": {}
       },
       {
+        "Company Name": "Evonik Industries AG",
+        "Canonical Company Name": "Evonik Industries AG",
+        "Node ID": "evonik-industries-ag-2",
+        "Country": "Germany",
+        "Address": "N/A",
+        "Latitude": 51.1657,
+        "Longitude": 10.4515,
+        "Product Category": "Specialty Chemicals",
+        "Company Description": "One of the world leaders in specialty chemicals, providing high-performance materials and ingredients.",
         "Company1": "The Yokohama Rubber Co., Ltd.",
         "Company2": "Sri Trang Agro-Industry PCL",
         "Product": "Natural Rubber (TSNR)",
@@ -1902,9 +1934,18 @@
         "Possible Shipment Route": "Toyohashi, Japan to Marysville, USA",
         "Source": "cbp-reverse",
         "Confidence": "medium",
-        "Prune Reason": ""
+        "Risk Assessment": {}
       },
       {
+        "Company Name": "Changzhou High Tech Chemical Co., Ltd.",
+        "Canonical Company Name": "Changzhou High Tech Chemical Co., Ltd.",
+        "Node ID": "changzhou-high-tech-chemical-co-ltd-3",
+        "Country": "China",
+        "Address": "N/A",
+        "Latitude": 35.8617,
+        "Longitude": 104.1954,
+        "Product Category": "Fine Chemicals",
+        "Company Description": "Manufacturer specializing in organic intermediates and fine chemicals for industrial use.",
         "Company1": "Musashi Seimitsu Industry Co., Ltd.",
         "Company2": "Nippon Steel Corporation",
         "Product": "Special Alloy Steel Bars",
@@ -2443,6 +2484,7 @@
         "Tier": 1,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -2477,6 +2519,15 @@
         }
       },
       {
+        "Company Name": "Borosil Limited",
+        "Canonical Company Name": "Borosil Limited",
+        "Node ID": "borosil-limited-4",
+        "Country": "India",
+        "Address": "N/A",
+        "Latitude": 20.5937,
+        "Longitude": 78.9629,
+        "Product Category": "Laboratory Glassware",
+        "Company Description": "Leading manufacturer of laboratory glassware and laboratory equipment consumables.",
         "Company Name": "ASML Holding N.V.",
         "Canonical Company Name": "ASML Holding N.V.",
         "Node ID": "asml-holding-n-v-4",
@@ -2742,6 +2793,7 @@
         "Tier": 1,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -2776,6 +2828,15 @@
         }
       },
       {
+        "Company Name": "Sigma-Aldrich Corporation",
+        "Canonical Company Name": "Sigma-Aldrich Corporation",
+        "Node ID": "sigma-aldrich-corporation-5",
+        "Country": "United States",
+        "Address": "N/A",
+        "Latitude": 39.8283,
+        "Longitude": -98.5795,
+        "Product Category": "Life Science Chemicals",
+        "Company Description": "Operating as a subsidiary of Merck KGaA, providing extensive chemical research supplies and laboratory reagents.",
         "Company Name": "ASML Holding N.V. (4)",
         "Canonical Company Name": "ASML Holding N.V.",
         "Node ID": "asml-holding-n-v-17",
@@ -3041,6 +3102,7 @@
         "Tier": 1,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -3052,6 +3114,16 @@
         }
       },
       {
+        "Company Name": "Samsung Electronics",
+        "Canonical Company Name": "Samsung Electronics",
+        "Node ID": "samsung-electronics-6",
+        "Country": "South Korea",
+        "Address": "N/A",
+        "Latitude": 35.9078,
+        "Longitude": 127.7669,
+        "Product Category": "Electronic Materials",
+        "Company Description": "Global electronics leader that sources and supplies specialized display and semiconductor materials.",
+        "Tier": 1,
         "Company Name": "TDK Corporation",
         "Canonical Company Name": "TDK Corporation",
         "Node ID": "tdk-corporation-29",
@@ -3248,6 +3320,7 @@
         "Tier": 2,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -3330,6 +3403,12 @@
     ],
     "edges": [
       {
+        "Company1": "Merck KGaA",
+        "Company2": "Evonik Industries AG",
+        "Product": "Methacrylates",
+        "Product Description": "Specialty polymers and chemical additives for coating and pharmaceutical formulations.",
+        "HSN Code of Products": "2916.14",
+        "Possible Shipment Route": "Essen, Germany to Darmstadt, Germany via Road Freight",
         "Company1": "microsoft",
         "Company2": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
         "Product": "Xbox Video Game Consoles",
@@ -3341,6 +3420,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Merck KGaA",
+        "Company2": "Changzhou High Tech Chemical Co., Ltd.",
+        "Product": "Organic Intermediates",
+        "Product Description": "Bulk chemical precursors used in the synthesis of liquid crystals and pharmaceutical compounds.",
+        "HSN Code of Products": "2933.39",
+        "Possible Shipment Route": "Shanghai Port, China to Hamburg Port, Germany",
         "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
         "Company2": "Samsung Electronics Co., Ltd.",
         "Product": "OLED Display Panels",
@@ -3352,6 +3437,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Merck KGaA",
+        "Company2": "Borosil Limited",
+        "Product": "Borosilicate Glassware",
+        "Product Description": "Scientific laboratory equipment including flasks, beakers, and volumetric glassware for R&D.",
+        "HSN Code of Products": "7017.90",
+        "Possible Shipment Route": "Nhava Sheva Port, India to Hamburg Port, Germany",
         "Company1": "Samsung Electronics Co., Ltd.",
         "Company2": "ASML Holding N.V.",
         "Product": "EUV Lithography Systems",
@@ -3396,6 +3487,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Merck KGaA",
+        "Company2": "Sigma-Aldrich Corporation",
+        "Product": "Analytical Reagents",
+        "Product Description": "High-purity chemical reagents and reference standards for laboratory analysis.",
+        "HSN Code of Products": "3822.00",
+        "Possible Shipment Route": "St. Louis, MO to Darmstadt, Germany via Air Freight",
         "Company1": "Taiwan Semiconductor Manufacturing Company (TSMC)",
         "Company2": "ASML Holding N.V. (2)",
         "Product": "EUV Lithography Systems",
@@ -3440,6 +3537,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Merck KGaA",
+        "Company2": "Samsung Electronics",
+        "Product": "Display Materials",
+        "Product Description": "Materials used in the manufacturing of high-definition OLED and LCD panels.",
+        "HSN Code of Products": "3824.99",
+        "Possible Shipment Route": "Busan Port, South Korea to Frankfurt, Germany",
         "Company1": "Intel Corporation",
         "Company2": "ASML Holding N.V. (3)",
         "Product": "EUV Lithography Machines",
@@ -3778,6 +3881,11 @@
     "selected_anchor_hsn": "8507.60",
     "nodes": [
       {
+        "Company Name": "Corning Incorporated",
+        "Canonical Company Name": "Corning Incorporated",
+        "Node ID": "corning-incorporated-1",
+        "Country": "USA",
+        "Address": "N/A",
         "Company Name": "general-motors-general-motors",
         "Canonical Company Name": "general-motors-general-motors",
         "Node ID": "general-motors-general-motors-1",
@@ -3785,9 +3893,150 @@
         "Address": "300 Renaissance Center, Detroit, MI 48265, USA",
         "Latitude": 39.8283,
         "Longitude": -98.5795,
+        "Product Category": "Specialty Glass and Ceramics",
+        "Company Description": "A global leader in materials science, specializing in specialty glass, ceramics, and optical physics for industrial and consumer applications.",
         "Product Category": "Automotive Manufacturing",
         "Company Description": "General Motors is a global leader in automotive design and manufacturing, producing vehicles under brands including Chevrolet, GMC, Cadillac, and Buick.",
         "Tier": 0,
+        "Source": "expansion",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+        "Canonical Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+        "Node ID": "hon-hai-precision-industry-co-ltd-foxconn-2",
+        "Country": "Taiwan",
+        "Address": "N/A",
+        "Latitude": 23.6978,
+        "Longitude": 120.9605,
+        "Product Category": "Electronic Components",
+        "Company Description": "World's largest electronics contract manufacturer and a major partner in display technology assembly.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Umicore NV",
+        "Canonical Company Name": "Umicore NV",
+        "Node ID": "umicore-nv-3",
+        "Country": "Belgium",
+        "Address": "N/A",
+        "Latitude": 50.5039,
+        "Longitude": 4.4699,
+        "Product Category": "Materials Technology",
+        "Company Description": "Global materials technology and recycling group providing precious metals for glass production.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "AGC Inc. (Asahi Glass)",
+        "Canonical Company Name": "AGC Inc. (Asahi Glass)",
+        "Node ID": "agc-inc-asahi-glass-4",
+        "Country": "Japan",
+        "Address": "N/A",
+        "Latitude": 36.2048,
+        "Longitude": 138.2529,
+        "Product Category": "Chemicals and Glass",
+        "Company Description": "Supplier of specialty chemicals and raw materials used in technical glass manufacturing.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Mitsui & Co., Ltd.",
+        "Canonical Company Name": "Mitsui & Co., Ltd.",
+        "Node ID": "mitsui-co-ltd-5",
+        "Country": "Japan",
+        "Address": "N/A",
+        "Latitude": 36.2048,
+        "Longitude": 138.2529,
+        "Product Category": "Industrial Raw Materials",
+        "Company Description": "Global trading house supplying high-purity minerals and silica for materials science.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Shin-Etsu Chemical Co., Ltd.",
+        "Canonical Company Name": "Shin-Etsu Chemical Co., Ltd.",
+        "Node ID": "shin-etsu-chemical-co-ltd-6",
+        "Country": "Japan",
+        "Address": "N/A",
+        "Latitude": 36.2048,
+        "Longitude": 138.2529,
+        "Product Category": "Chemical Materials",
+        "Company Description": "Leading manufacturer of high-purity quartz and silicon-based materials.",
+        "Tier": 1,
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      }
+    ],
+    "edges": [
+      {
+        "Company1": "Corning Incorporated",
+        "Company2": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+        "Product": "Liquid Crystal Display (LCD) components",
+        "Product Description": "Thin-film-transistor liquid-crystal display components and glass assembly parts.",
+        "HSN Code of Products": "8529.90",
+        "Possible Shipment Route": "Keelung, Taiwan to Long Beach, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Corning Incorporated",
+        "Company2": "Umicore NV",
+        "Product": "Precious metal crucibles and components",
+        "Product Description": "Platinum and rhodium components used in high-temperature glass melting processes.",
+        "HSN Code of Products": "7110.11",
+        "Possible Shipment Route": "Antwerp, Belgium to New York, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Corning Incorporated",
+        "Company2": "AGC Inc. (Asahi Glass)",
+        "Product": "Polishing slurries and abrasive compounds",
+        "Product Description": "High-purity cerium oxide and aluminum oxide for precision glass polishing.",
+        "HSN Code of Products": "2818.20",
+        "Possible Shipment Route": "Yokohama, Japan to Newark, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Corning Incorporated",
+        "Company2": "Mitsui & Co., Ltd.",
+        "Product": "High-purity silica sand",
+        "Product Description": "Ultra-low impurity silica sand used as a base material for specialty glass melting.",
+        "HSN Code of Products": "2505.10",
+        "Possible Shipment Route": "Brisbane, Australia to Savannah, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      },
+      {
+        "Company1": "Corning Incorporated",
+        "Company2": "Shin-Etsu Chemical Co., Ltd.",
+        "Product": "Synthetic quartz preforms",
+        "Product Description": "High-purity synthetic quartz used in the drawing of optical fibers.",
+        "HSN Code of Products": "2811.22",
+        "Possible Shipment Route": "Nagoya, Japan to Charleston, USA",
+        "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Prune Reason": ""
+      }
+    ]
+  },
+  "company_Maruti_d3_tNone_l3_hNone": {
         "Source": "user-input",
         "Confidence": "anchor",
         "Risk Assessment": {
@@ -4501,6 +4750,10 @@
       }
     ]
   },
+  "expand_Universal Display Corporation_s0_e5": {
+    "top_products": [],
+    "hsn_options": [],
+    "selected_anchor_hsn": "",
   "company_general-motors-19017_d3_tNone_l3_hNone": {
     "top_products": [
       "Steering Wheels, Steering Columns and Steering Boxes (870894)",
@@ -4524,6 +4777,11 @@
     "selected_anchor_hsn": "8409.91",
     "nodes": [
       {
+        "Company Name": "Universal Display Corporation",
+        "Canonical Company Name": "Universal Display Corporation",
+        "Node ID": "universal-display-corporation-1",
+        "Country": "USA",
+        "Address": "N/A",
         "Company Name": "general-motors-19017",
         "Canonical Company Name": "general-motors-19017",
         "Node ID": "general-motors-19017-1",
@@ -4531,9 +4789,15 @@
         "Address": "300 Renaissance Center, Detroit, MI 48265, USA",
         "Latitude": 39.8283,
         "Longitude": -98.5795,
+        "Product Category": "OLED Technology and Materials",
+        "Company Description": "A leader in the research, development, and commercialization of organic light emitting diode (OLED) technologies and materials for use in displays and solid-state lighting.",
         "Product Category": "Automotive Manufacturing",
         "Company Description": "General Motors is a multinational corporation that designs, manufactures, markets, and distributes vehicles and vehicle parts, and sells financial services.",
         "Tier": 0,
+        "Source": "expansion",
+        "Confidence": "medium",
+        "Risk Assessment": {}
+      },
         "Source": "user-input",
         "Confidence": "anchor",
         "Risk Assessment": {
@@ -4570,6 +4834,16 @@
         }
       },
       {
+        "Company Name": "PPG Industries, Inc.",
+        "Canonical Company Name": "PPG Industries, Inc.",
+        "Node ID": "ppg-industries-inc-2",
+        "Country": "USA",
+        "Address": "N/A",
+        "Latitude": 39.8283,
+        "Longitude": -98.5795,
+        "Product Category": "Specialty Chemicals",
+        "Company Description": "A global supplier of paints, coatings, and specialty materials; serves as the exclusive manufacturer of UDC's proprietary PHOLED materials.",
+        "Tier": 1,
         "Company Name": "Bosch Automotive Products (Suzhou) Co., Ltd.",
         "Canonical Company Name": "Bosch Automotive Products (Suzhou) Co., Ltd.",
         "Node ID": "bosch-automotive-products-suzhou-co-ltd-3",
@@ -4674,6 +4948,8 @@
         "Tier": 2,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
+        "Confidence": "medium",
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -4708,6 +4984,9 @@
         }
       },
       {
+        "Company Name": "Idemitsu Kosan Co., Ltd.",
+        "Canonical Company Name": "Idemitsu Kosan Co., Ltd.",
+        "Node ID": "idemitsu-kosan-co-ltd-3",
         "Company Name": "ASML Holding N.V.",
         "Canonical Company Name": "ASML Holding N.V.",
         "Node ID": "asml-holding-n-v-9",
@@ -4758,9 +5037,13 @@
         "Canonical Company Name": "Nidec Corporation",
         "Node ID": "nidec-corporation-11",
         "Country": "Japan",
+        "Address": "N/A",
         "Address": "338 Kuzetonoshiro-cho, Minami-ku, Kyoto, Japan",
         "Latitude": 36.2048,
         "Longitude": 138.2529,
+        "Product Category": "Petroleum and Chemicals",
+        "Company Description": "Manufacturer of advanced electronic materials, including high-performance OLED host and transport materials.",
+        "Tier": 1,
         "Product Category": "Electric Motors",
         "Company Description": "Manufacturer of precision motors and drive systems used in various automotive and industrial applications.",
         "Tier": 2,
@@ -5178,6 +5461,7 @@
         "Possible Shipment Route": "Port of Hamburg, Germany to Port of New York, USA",
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
         "Prune Reason": ""
       },
       {
@@ -5225,6 +5509,15 @@
         "Prune Reason": ""
       },
       {
+        "Company Name": "Duksan Neolux Co., Ltd.",
+        "Canonical Company Name": "Duksan Neolux Co., Ltd.",
+        "Node ID": "duksan-neolux-co-ltd-4",
+        "Country": "South Korea",
+        "Address": "N/A",
+        "Latitude": 35.9078,
+        "Longitude": 127.7669,
+        "Product Category": "Electronic Materials",
+        "Company Description": "Specializes in the production of HTL (Hole Transport Layer) and Red/Green/Blue OLED materials.",
         "Company1": "Robert Bosch GmbH",
         "Company2": "Infineon Technologies AG",
         "Product": "Power MOSFETs",
@@ -5880,6 +6173,13 @@
         "Tier": 1,
         "Source": "cbp-reverse",
         "Confidence": "medium",
+        "Risk Assessment": {}
+      },
+      {
+        "Company Name": "Kaneka Corporation",
+        "Canonical Company Name": "Kaneka Corporation",
+        "Node ID": "kaneka-corporation-5",
+        "Confidence": "medium",
         "Risk Assessment": {
           "sdn_score": 0,
           "financial_score": 0,
@@ -5941,9 +6241,12 @@
         "Canonical Company Name": "Zeon Corporation",
         "Node ID": "zeon-corporation-17",
         "Country": "Japan",
+        "Address": "N/A",
         "Address": "1-6-2 Marunouchi, Chiyoda-ku, Tokyo, Japan",
         "Latitude": 36.2048,
         "Longitude": 138.2529,
+        "Product Category": "Functional Plastics",
+        "Company Description": "Diversified chemical company providing thin-film encapsulation materials and moisture barrier solutions.",
         "Product Category": "Chemicals and Elastomers",
         "Company Description": "A major producer of specialty synthetic rubbers, including nitrile rubber used in fuel-resistant components.",
         "Tier": 3,
@@ -5994,6 +6297,8 @@
         "Company Description": "A supplier focusing on hydraulic components and machined assemblies for braking and steering systems.",
         "Tier": 1,
         "Source": "cbp-reverse",
+        "Confidence": "medium",
+        "Risk Assessment": {}
         "Confidence": "medium",
         "Risk Assessment": {
           "sdn_score": 0,
@@ -6215,6 +6520,12 @@
     ],
     "edges": [
       {
+        "Company1": "Universal Display Corporation",
+        "Company2": "PPG Industries, Inc.",
+        "Product": "UniversalPHOLED Phosphorescent Materials",
+        "Product Description": "High-purity organic electroluminescent dopants and host materials used in the emissive layer of OLED devices.",
+        "HSN Code of Products": "3824.99",
+        "Possible Shipment Route": "Barberton, OH to Ewing, NJ",
         "Company1": "mpa",
         "Company2": "Motorcar Parts of America (M) Sdn Bhd",
         "Product": "Alternator and Starter Components",
@@ -6226,6 +6537,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Idemitsu Kosan Co., Ltd.",
+        "Product": "OLED Host Materials",
+        "Product Description": "Organic chemical compounds used to host emitting dopants within the OLED stack to improve efficiency and lifetime.",
+        "HSN Code of Products": "2933.39",
+        "Possible Shipment Route": "Tokyo, Japan to Philadelphia Port, USA",
         "Company1": "Motorcar Parts of America (M) Sdn Bhd",
         "Company2": "Motorcar Parts of America, Inc.",
         "Product": "Automotive Core Components",
@@ -6237,6 +6554,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Duksan Neolux Co., Ltd.",
+        "Product": "Hole Transport Layer (HTL) Materials",
+        "Product Description": "Organic semiconductors designed to facilitate the transport of holes into the emissive layer of OLEDs.",
+        "HSN Code of Products": "2934.99",
+        "Possible Shipment Route": "Incheon, South Korea to New York/Newark Port, USA",
         "Company1": "Motorcar Parts of America, Inc.",
         "Company2": "Unipoint Electric Mfg. Co., Ltd.",
         "Product": "Alternator and Starter Components",
@@ -6281,6 +6604,12 @@
         "Prune Reason": ""
       },
       {
+        "Company1": "Universal Display Corporation",
+        "Company2": "Kaneka Corporation",
+        "Product": "Encapsulation Films",
+        "Product Description": "Specialized resin and film layers used to protect organic OLED materials from degradation by oxygen and moisture.",
+        "HSN Code of Products": "3920.69",
+        "Possible Shipment Route": "Osaka, Japan to Philadelphia Port, USA",
         "Company1": "Ningbo Xintian Auto Parts Co., Ltd.",
         "Company2": "Baoshan Iron & Steel Co., Ltd.",
         "Product": "Alloy Steel Bars and Sheets",

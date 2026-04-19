@@ -5,7 +5,7 @@ export default function ApiDocsPage() {
     <div className="font-sans min-h-screen bg-[#05070A] px-6 py-16 text-[#e4e4e7]">
       <div className="mx-auto max-w-2xl">
         <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-[#FF00E5]/85">
-          GLOBALTRACE / API
+          ORIGINTRACE / API
         </p>
         <h1 className="font-melodrama mt-4 text-3xl font-medium tracking-tight text-white">
           API reference
@@ -21,7 +21,7 @@ export default function ApiDocsPage() {
           href="/"
           className="mt-10 inline-block text-sm text-[#00F2FF] underline-offset-4 hover:underline"
         >
-          ← Back to GLOBALTRACE
+          ← Back to ORIGINTRACE
         </Link>
       </div>
     </div>

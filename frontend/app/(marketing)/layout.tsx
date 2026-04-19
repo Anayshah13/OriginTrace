@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GLOBALTRACE — Synergy",
+  title: "ORIGINTRACE — Synergy",
   description:
     "Identify origin nodes, trace supply routes, and map raw material dependencies across the global grid.",
 };

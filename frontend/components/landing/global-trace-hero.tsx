@@ -1,11 +1,12 @@
 "use client";
 
-import gsap from "gsap";
 import Link from "next/link";
+
+import { OriginTraceLogo } from "@/components/brand/origin-trace-logo";
 import { useRouter } from "next/navigation";
-import { ScanLine, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { motion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const container = {
   hidden: { opacity: 0 },
@@ -31,23 +32,6 @@ export function GlobalTraceHero() {
   const router = useRouter();
   const [q, setQ] = useState("");
   const [subtitleShown, setSubtitleShown] = useState("");
-  const badgeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = badgeRef.current;
-    if (!el) return;
-    const tween = gsap.to(el, {
-      boxShadow:
-        "0 0 52px -6px rgba(0,242,255,0.55), inset 0 0 24px rgba(0,242,255,0.06)",
-      duration: 2.8,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-    return () => {
-      tween.kill();
-    };
-  }, []);
 
   useEffect(() => {
     let i = 0;
@@ -113,43 +97,25 @@ export function GlobalTraceHero() {
   );
 
   return (
-    <section className="relative z-10 flex min-h-[calc(100dvh-8rem)] flex-col items-center justify-center px-4 pb-24 pt-10 sm:px-6">
+    <section className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-4 sm:px-6 sm:py-5">
       <motion.div
         className="mx-auto flex w-full max-w-3xl flex-col items-center text-center font-sans"
         variants={container}
         initial="hidden"
         animate="show"
       >
-        <motion.div
-          ref={badgeRef}
-          variants={item}
-          className="mb-8 grid size-16 place-items-center rounded-2xl border border-[#00F2FF]/25 bg-[linear-gradient(145deg,rgba(10,16,28,0.95),rgba(5,8,14,0.98))] shadow-[0_0_48px_-12px_rgba(0,242,255,0.35)] sm:size-[4.25rem]"
-          style={{
-            clipPath:
-              "polygon(30% 0%,70% 0%,100% 50%,70% 100%,30% 100%,0% 50%)",
-          }}
-        >
-          <ScanLine className="size-8 text-[#00F2FF] sm:size-9" strokeWidth={1.35} />
+        <motion.div variants={item} className="w-full px-2">
+          <h1 className="sr-only">ORIGINTRACE</h1>
+          <OriginTraceLogo
+            className="mx-auto h-auto w-full max-w-[min(88vw,22rem)] max-h-[min(28vh,11rem)] object-contain sm:max-h-[min(30vh,12rem)] sm:max-w-lg md:max-w-xl"
+            priority
+          />
         </motion.div>
 
         <motion.p
           variants={item}
-          className="font-sans text-[0.65rem] font-extralight italic uppercase tracking-[0.42em] text-[#00F2FF]/90"
-        >
-          by SYNERGY
-        </motion.p>
-
-        <motion.h1
-          variants={item}
-          className="font-melodrama mt-4 text-[clamp(3.75rem,16vw,7rem)] font-bold leading-[0.98] tracking-[0.015em] text-white drop-shadow-[0_4px_48px_rgba(0,242,255,0.12)]"
-        >
-          GLOBALTRACE
-        </motion.h1>
-
-        <motion.p
-          variants={item}
           aria-label={SUBTITLE_FULL}
-          className="mt-8 min-h-[5.25rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[4.5rem] sm:text-[0.78rem]"
+          className="mt-4 min-h-[3.75rem] max-w-2xl text-[0.7rem] font-light uppercase leading-relaxed tracking-[0.26em] text-[#a8a8a8] sm:min-h-[3.25rem] sm:text-[0.78rem]"
         >
           {subtitleShown}
           <span
@@ -158,11 +124,11 @@ export function GlobalTraceHero() {
           />
         </motion.p>
 
-        <motion.div variants={item} className="mt-12 flex w-full max-w-xl flex-col gap-4">
+        <motion.div variants={item} className="mt-5 flex w-full max-w-xl flex-col gap-2.5 sm:mt-6 sm:gap-3">
           <button
             type="button"
             onClick={() => router.push("/dashboard")}
-            className="w-full rounded-full border border-[#00F2FF]/35 bg-[rgba(8,12,22,0.85)] px-6 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.22em] text-[#00F2FF] shadow-[0_0_48px_-16px_rgba(0,242,255,0.35)] transition hover:border-[#00F2FF]/55 hover:bg-[#00F2FF]/10"
+            className="w-full rounded-full border border-[#00F2FF]/35 bg-[rgba(8,12,22,0.85)] px-6 py-2.5 text-[0.8125rem] font-semibold uppercase tracking-[0.22em] text-[#00F2FF] shadow-[0_0_48px_-16px_rgba(0,242,255,0.35)] transition hover:border-[#00F2FF]/55 hover:bg-[#00F2FF]/10 sm:py-3"
           >
             Continue with demo data
           </button>
@@ -172,7 +138,7 @@ export function GlobalTraceHero() {
           </p>
         </motion.div>
 
-        <motion.form variants={item} onSubmit={onSubmit} className="mt-2 w-full max-w-xl">
+        <motion.form variants={item} onSubmit={onSubmit} className="mt-1 w-full max-w-xl sm:mt-1.5">
           <div className="flex items-stretch rounded-full border border-[#00F2FF]/15 bg-[rgba(8,12,22,0.72)] py-1 pl-1 pr-1 shadow-[0_0_60px_-20px_rgba(0,242,255,0.25)] backdrop-blur-md">
             <span className="hidden shrink-0 items-center gap-3 border-r border-white/10 px-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#00F2FF] sm:flex">
               Target ID
@@ -192,7 +158,7 @@ export function GlobalTraceHero() {
               <Search className="size-5" strokeWidth={2} />
             </button>
           </div>
-          <p className="mt-4 text-center text-[0.65rem] font-normal tracking-wide text-[#6b7280]">
+          <p className="mt-2 text-center text-[0.65rem] font-normal tracking-wide text-[#6b7280]">
             Enter a company to load its chain from the API, or use{" "}
             <Link
               href="/dashboard"

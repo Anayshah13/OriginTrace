@@ -237,6 +237,26 @@ html {
   color: #7dd3fc !important;
 }
 
+/* User dashboard: visible thin scrollbar (root body hides scrollbars for graph UX) */
+.user-dashboard-shell {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 232, 255, 0.35) rgba(15, 18, 26, 0.8);
+}
+
+.user-dashboard-shell::-webkit-scrollbar {
+  width: 10px;
+}
+
+.user-dashboard-shell::-webkit-scrollbar-track {
+  background: rgba(5, 7, 10, 0.9);
+}
+
+.user-dashboard-shell::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0, 232, 255, 0.35), rgba(0, 232, 255, 0.15));
+  border-radius: 999px;
+  border: 2px solid rgba(5, 7, 10, 0.9);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
