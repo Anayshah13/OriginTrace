@@ -1,17 +1,5 @@
 import type { Metadata } from "next";
-import { Inter_Tight, JetBrains_Mono } from "next/font/google";
-
-const landingDisplay = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-landing-display",
-});
-
-const landingMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-landing-mono",
-});
+import type { CSSProperties } from "react";
 
 export const metadata: Metadata = {
   title: "Synergy — Multi-tier supply chain intelligence",
@@ -26,7 +14,15 @@ export default function MarketingLayout({
 }>) {
   return (
     <div
-      className={`${landingDisplay.variable} ${landingMono.variable} fixed inset-0 z-[100] overflow-x-hidden overflow-y-auto overscroll-contain bg-[#030306] font-sans text-zinc-100 antialiased [text-rendering:optimizeLegibility]`}
+      className="fixed inset-0 z-[100] overflow-x-hidden overflow-y-auto overscroll-contain bg-[#030306] font-sans text-zinc-100 antialiased [text-rendering:optimizeLegibility]"
+      style={
+        {
+          "--font-landing-display":
+            '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          "--font-landing-mono":
+            'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
+        } as CSSProperties
+      }
     >
       {children}
     </div>

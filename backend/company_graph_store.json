@@ -1,0 +1,2551 @@
+[
+  {
+    "company_key": "nvidia",
+    "company_input": "Nvidia",
+    "selected_anchor_hsn": "8541.29",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:35:20.049042Z",
+    "payload": {
+      "top_products": [
+        "H100 Tensor Core GPUs",
+        "A100 Tensor Core GPUs",
+        "GeForce RTX 4090 Graphics Cards",
+        "Mellanox ConnectX-7 Network Adapters",
+        "BlueField-3 Data Processing Units (DPUs)"
+      ],
+      "hsn_options": [
+        "8541.29",
+        "8542.32",
+        "8471.50",
+        "8534.00",
+        "4090"
+      ],
+      "selected_anchor_hsn": "8541.29",
+      "nodes": [
+        {
+          "Company Name": "Nvidia",
+          "Canonical Company Name": "Nvidia",
+          "Node ID": "nvidia-1",
+          "Country": "USA",
+          "Product Category": "Semiconductors and AI Computing hardware",
+          "Company Description": "A leading designer of graphics processing units (GPUs) and application programming interfaces (APIs) for data centers, gaming, and professional markets.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-company-tsmc-2",
+          "Country": "Taiwan",
+          "Product Category": "Foundry / Wafer Fabrication",
+          "Company Description": "The world's largest dedicated independent semiconductor foundry, manufacturing Nvidia's high-end GPU dies.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "SK Hynix Inc.",
+          "Canonical Company Name": "SK Hynix Inc.",
+          "Node ID": "sk-hynix-inc-3",
+          "Country": "South Korea",
+          "Product Category": "Memory Semiconductors",
+          "Company Description": "A major supplier of high-speed memory solutions essential for AI training hardware.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Hon Hai Precision Industry (Foxconn)",
+          "Canonical Company Name": "Hon Hai Precision Industry (Foxconn)",
+          "Node ID": "hon-hai-precision-industry-foxconn-4",
+          "Country": "Taiwan",
+          "Product Category": "Electronics Manufacturing Services (EMS)",
+          "Company Description": "Contract manufacturer responsible for the assembly of Nvidia's DGX and HGX server systems.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Nvidia",
+          "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Product": "Silicon Wafers",
+          "Product Description": "Processed 4nm and 5nm silicon wafers for Hopper and Ada Lovelace architectures",
+          "HSN Code of Products": "8541.29",
+          "Possible Shipment Route": "Hsinchu, Taiwan to San Jose, California, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nvidia",
+          "Company2": "SK Hynix Inc.",
+          "Product": "HBM3/HBM3E Memory",
+          "Product Description": "High Bandwidth Memory stacks for H100 and B200 GPU integration",
+          "HSN Code of Products": "8542.32",
+          "Possible Shipment Route": "Icheon, South Korea to Silicon Valley, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nvidia",
+          "Company2": "Hon Hai Precision Industry (Foxconn)",
+          "Product": "AI Server Nodes",
+          "Product Description": "Server chassis, PCBA, and integrated GPU modules for data center clusters",
+          "HSN Code of Products": "8471.50",
+          "Possible Shipment Route": "Shenzhen, China to Long Beach, California, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "tesla",
+    "company_input": "Tesla",
+    "selected_anchor_hsn": "",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:36:38.580997Z",
+    "payload": {
+      "top_products": [
+        "Electric Passenger Vehicles",
+        "Lithium-ion Battery Packs",
+        "Solar Panels and Roof Tiles",
+        "Energy Storage Systems (Powerwall/Megapack)",
+        "Electric Vehicle Components and Drive Units"
+      ],
+      "hsn_options": [],
+      "selected_anchor_hsn": "",
+      "nodes": [
+        {
+          "Company Name": "Tesla",
+          "Canonical Company Name": "Tesla",
+          "Node ID": "tesla-1",
+          "Country": "USA",
+          "Product Category": "Automotive and Clean Energy",
+          "Company Description": "Tesla, Inc. designs, develops, manufactures, sells, and leases fully electric vehicles and energy generation and storage systems.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "company_key": "apple",
+    "company_input": "Apple",
+    "selected_anchor_hsn": "",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:39:30.094866Z",
+    "payload": {
+      "top_products": [
+        "851713 - Smartphones (iPhone)",
+        "847130 - Portable automatic data processing machines (MacBook/iPad)",
+        "851830 - Headphones and earphones (AirPods)",
+        "910212 - Wrist-watches, electrically operated (Apple Watch)",
+        "851762 - Machines for the reception, conversion and transmission of data"
+      ],
+      "hsn_options": [],
+      "selected_anchor_hsn": "",
+      "nodes": [
+        {
+          "Company Name": "Apple",
+          "Canonical Company Name": "Apple",
+          "Node ID": "apple-1",
+          "Country": "United States",
+          "Product Category": "Consumer Electronics",
+          "Company Description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories, and sells a variety of related services.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "company_key": "apple",
+    "company_input": "Apple",
+    "selected_anchor_hsn": "",
+    "max_tier": 2,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:40:51.109479Z",
+    "payload": {
+      "top_products": [],
+      "hsn_options": [],
+      "selected_anchor_hsn": "",
+      "nodes": [
+        {
+          "Company Name": "Apple",
+          "Canonical Company Name": "Apple",
+          "Node ID": "apple-1",
+          "Country": "Unknown",
+          "Product Category": "N/A",
+          "Company Description": "Apple root company.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "company_key": "apple",
+    "company_input": "Apple",
+    "selected_anchor_hsn": "8517.13",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:42:22.484446Z",
+    "payload": {
+      "top_products": [
+        "Smartphones (iPhone) - HSN 851713",
+        "Portable Automatic Data Processing Machines (MacBook) - HSN 847130",
+        "Tablets (iPad) - HSN 847130",
+        "Smartwatches (Apple Watch) - HSN 851762",
+        "Wireless Earphones (AirPods) - HSN 851830"
+      ],
+      "hsn_options": [
+        "8517.13",
+        "8542.31",
+        "8524.91",
+        "8518.30",
+        "8471.30",
+        "8517.62"
+      ],
+      "selected_anchor_hsn": "8517.13",
+      "nodes": [
+        {
+          "Company Name": "Apple",
+          "Canonical Company Name": "Apple",
+          "Node ID": "apple-1",
+          "Country": "United States",
+          "Product Category": "Consumer Electronics",
+          "Company Description": "A global technology leader that designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Canonical Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Node ID": "hon-hai-precision-industry-co-ltd-foxconn-2",
+          "Country": "Taiwan",
+          "Product Category": "Electronics Manufacturing Services",
+          "Company Description": "The world's largest contract electronics manufacturer and a primary assembler of Apple's iPhone series.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-company-tsmc-3",
+          "Country": "Taiwan",
+          "Product Category": "Semiconductors",
+          "Company Description": "The world's leading dedicated semiconductor foundry, producing Apple's custom Silicon (A-series and M-series chips).",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Samsung Display Co., Ltd.",
+          "Canonical Company Name": "Samsung Display Co., Ltd.",
+          "Node ID": "samsung-display-co-ltd-4",
+          "Country": "South Korea",
+          "Product Category": "Display Panels",
+          "Company Description": "A leading developer of OLED and LCD technology, supplying high-resolution screens for mobile devices.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Apple",
+          "Company2": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Product": "iPhone Assembly",
+          "Product Description": "Final assembly and manufacturing of mobile telecommunications devices and internal components.",
+          "HSN Code of Products": "8517.13",
+          "Possible Shipment Route": "Shenzhen/Zhengzhou, China to Long Beach, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Apple",
+          "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Product": "Integrated Circuits",
+          "Product Description": "Monolithic integrated circuits, specifically advanced processors for mobile and computing hardware.",
+          "HSN Code of Products": "8542.31",
+          "Possible Shipment Route": "Taipei, Taiwan to San Jose, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Apple",
+          "Company2": "Samsung Display Co., Ltd.",
+          "Product": "OLED Display Modules",
+          "Product Description": "Organic Light-Emitting Diode display panels specifically calibrated for smartphone applications.",
+          "HSN Code of Products": "8524.91",
+          "Possible Shipment Route": "Incheon, South Korea to San Francisco, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "tesla",
+    "company_input": "Tesla",
+    "selected_anchor_hsn": "8507.60",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:42:40.564415Z",
+    "payload": {
+      "top_products": [
+        "Electric passenger vehicles",
+        "Lithium-ion battery packs",
+        "Photovoltaic solar panels",
+        "Electronic control units and integrated circuits",
+        "Brake assemblies and suspension components"
+      ],
+      "hsn_options": [
+        "8507.60",
+        "8483.40",
+        "8708.30"
+      ],
+      "selected_anchor_hsn": "8507.60",
+      "nodes": [
+        {
+          "Company Name": "Tesla",
+          "Canonical Company Name": "Tesla",
+          "Node ID": "tesla-1",
+          "Country": "United States",
+          "Product Category": "Electric Vehicles & Clean Energy",
+          "Company Description": "An American multinational automotive and clean energy company that designs and manufactures electric vehicles, stationary battery energy storage devices, solar panels, and related products and services.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "company_key": "teslatsmc",
+    "company_input": "TeslaTSMC",
+    "selected_anchor_hsn": "8542.31.00",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:42:58.789649Z",
+    "payload": {
+      "top_products": [
+        "Electronic Integrated Circuits (HSN 854231)",
+        "FSD (Full Self-Driving) Computer Processors",
+        "Microcontrollers for Automotive Control Units",
+        "Semiconductor Wafers for Power Electronics",
+        "Advanced Logic Chips for ADAS"
+      ],
+      "hsn_options": [
+        "8542.31.00",
+        "8542",
+        "8542.31"
+      ],
+      "selected_anchor_hsn": "8542.31.00",
+      "nodes": [
+        {
+          "Company Name": "TeslaTSMC",
+          "Canonical Company Name": "TeslaTSMC",
+          "Node ID": "teslatsmc-1",
+          "Country": "United States",
+          "Product Category": "Electric Vehicles and AI Hardware",
+          "Company Description": "The strategic partnership and supply chain integration between Tesla Inc. and TSMC for the production of custom silicon, specifically Hardware 3.0 and 4.0 for autonomous driving.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-company-tsmc-2",
+          "Country": "Taiwan",
+          "Product Category": "Semiconductors",
+          "Company Description": "The world's largest dedicated semiconductor foundry, providing advanced manufacturing processes (7nm, 5nm) for high-performance computing and automotive silicon.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "TeslaTSMC",
+          "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Product": "Application-Specific Integrated Circuits (ASICs)",
+          "Product Description": "Custom-designed AI inference chips and processors tailored for Tesla's Full Self-Driving and Autopilot computer systems.",
+          "HSN Code of Products": "8542.31.00",
+          "Possible Shipment Route": "Keelung/Kaohsiung, Taiwan to Port of Oakland/Long Beach, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "tsmc",
+    "company_input": "TSMC",
+    "selected_anchor_hsn": "8486.20",
+    "max_tier": 1,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:43:02.379016Z",
+    "payload": {
+      "top_products": [
+        "Extreme Ultraviolet Lithography Systems",
+        "Monocrystalline Silicon Wafers",
+        "Photoresist Chemicals",
+        "Plasma Etch Systems",
+        "Chemical Vapor Deposition Tools"
+      ],
+      "hsn_options": [
+        "8486.20",
+        "3818.00"
+      ],
+      "selected_anchor_hsn": "8486.20",
+      "nodes": [
+        {
+          "Company Name": "TSMC",
+          "Canonical Company Name": "TSMC",
+          "Node ID": "tsmc-1",
+          "Country": "Taiwan",
+          "Product Category": "Semiconductors",
+          "Company Description": "Taiwan Semiconductor Manufacturing Company (TSMC) is the world's largest dedicated independent semiconductor foundry, manufacturing chips for global tech giants.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "ASML",
+          "Canonical Company Name": "ASML",
+          "Node ID": "asml-2",
+          "Country": "Netherlands",
+          "Product Category": "Photolithography Systems",
+          "Company Description": "Leading manufacturer of photolithography machines used to etch circuitry onto silicon wafers.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Applied Materials",
+          "Canonical Company Name": "Applied Materials",
+          "Node ID": "applied-materials-3",
+          "Country": "USA",
+          "Product Category": "Semiconductor Equipment",
+          "Company Description": "Provider of materials engineering solutions used to produce virtually every new chip and advanced display in the world.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical",
+          "Canonical Company Name": "Shin-Etsu Chemical",
+          "Node ID": "shin-etsu-chemical-4",
+          "Country": "Japan",
+          "Product Category": "Chemicals and Wafers",
+          "Company Description": "Global leader in the production of semiconductor silicon wafers and high-purity chemicals.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "TSMC",
+          "Company2": "ASML",
+          "Product": "EUV Lithography Machines",
+          "Product Description": "Extreme Ultraviolet Lithography machines and related spare parts for high-end node manufacturing.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Veldhoven, Netherlands to Hsinchu, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "TSMC",
+          "Company2": "Applied Materials",
+          "Product": "Ion Implantation and Etch Equipment",
+          "Product Description": "Precision engineering tools for wafer fabrication, including deposition and ion implantation systems.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Santa Clara, USA to Taichung, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "TSMC",
+          "Company2": "Shin-Etsu Chemical",
+          "Product": "Silicon Wafers",
+          "Product Description": "High-purity monocrystalline silicon wafers and photoresist materials.",
+          "HSN Code of Products": "3818.00",
+          "Possible Shipment Route": "Tokyo, Japan to Tainan, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "apple",
+    "company_input": "Apple",
+    "selected_anchor_hsn": "8517.13",
+    "max_tier": 3,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:47:34.658365Z",
+    "payload": {
+      "top_products": [
+        "Smartphones (iPhone)",
+        "Portable Data Processing Machines (MacBook)",
+        "Tablets (iPad)",
+        "Wearable Electronic Devices (Apple Watch)",
+        "Wireless Headphones (AirPods)"
+      ],
+      "hsn_options": [
+        "8517.13",
+        "8517",
+        "8542.31",
+        "8542",
+        "8524.91",
+        "8524",
+        "8518.30",
+        "8518",
+        "8541.43",
+        "8541"
+      ],
+      "selected_anchor_hsn": "8517.13",
+      "nodes": [
+        {
+          "Company Name": "Apple",
+          "Canonical Company Name": "Apple",
+          "Node ID": "apple-1",
+          "Country": "USA",
+          "Product Category": "Consumer Electronics",
+          "Company Description": "A multinational technology company that designs, develops, and sells consumer electronics, computer software, and online services.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Canonical Company Name": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Node ID": "hon-hai-precision-industry-co-ltd-foxconn-2",
+          "Country": "Taiwan",
+          "Product Category": "Electronics Manufacturing",
+          "Company Description": "The world's largest contract electronics manufacturer, specializing in the assembly of consumer electronics.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-co-tsmc-3",
+          "Country": "Taiwan",
+          "Product Category": "Semiconductors",
+          "Company Description": "The world's leading pure-play semiconductor foundry, manufacturing advanced chips for global tech companies.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "ASML Holding",
+          "Canonical Company Name": "ASML Holding",
+          "Node ID": "asml-holding-4",
+          "Country": "Netherlands",
+          "Product Category": "Lithography Equipment",
+          "Company Description": "Provider of critical photolithography machines used in the patterning of advanced semiconductor wafers.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Applied Materials",
+          "Canonical Company Name": "Applied Materials",
+          "Node ID": "applied-materials-5",
+          "Country": "United States",
+          "Product Category": "Manufacturing Equipment",
+          "Company Description": "Leader in materials engineering solutions used to produce virtually every new chip and advanced display in the world.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical",
+          "Canonical Company Name": "Shin-Etsu Chemical",
+          "Node ID": "shin-etsu-chemical-6",
+          "Country": "Japan",
+          "Product Category": "Specialized Materials",
+          "Company Description": "Major producer of high-purity silicon wafers and specialized chemicals for electronics.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Samsung Display Co., Ltd.",
+          "Canonical Company Name": "Samsung Display Co., Ltd.",
+          "Node ID": "samsung-display-co-ltd-7",
+          "Country": "South Korea",
+          "Product Category": "Display Panels",
+          "Company Description": "A global leader in high-resolution display technology, specializing in OLED and AMOLED screens.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Universal Display Corporation",
+          "Canonical Company Name": "Universal Display Corporation",
+          "Node ID": "universal-display-corporation-8",
+          "Country": "USA",
+          "Product Category": "Specialty Chemicals",
+          "Company Description": "A leader in the research, development, and commercialization of phosphorescent OLED technologies and materials.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Corning Inc.",
+          "Canonical Company Name": "Corning Inc.",
+          "Node ID": "corning-inc-9",
+          "Country": "USA",
+          "Product Category": "Glass and Ceramics",
+          "Company Description": "Manufacturer of specialty glass, ceramics, and related materials, specifically for industrial and scientific applications.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Applied Materials, Inc.",
+          "Canonical Company Name": "Applied Materials, Inc.",
+          "Node ID": "applied-materials-inc-10",
+          "Country": "USA",
+          "Product Category": "Manufacturing Equipment",
+          "Company Description": "A provider of manufacturing equipment, services, and software to the semiconductor, display, and related industries.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Murata Manufacturing Co., Ltd.",
+          "Canonical Company Name": "Murata Manufacturing Co., Ltd.",
+          "Node ID": "murata-manufacturing-co-ltd-11",
+          "Country": "Japan",
+          "Product Category": "Electronic Components",
+          "Company Description": "Global manufacturer of ceramic-based electronic components and wireless modules.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Sumitomo Metal Mining Co., Ltd.",
+          "Canonical Company Name": "Sumitomo Metal Mining Co., Ltd.",
+          "Node ID": "sumitomo-metal-mining-co-ltd-12",
+          "Country": "Japan",
+          "Product Category": "Specialized Materials",
+          "Company Description": "Supplier of high-purity metals and chemical compounds for battery materials and electronic components.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Canonical Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Node ID": "shin-etsu-chemical-co-ltd-13",
+          "Country": "Japan",
+          "Product Category": "Chemicals and Resins",
+          "Company Description": "Manufacturer of high-purity chemicals, silicones, and synthetic quartz.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Mitsui Mining & Smelting Co., Ltd.",
+          "Canonical Company Name": "Mitsui Mining & Smelting Co., Ltd.",
+          "Node ID": "mitsui-mining-smelting-co-ltd-14",
+          "Country": "Japan",
+          "Product Category": "Non-Ferrous Metals",
+          "Company Description": "Global supplier of functional materials including copper foil for printed circuit boards.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Co. (TSMC) (2)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-co-tsmc-15",
+          "Country": "Taiwan",
+          "Product Category": "Semiconductors",
+          "Company Description": "The world's largest dedicated independent semiconductor foundry, producing Apple's A-series and M-series chips.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "ASML Holding N.V.",
+          "Canonical Company Name": "ASML Holding N.V.",
+          "Node ID": "asml-holding-n-v-16",
+          "Country": "Netherlands",
+          "Product Category": "Lithography Equipment",
+          "Company Description": "Leading manufacturer of photolithography systems used to etch circuit patterns onto silicon wafers.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Carl Zeiss SMT GmbH",
+          "Canonical Company Name": "Carl Zeiss SMT GmbH",
+          "Node ID": "carl-zeiss-smt-gmbh-17",
+          "Country": "Germany",
+          "Product Category": "High-Precision Optics",
+          "Company Description": "A strategic partner providing the advanced optical systems, lenses, and mirrors used in ASML's lithography machines.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "TRUMPF Laser GmbH",
+          "Canonical Company Name": "TRUMPF Laser GmbH",
+          "Node ID": "trumpf-laser-gmbh-18",
+          "Country": "Germany",
+          "Product Category": "Industrial Lasers",
+          "Company Description": "Provider of the high-power CO2 laser systems used to generate plasma for EUV light sources.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "VDL ETG (VDL Groep)",
+          "Canonical Company Name": "VDL ETG (VDL Groep)",
+          "Node ID": "vdl-etg-vdl-groep-19",
+          "Country": "Netherlands",
+          "Product Category": "Precision Mechatronics",
+          "Company Description": "A contract manufacturer specializing in high-tech modules and systems for semiconductor equipment.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical Co., Ltd. (2)",
+          "Canonical Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Node ID": "shin-etsu-chemical-co-ltd-20",
+          "Country": "Japan",
+          "Product Category": "Specialty Chemicals",
+          "Company Description": "Global leader in the production of high-purity silicon wafers and photoresist materials.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Shintech Inc.",
+          "Canonical Company Name": "Shintech Inc.",
+          "Node ID": "shintech-inc-21",
+          "Country": "United States",
+          "Product Category": "Polyvinyl Chloride (PVC)",
+          "Company Description": "A major North American subsidiary of Shin-Etsu that produces and supplies high-quality PVC resin and caustic soda.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Wacker Chemie AG",
+          "Canonical Company Name": "Wacker Chemie AG",
+          "Node ID": "wacker-chemie-ag-22",
+          "Country": "Germany",
+          "Product Category": "Silanes and Silicones",
+          "Company Description": "A global leader in chemical processing providing silanes and silicon intermediates used in specialized chemical synthesis.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Dow Inc.",
+          "Canonical Company Name": "Dow Inc.",
+          "Node ID": "dow-inc-23",
+          "Country": "United States",
+          "Product Category": "Petrochemicals",
+          "Company Description": "Major provider of ethylene and chemical monomers used as the foundation for various polymer manufacturing processes.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Applied Materials, Inc. (2)",
+          "Canonical Company Name": "Applied Materials, Inc.",
+          "Node ID": "applied-materials-inc-24",
+          "Country": "USA",
+          "Product Category": "Manufacturing Engineering",
+          "Company Description": "Provider of equipment, services, and software for the manufacture of semiconductor chips.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "VAT Group AG",
+          "Canonical Company Name": "VAT Group AG",
+          "Node ID": "vat-group-ag-25",
+          "Country": "Switzerland",
+          "Product Category": "High-end Vacuum Valves",
+          "Company Description": "Leading developer and manufacturer of high-end vacuum valves for semiconductor and electronics production.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Ferrotec Holdings Corporation",
+          "Canonical Company Name": "Ferrotec Holdings Corporation",
+          "Node ID": "ferrotec-holdings-corporation-26",
+          "Country": "Japan",
+          "Product Category": "Precision Materials and Components",
+          "Company Description": "Provider of vacuum seals, quartz, and ceramic components used in high-tech manufacturing.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Edwards Ltd",
+          "Canonical Company Name": "Edwards Ltd",
+          "Node ID": "edwards-ltd-27",
+          "Country": "United Kingdom",
+          "Product Category": "Vacuum and Abatement Solutions",
+          "Company Description": "Global manufacturer of vacuum pumps, exhaust management systems, and abatement solutions.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Samsung Display Co., Ltd. (2)",
+          "Canonical Company Name": "Samsung Display Co., Ltd.",
+          "Node ID": "samsung-display-co-ltd-28",
+          "Country": "South Korea",
+          "Product Category": "Display Panels",
+          "Company Description": "A manufacturer of high-end OLED and LCD panels used in mobile devices and monitors.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Corning Precision Materials",
+          "Canonical Company Name": "Corning Precision Materials",
+          "Node ID": "corning-precision-materials-29",
+          "Country": "South Korea",
+          "Product Category": "Specialty Glass and Ceramics",
+          "Company Description": "Manufacturer of high-performance glass substrates for display technologies.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Corning Incorporated",
+          "Canonical Company Name": "Corning Incorporated",
+          "Node ID": "corning-incorporated-30",
+          "Country": "USA",
+          "Product Category": "Glass Research and Manufacturing",
+          "Company Description": "Global leader in materials science, providing core glass formulations and advanced manufacturing IP.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Sumitomo Chemical Co., Ltd.",
+          "Canonical Company Name": "Sumitomo Chemical Co., Ltd.",
+          "Node ID": "sumitomo-chemical-co-ltd-31",
+          "Country": "Japan",
+          "Product Category": "Specialty Chemicals",
+          "Company Description": "Provider of high-purity chemicals and materials for semiconductor and display fabrication.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical Co., Ltd. (3)",
+          "Canonical Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Node ID": "shin-etsu-chemical-co-ltd-32",
+          "Country": "Japan",
+          "Product Category": "Inorganic Chemicals",
+          "Company Description": "Manufacturer of synthetic quartz and high-purity silicon materials used in high-tech manufacturing.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Universal Display Corporation (UDC)",
+          "Canonical Company Name": "Universal Display Corporation (UDC)",
+          "Node ID": "universal-display-corporation-udc-33",
+          "Country": "USA",
+          "Product Category": "OLED Materials",
+          "Company Description": "Developer and manufacturer of phosphorescent OLED (PHOLED) technologies and materials.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "PPG Industries, Inc.",
+          "Canonical Company Name": "PPG Industries, Inc.",
+          "Node ID": "ppg-industries-inc-34",
+          "Country": "USA",
+          "Product Category": "Specialty Chemicals",
+          "Company Description": "A global supplier of paints, coatings, and specialty materials that serves as the exclusive manufacturer of UDC's proprietary PHOLED materials.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Idemitsu Kosan Co., Ltd.",
+          "Canonical Company Name": "Idemitsu Kosan Co., Ltd.",
+          "Node ID": "idemitsu-kosan-co-ltd-35",
+          "Country": "Japan",
+          "Product Category": "Electronic Materials",
+          "Company Description": "A Japanese petroleum and chemical company that produces high-performance OLED host and transport materials.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Merck KGaA",
+          "Canonical Company Name": "Merck KGaA",
+          "Node ID": "merck-kgaa-36",
+          "Country": "Germany",
+          "Product Category": "Performance Materials",
+          "Company Description": "A leading science and technology company providing high-purity chemicals and organic semiconductors for the electronics industry.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Applied Materials, Inc. (3)",
+          "Canonical Company Name": "Applied Materials, Inc.",
+          "Node ID": "applied-materials-inc-37",
+          "Country": "USA",
+          "Product Category": "Semiconductor & Display Equipment",
+          "Company Description": "Supplier of equipment and software for the fabrication of semiconductor chips and display panels.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Ferrotec Holdings Corporation (2)",
+          "Canonical Company Name": "Ferrotec Holdings Corporation",
+          "Node ID": "ferrotec-holdings-corporation-38",
+          "Country": "Japan",
+          "Product Category": "Vacuum and Precision Components",
+          "Company Description": "Manufacturer of vacuum seals, ferrofluidic solutions, and advanced ceramic components used in semiconductor processing chambers.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "VAT Group AG (2)",
+          "Canonical Company Name": "VAT Group AG",
+          "Node ID": "vat-group-ag-39",
+          "Country": "Switzerland",
+          "Product Category": "High-End Vacuum Valves",
+          "Company Description": "Global leader in high-performance vacuum valve technology for the semiconductor and display industries.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Ichor Holdings, Ltd.",
+          "Canonical Company Name": "Ichor Holdings, Ltd.",
+          "Node ID": "ichor-holdings-ltd-40",
+          "Country": "Singapore",
+          "Product Category": "Fluid Delivery Subsystems",
+          "Company Description": "Design and manufacturer of critical fluid delivery subsystems for semiconductor capital equipment.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Apple",
+          "Company2": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Product": "iPhone Assembly",
+          "Product Description": "Final assembly and testing of mobile telecommunication devices and components.",
+          "HSN Code of Products": "8517.13",
+          "Possible Shipment Route": "Shenzhen, China to Long Beach, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Company2": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Product": "Custom Logic Integrated Circuits",
+          "Product Description": "Microprocessors and high-performance logic chips used in mobile and computing devices.",
+          "HSN Code of Products": "8542.31",
+          "Possible Shipment Route": "Hsinchu, Taiwan to Shenzhen, China",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Company2": "ASML Holding",
+          "Product": "EUV Lithography Systems",
+          "Product Description": "Extreme Ultraviolet lithography equipment necessary for sub-7nm process nodes.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Veldhoven, Netherlands to Hsinchu, Taiwan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Company2": "Applied Materials",
+          "Product": "PVD and CVD Equipment",
+          "Product Description": "Physical and Chemical Vapor Deposition systems for thin-film processing.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Santa Clara, USA to Taichung, Taiwan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC)",
+          "Company2": "Shin-Etsu Chemical",
+          "Product": "Silicon Wafers",
+          "Product Description": "High-purity 300mm silicon wafers used as the substrate for chip fabrication.",
+          "HSN Code of Products": "3818.00",
+          "Possible Shipment Route": "Tokyo, Japan to Keelung, Taiwan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Company2": "Samsung Display Co., Ltd.",
+          "Product": "OLED Display Modules",
+          "Product Description": "Flexible organic light-emitting diode displays for flagship smartphones.",
+          "HSN Code of Products": "8524.91",
+          "Possible Shipment Route": "Incheon, South Korea to Zhengzhou, China",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd.",
+          "Company2": "Universal Display Corporation",
+          "Product": "PHOLED Phosphorescent Materials",
+          "Product Description": "Red and green phosphorescent emitters and host materials used to increase the efficiency and lifespan of OLED panels.",
+          "HSN Code of Products": "3824.99",
+          "Possible Shipment Route": "Philadelphia, USA to Incheon, South Korea",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd.",
+          "Company2": "Corning Inc.",
+          "Product": "Glass Substrates",
+          "Product Description": "High-precision glass substrates like Lotus NXT Glass used for high-resolution LTPS-LCD and OLED displays.",
+          "HSN Code of Products": "7007.11",
+          "Possible Shipment Route": "Harrodsburg, USA to Cheonan, South Korea",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd.",
+          "Company2": "Applied Materials, Inc.",
+          "Product": "Chemical Vapor Deposition (CVD) Systems",
+          "Product Description": "Thin-film encapsulation (TFE) equipment and CVD systems used in the production of flexible OLED panels.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "San Jose, USA to Busan, South Korea",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
+          "Company2": "Murata Manufacturing Co., Ltd.",
+          "Product": "Multilayer Ceramic Capacitors (MLCC)",
+          "Product Description": "Passive components used for energy storage and noise filtering in circuit boards.",
+          "HSN Code of Products": "8532.24",
+          "Possible Shipment Route": "Kobe, Japan to Shanghai, China",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Murata Manufacturing Co., Ltd.",
+          "Company2": "Sumitomo Metal Mining Co., Ltd.",
+          "Product": "Nickel and Cobalt Compounds",
+          "Product Description": "Precursor materials used for the production of high-performance battery electrodes and ceramic powders.",
+          "HSN Code of Products": "2827.39",
+          "Possible Shipment Route": "Niihama Port, Japan to Osaka Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Murata Manufacturing Co., Ltd.",
+          "Company2": "Shin-Etsu Chemical Co., Ltd.",
+          "Product": "Silicone Resins",
+          "Product Description": "Insulating and sealing resins used in the encapsulation of electronic modules.",
+          "HSN Code of Products": "3910.00",
+          "Possible Shipment Route": "Naoetsu, Japan to Yasu, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Murata Manufacturing Co., Ltd.",
+          "Company2": "Mitsui Mining & Smelting Co., Ltd.",
+          "Product": "Ultra-thin Copper Foil",
+          "Product Description": "High-precision electrodeposited copper foil for multi-layer ceramic packages.",
+          "HSN Code of Products": "7410.11",
+          "Possible Shipment Route": "Ageo City, Japan to Izumo, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Apple",
+          "Company2": "Taiwan Semiconductor Manufacturing Co. (TSMC) (2)",
+          "Product": "Integrated Circuits",
+          "Product Description": "Custom-designed silicon wafers and microprocessor units for mobile and computing devices.",
+          "HSN Code of Products": "8542.31",
+          "Possible Shipment Route": "Hsinchu, Taiwan to San Francisco, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC) (2)",
+          "Company2": "ASML Holding N.V.",
+          "Product": "EUV Lithography Systems",
+          "Product Description": "Extreme Ultraviolet (EUV) lithography machines and spare parts for sub-7nm process nodes.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Eindhoven, Netherlands to Hsinchu, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "ASML Holding N.V.",
+          "Company2": "Carl Zeiss SMT GmbH",
+          "Product": "Optical Systems and Mirrors",
+          "Product Description": "Extremely high-precision optical modules and EUV collector mirrors.",
+          "HSN Code of Products": "9002.90",
+          "Possible Shipment Route": "Oberkochen, Germany to Veldhoven, Netherlands",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "ASML Holding N.V.",
+          "Company2": "TRUMPF Laser GmbH",
+          "Product": "EUV Laser Source Components",
+          "Product Description": "High-power laser systems and sub-assemblies for EUV generation.",
+          "HSN Code of Products": "9013.20",
+          "Possible Shipment Route": "Ditzingen, Germany to Veldhoven, Netherlands",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "ASML Holding N.V.",
+          "Company2": "VDL ETG (VDL Groep)",
+          "Product": "Wafer Handling Modules",
+          "Product Description": "Precision mechanical frames and mechatronic handling systems for wafer stages.",
+          "HSN Code of Products": "8486.90",
+          "Possible Shipment Route": "Eindhoven, Netherlands to Veldhoven, Netherlands",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC) (2)",
+          "Company2": "Shin-Etsu Chemical Co., Ltd. (2)",
+          "Product": "Silicon Wafers",
+          "Product Description": "Polished and epitaxial silicon wafers used as the substrate for semiconductor fabrication.",
+          "HSN Code of Products": "3818.00",
+          "Possible Shipment Route": "Tokyo, Japan to Keelung, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Shin-Etsu Chemical Co., Ltd. (2)",
+          "Company2": "Shintech Inc.",
+          "Product": "Polyvinyl Chloride Resin",
+          "Product Description": "Bulk PVC resins for industrial construction and medical applications shipped to global processing plants.",
+          "HSN Code of Products": "3904.10",
+          "Possible Shipment Route": "Houston/New Orleans, USA to Tokyo/Yokohama, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Shin-Etsu Chemical Co., Ltd. (2)",
+          "Company2": "Wacker Chemie AG",
+          "Product": "Silanes and Silicone Intermediates",
+          "Product Description": "Organosilanes used as feedstock for high-purity silicone rubber and fluid production.",
+          "HSN Code of Products": "2931.90",
+          "Possible Shipment Route": "Hamburg, Germany to Yokohama, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Shin-Etsu Chemical Co., Ltd. (2)",
+          "Company2": "Dow Inc.",
+          "Product": "Ethylene Monomer",
+          "Product Description": "High-purity ethylene gas and liquid for the synthesis of vinyl chloride monomer (VCM).",
+          "HSN Code of Products": "2901.21",
+          "Possible Shipment Route": "Freeport, TX, USA to Kashima, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Taiwan Semiconductor Manufacturing Co. (TSMC) (2)",
+          "Company2": "Applied Materials, Inc. (2)",
+          "Product": "Chemical Vapor Deposition (CVD) Equipment",
+          "Product Description": "High-precision deposition systems for applying thin films to semiconductor wafers.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Santa Clara, USA to Tainan, Taiwan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (2)",
+          "Company2": "VAT Group AG",
+          "Product": "Vacuum Valves",
+          "Product Description": "High-precision gate valves and transfer valves for semiconductor processing chambers.",
+          "HSN Code of Products": "8481.80",
+          "Possible Shipment Route": "Switzerland to California, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (2)",
+          "Company2": "Ferrotec Holdings Corporation",
+          "Product": "Vacuum Feedthroughs",
+          "Product Description": "Ferrofluidic seals and quartz glass components for vacuum environment tools.",
+          "HSN Code of Products": "8483.60",
+          "Possible Shipment Route": "Japan to California, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (2)",
+          "Company2": "Edwards Ltd",
+          "Product": "Dry Vacuum Pumps",
+          "Product Description": "High-performance dry vacuum pumps for maintaining ultra-pure manufacturing environments.",
+          "HSN Code of Products": "8414.10",
+          "Possible Shipment Route": "United Kingdom to Texas, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Apple",
+          "Company2": "Samsung Display Co., Ltd. (2)",
+          "Product": "OLED Display Modules",
+          "Product Description": "Active-matrix organic light-emitting diode display panels for smartphones.",
+          "HSN Code of Products": "8524.91",
+          "Possible Shipment Route": "Seoul, South Korea to Zhengzhou, China",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd. (2)",
+          "Company2": "Corning Precision Materials",
+          "Product": "Glass Substrates",
+          "Product Description": "High-precision thin-sheet glass used as the foundation for OLED and LCD panels.",
+          "HSN Code of Products": "7007.19",
+          "Possible Shipment Route": "Asan, South Korea to Cheonan, South Korea",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Corning Precision Materials",
+          "Company2": "Corning Incorporated",
+          "Product": "Borosilicate Glass Sheets",
+          "Product Description": "Raw glass sheets and specialty glass melts for further precision thinning and finishing.",
+          "HSN Code of Products": "7002.32",
+          "Possible Shipment Route": "USA (New York/New Jersey) to South Korea (Incheon)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Corning Precision Materials",
+          "Company2": "Sumitomo Chemical Co., Ltd.",
+          "Product": "Polishing Slurry",
+          "Product Description": "Chemical mechanical planarization (CMP) slurry for smoothing glass substrate surfaces.",
+          "HSN Code of Products": "3405.90",
+          "Possible Shipment Route": "Japan (Osaka) to South Korea (Busan)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Corning Precision Materials",
+          "Company2": "Shin-Etsu Chemical Co., Ltd. (3)",
+          "Product": "Synthetic Quartz",
+          "Product Description": "High-purity quartz substrates used in the production of photomasks and display glass.",
+          "HSN Code of Products": "2811.22",
+          "Possible Shipment Route": "Japan (Yokohama) to South Korea (Pyeongtaek)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd. (2)",
+          "Company2": "Universal Display Corporation (UDC)",
+          "Product": "Phosphorescent Emitters",
+          "Product Description": "Specialized organic chemical compounds used for light emission in high-efficiency OLED displays.",
+          "HSN Code of Products": "3824.99",
+          "Possible Shipment Route": "Ewing, NJ, USA to Incheon, South Korea",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Universal Display Corporation (UDC)",
+          "Company2": "PPG Industries, Inc.",
+          "Product": "PHOLED Emitter Materials",
+          "Product Description": "High-purity phosphorescent organic light-emitting materials and chemical dopants.",
+          "HSN Code of Products": "3824.99",
+          "Possible Shipment Route": "Manufacturing plant (Ohio, USA) to UDC Distribution Centers (Pennsylvania, USA)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Universal Display Corporation (UDC)",
+          "Company2": "Idemitsu Kosan Co., Ltd.",
+          "Product": "OLED Host Materials",
+          "Product Description": "Organic chemical compounds used as a host matrix for light-emitting dopants in OLED stacks.",
+          "HSN Code of Products": "2933.39",
+          "Possible Shipment Route": "Japan (Tokyo/Chiba) to USA (Newark/Philadelphia Port)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Universal Display Corporation (UDC)",
+          "Company2": "Merck KGaA",
+          "Product": "Electron Transport Materials (ETM)",
+          "Product Description": "Specialized organic layers designed to facilitate electron movement within organic electronic devices.",
+          "HSN Code of Products": "2933.99",
+          "Possible Shipment Route": "Germany (Darmstadt) to USA (New York/Philadelphia Port)",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Samsung Display Co., Ltd. (2)",
+          "Company2": "Applied Materials, Inc. (3)",
+          "Product": "CVD/PVD Deposition Systems",
+          "Product Description": "Chemical and Physical Vapor Deposition equipment used for Thin Film Transistor (TFT) layering.",
+          "HSN Code of Products": "8486.20",
+          "Possible Shipment Route": "Santa Clara, CA, USA to Busan, South Korea",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (3)",
+          "Company2": "Ferrotec Holdings Corporation (2)",
+          "Product": "Vacuum Seals and Ceramic Assemblies",
+          "Product Description": "High-precision vacuum feedthroughs and specialized ceramic parts for deposition chambers.",
+          "HSN Code of Products": "8486.90",
+          "Possible Shipment Route": "Tokyo, Japan to San Francisco, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (3)",
+          "Company2": "VAT Group AG (2)",
+          "Product": "Vacuum Isolation Valves",
+          "Product Description": "Precision vacuum valves used to control pressure and atmosphere in semiconductor fabrication tools.",
+          "HSN Code of Products": "8481.80",
+          "Possible Shipment Route": "Zurich, Switzerland to San Francisco, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Applied Materials, Inc. (3)",
+          "Company2": "Ichor Holdings, Ltd.",
+          "Product": "Gas Delivery Panels",
+          "Product Description": "Integrated gas delivery modules and chemical delivery systems for wafer processing systems.",
+          "HSN Code of Products": "8486.90",
+          "Possible Shipment Route": "Singapore Port to Oakland, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "toyota",
+    "company_input": "Toyota",
+    "selected_anchor_hsn": "8537.10",
+    "max_tier": 3,
+    "limit": 3,
+    "updated_at": "2026-04-19T01:52:10.922622Z",
+    "payload": {
+      "top_products": [
+        "Passenger Motor Vehicles",
+        "Internal Combustion Engines",
+        "Transmission Assemblies",
+        "Hybrid Battery Systems",
+        "Chassis and Body Parts"
+      ],
+      "hsn_options": [
+        "8537.10",
+        "8708.40",
+        "4011.10",
+        "8544.30",
+        "7209.16"
+      ],
+      "selected_anchor_hsn": "8537.10",
+      "nodes": [
+        {
+          "Company Name": "Toyota",
+          "Canonical Company Name": "Toyota",
+          "Node ID": "toyota-1",
+          "Country": "Japan",
+          "Product Category": "Automotive Manufacturing",
+          "Company Description": "A global leader in the automotive industry, Toyota designs, manufactures, and sells a wide range of passenger cars, trucks, and hybrid vehicles known for reliability and quality.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Denso Corporation",
+          "Canonical Company Name": "Denso Corporation",
+          "Node ID": "denso-corporation-2",
+          "Country": "Japan",
+          "Product Category": "Automotive Electronics & Components",
+          "Company Description": "A leading global automotive supplier of advanced technology, systems, and components in the areas of thermal, powertrain control, and electronics.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Aisin Corporation",
+          "Canonical Company Name": "Aisin Corporation",
+          "Node ID": "aisin-corporation-3",
+          "Country": "Japan",
+          "Product Category": "Drivetrain and Chassis Parts",
+          "Company Description": "Manufacturer of automotive components including transmissions, brake systems, and engine-related parts.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Sumitomo Electric Industries",
+          "Canonical Company Name": "Sumitomo Electric Industries",
+          "Node ID": "sumitomo-electric-industries-4",
+          "Country": "Japan",
+          "Product Category": "Wiring and Electronics",
+          "Company Description": "Global manufacturer of electric wires, optical fibers, and automotive wiring harnesses.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Toyota Boshoku Corporation",
+          "Canonical Company Name": "Toyota Boshoku Corporation",
+          "Node ID": "toyota-boshoku-corporation-5",
+          "Country": "Japan",
+          "Product Category": "Interior Systems and Filtration",
+          "Company Description": "Specializes in automotive interior systems, seating, and high-performance filtration components.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Sumitomo Electric Industries, Ltd.",
+          "Canonical Company Name": "Sumitomo Electric Industries, Ltd.",
+          "Node ID": "sumitomo-electric-industries-ltd-6",
+          "Country": "Japan",
+          "Product Category": "Electrical and Electronics",
+          "Company Description": "Manufacturer of high-performance electric wires, optical fibers, and specialized wiring harnesses for automotive interior power systems.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Toyota Tsusho Corporation",
+          "Canonical Company Name": "Toyota Tsusho Corporation",
+          "Node ID": "toyota-tsusho-corporation-7",
+          "Country": "Japan",
+          "Product Category": "Raw Materials and Logistics",
+          "Company Description": "The general trading company of the Toyota Group, providing raw steel, plastic resins, and logistical coordination for manufacturing sites.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Hyosung TNC Corporation",
+          "Canonical Company Name": "Hyosung TNC Corporation",
+          "Node ID": "hyosung-tnc-corporation-8",
+          "Country": "South Korea",
+          "Product Category": "Synthetic Fibers and Textiles",
+          "Company Description": "A global leader in the production of high-tenacity polyester and nylon fibers used in automotive safety and interior applications.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Aisin Corporation (2)",
+          "Canonical Company Name": "Aisin Corporation",
+          "Node ID": "aisin-corporation-9",
+          "Country": "Japan",
+          "Product Category": "Powertrain & Drivetrain Components",
+          "Company Description": "A major manufacturer of automotive parts specializing in transmissions, brake systems, and engine-related products.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Bridgestone Corporation",
+          "Canonical Company Name": "Bridgestone Corporation",
+          "Node ID": "bridgestone-corporation-10",
+          "Country": "Japan",
+          "Product Category": "Rubber & Tire Manufacturing",
+          "Company Description": "The world's largest tire and rubber company, providing original equipment tires for a wide range of vehicles.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Sri Trang Agro-Industry PLC",
+          "Canonical Company Name": "Sri Trang Agro-Industry PLC",
+          "Node ID": "sri-trang-agro-industry-plc-11",
+          "Country": "Thailand",
+          "Product Category": "Raw Materials",
+          "Company Description": "A leading fully integrated natural rubber company providing raw materials for the global tire industry.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Sri Trang Gloves (Thailand) Public Company Limited",
+          "Canonical Company Name": "Sri Trang Gloves (Thailand) Public Company Limited",
+          "Node ID": "sri-trang-gloves-thailand-public-company-limited-12",
+          "Country": "Thailand",
+          "Product Category": "Rubber Glove Manufacturing",
+          "Company Description": "A major subsidiary focused on the production of latex and nitrile examination gloves for medical and industrial use.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "PT. Sri Trang Lingga Indonesia",
+          "Canonical Company Name": "PT. Sri Trang Lingga Indonesia",
+          "Node ID": "pt-sri-trang-lingga-indonesia-13",
+          "Country": "Indonesia",
+          "Product Category": "Natural Rubber Processing",
+          "Company Description": "Indonesian subsidiary engaged in the procurement and processing of raw rubber material into Standard Indonesian Rubber (SIR).",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Namhuat Rubber Co., Ltd.",
+          "Canonical Company Name": "Namhuat Rubber Co., Ltd.",
+          "Node ID": "namhuat-rubber-co-ltd-14",
+          "Country": "Thailand",
+          "Product Category": "Smoked Rubber Sheet Production",
+          "Company Description": "A Thai-based processing company specializing in high-quality Ribbed Smoked Sheets (RSS).",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Toyota",
+          "Company2": "Denso Corporation",
+          "Product": "Engine Control Units (ECUs)",
+          "Product Description": "Electronic control units for fuel injection systems and engine management.",
+          "HSN Code of Products": "8537.10",
+          "Possible Shipment Route": "Nagoya, Japan to Long Beach, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Aisin Corporation",
+          "Product": "Transmission Control Components",
+          "Product Description": "Precision valves and sensors for automatic transmission assemblies and powertrain management.",
+          "HSN Code of Products": "8708.40",
+          "Possible Shipment Route": "Nagoya, Japan to Los Angeles, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Sumitomo Electric Industries",
+          "Product": "Automotive Wiring Harnesses",
+          "Product Description": "Complex electrical distribution systems for vehicle instrumentation and safety modules.",
+          "HSN Code of Products": "8544.30",
+          "Possible Shipment Route": "Osaka, Japan to Savannah, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Toyota Boshoku Corporation",
+          "Product": "Air Filtration Modules",
+          "Product Description": "Engine air intake filters and cabin air purification systems for HVAC units.",
+          "HSN Code of Products": "8421.31",
+          "Possible Shipment Route": "Kariya, Japan to Detroit, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Boshoku Corporation",
+          "Company2": "Sumitomo Electric Industries, Ltd.",
+          "Product": "Wiring Harnesses for Power Seats",
+          "Product Description": "Custom electrical distribution systems designed to power motorized seat adjustments and heating elements within Toyota Boshoku seat assemblies.",
+          "HSN Code of Products": "8544.30",
+          "Possible Shipment Route": "Port of Nagoya, Japan to Port of Long Beach, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Boshoku Corporation",
+          "Company2": "Toyota Tsusho Corporation",
+          "Product": "High-Tensile Cold-Rolled Steel",
+          "Product Description": "Coiled steel used for the stamping and welding of automotive seat frames and structural safety components.",
+          "HSN Code of Products": "7209.16",
+          "Possible Shipment Route": "Port of Haiphong, Vietnam to Port of Nagoya, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Boshoku Corporation",
+          "Company2": "Hyosung TNC Corporation",
+          "Product": "Industrial Polyester Yarn",
+          "Product Description": "High-strength synthetic yarn utilized in the weaving of seat fabrics and the reinforcement of seatbelt webbing.",
+          "HSN Code of Products": "5402.20",
+          "Possible Shipment Route": "Port of Busan, South Korea to Port of Tokyo, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota",
+          "Company2": "Aisin Corporation (2)",
+          "Product": "Automatic Transmissions",
+          "Product Description": "6-speed and 8-speed automatic transmission assemblies and torque converters.",
+          "HSN Code of Products": "8708.40",
+          "Possible Shipment Route": "Kariya, Japan to Savannah, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota",
+          "Company2": "Bridgestone Corporation",
+          "Product": "Pneumatic Tires",
+          "Product Description": "New pneumatic tires, of rubber, of a kind used on motor cars and light trucks.",
+          "HSN Code of Products": "4011.10",
+          "Possible Shipment Route": "Tokyo, Japan to Los Angeles, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Bridgestone Corporation",
+          "Company2": "Sri Trang Agro-Industry PLC",
+          "Product": "Technically Specified Natural Rubber (TSNR)",
+          "Product Description": "Natural rubber in primary forms or in plates, sheets or strip; technically specified natural rubber",
+          "HSN Code of Products": "4001.22",
+          "Possible Shipment Route": "Songkhla, Thailand to Port of Yokohama, Japan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Sri Trang Agro-Industry PLC",
+          "Company2": "Sri Trang Gloves (Thailand) Public Company Limited",
+          "Product": "Examination Gloves",
+          "Product Description": "Disposable nitrile and natural rubber latex medical gloves.",
+          "HSN Code of Products": "4015.11",
+          "Possible Shipment Route": "Thailand to Global Distribution Hubs",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Sri Trang Agro-Industry PLC",
+          "Company2": "PT. Sri Trang Lingga Indonesia",
+          "Product": "Standard Indonesian Rubber (SIR 20)",
+          "Product Description": "Technically specified rubber processed from field coagulum for the tire manufacturing industry.",
+          "HSN Code of Products": "4001.22",
+          "Possible Shipment Route": "Indonesia to International Tire Manufacturers",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Sri Trang Agro-Industry PLC",
+          "Company2": "Namhuat Rubber Co., Ltd.",
+          "Product": "Ribbed Smoked Sheets (RSS)",
+          "Product Description": "Natural rubber sheets that have been dried and smoked to prevent mold and enzymatic degradation.",
+          "HSN Code of Products": "4001.21",
+          "Possible Shipment Route": "Southern Thailand to East Asian Markets",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  },
+  {
+    "company_key": "honda",
+    "company_input": "Honda",
+    "selected_anchor_hsn": "8483.40",
+    "max_tier": 3,
+    "limit": 3,
+    "updated_at": "2026-04-19T02:19:37.034287Z",
+    "payload": {
+      "top_products": [
+        "Passenger Motor Vehicles (HS 8703)",
+        "Motorcycles and Mopeds (HS 8711)",
+        "Parts and Accessories for Motor Vehicles (HS 8708)",
+        "Internal Combustion Spark-Ignition Engines (HS 8407)",
+        "Power Equipment and Portable Generators"
+      ],
+      "hsn_options": [
+        "8483.40",
+        "8409.91",
+        "8708.29",
+        "8537.10",
+        "8536.50",
+        "8703",
+        "8711",
+        "8708",
+        "8407"
+      ],
+      "selected_anchor_hsn": "8483.40",
+      "nodes": [
+        {
+          "Company Name": "Honda",
+          "Canonical Company Name": "Honda",
+          "Node ID": "honda-1",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Automotive and Power Equipment",
+          "Company Description": "A leading global manufacturer of automobiles, motorcycles, and power equipment known for its high-performance engines and mobility solutions.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Musashi Seimitsu Industry Co., Ltd.",
+          "Canonical Company Name": "Musashi Seimitsu Industry Co., Ltd.",
+          "Node ID": "musashi-seimitsu-industry-co-ltd-2",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Precision Components",
+          "Company Description": "Manufacturer of high-precision power train and suspension components for the automotive industry.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Nippon Steel Corporation",
+          "Canonical Company Name": "Nippon Steel Corporation",
+          "Node ID": "nippon-steel-corporation-3",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Steel and Raw Materials",
+          "Company Description": "One of the world's largest steel producers, providing high-grade special steel for automotive forging.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Rio Tinto",
+          "Canonical Company Name": "Rio Tinto",
+          "Node ID": "rio-tinto-4",
+          "Country": "Australia",
+          "Latitude": -25.274398,
+          "Longitude": 133.775136,
+          "Product Category": "Mining and Metals",
+          "Company Description": "A leading global mining group specializing in the extraction and processing of iron ore, aluminum, and copper.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Vale S.A.",
+          "Canonical Company Name": "Vale S.A.",
+          "Node ID": "vale-s-a-5",
+          "Country": "Brazil",
+          "Latitude": -14.235,
+          "Longitude": -51.9253,
+          "Product Category": "Mining and Metals",
+          "Company Description": "A Brazilian multinational corporation and one of the largest producers of iron ore and nickel in the world.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "BHP Group Limited",
+          "Canonical Company Name": "BHP Group Limited",
+          "Node ID": "bhp-group-limited-6",
+          "Country": "Australia",
+          "Latitude": -25.274398,
+          "Longitude": 133.775136,
+          "Product Category": "Natural Resources",
+          "Company Description": "A global resources company that extracts and processes minerals, oil, and gas, with a major focus on coking coal.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "JTEKT Corporation",
+          "Canonical Company Name": "JTEKT Corporation",
+          "Node ID": "jtekt-corporation-7",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Bearings and Steering Systems",
+          "Company Description": "Manufacturer of Koyo brand bearings and steering systems for industrial and automotive applications.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Koyo Bearings North America LLC",
+          "Canonical Company Name": "Koyo Bearings North America LLC",
+          "Node ID": "koyo-bearings-north-america-llc-8",
+          "Country": "United States",
+          "Latitude": 39.8283,
+          "Longitude": -98.5795,
+          "Product Category": "Mechanical Components",
+          "Company Description": "A subsidiary and major manufacturing arm of JTEKT producing high-precision bearings for automotive and aerospace industries.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Nippon Steel Corporation (2)",
+          "Canonical Company Name": "Nippon Steel Corporation",
+          "Node ID": "nippon-steel-corporation-9",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Raw Materials",
+          "Company Description": "A global steel manufacturer providing high-grade alloy steel and specialty metals for automotive component forging.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "JTEKT Automotive Tennessee-Vonore",
+          "Canonical Company Name": "JTEKT Automotive Tennessee-Vonore",
+          "Node ID": "jtekt-automotive-tennessee-vonore-10",
+          "Country": "United States",
+          "Latitude": 39.8283,
+          "Longitude": -98.5795,
+          "Product Category": "Steering Components",
+          "Company Description": "A primary production facility focused on electric power steering (EPS) systems and hydraulic steering components.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Mitsui & Co., Ltd.",
+          "Canonical Company Name": "Mitsui & Co., Ltd.",
+          "Node ID": "mitsui-co-ltd-11",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Global Logistics and Trading",
+          "Company Description": "A major general trading company (Sogo Shosha) managing the supply chain of non-ferrous metals and industrial machinery.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Petroleo Brasileiro S.A.",
+          "Canonical Company Name": "Petroleo Brasileiro S.A.",
+          "Node ID": "petroleo-brasileiro-s-a-12",
+          "Country": "Brazil",
+          "Latitude": -14.235,
+          "Longitude": -51.9253,
+          "Product Category": "Energy and Resources",
+          "Company Description": "A semi-public Brazilian multinational corporation in the petroleum industry.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "BASF SE",
+          "Canonical Company Name": "BASF SE",
+          "Node ID": "basf-se-13",
+          "Country": "Germany",
+          "Latitude": 51.1657,
+          "Longitude": 10.4515,
+          "Product Category": "Chemicals",
+          "Company Description": "A leading global chemical producer specializing in chemicals, plastics, and performance products.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "ArcelorMittal",
+          "Canonical Company Name": "ArcelorMittal",
+          "Node ID": "arcelormittal-14",
+          "Country": "Luxembourg",
+          "Latitude": 49.8153,
+          "Longitude": 6.1296,
+          "Product Category": "Iron and Steel",
+          "Company Description": "A multinational steel manufacturing corporation headquartered in Luxembourg City.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Denso Corporation",
+          "Canonical Company Name": "Denso Corporation",
+          "Node ID": "denso-corporation-15",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Automotive Electronics",
+          "Company Description": "Global supplier of advanced automotive technology, systems, and components including thermal and powertrain control.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Toyota Industries Corporation",
+          "Canonical Company Name": "Toyota Industries Corporation",
+          "Node ID": "toyota-industries-corporation-16",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Thermal Systems",
+          "Company Description": "A major manufacturer of automobile engines, car air conditioning compressors, and material handling equipment.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Denso Corporation (2)",
+          "Canonical Company Name": "Denso Corporation",
+          "Node ID": "denso-corporation-17",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Automotive Technology",
+          "Company Description": "A global automotive supplier of advanced technology, systems, and components for thermal, powertrain, and mobility segments.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Aisin Corporation",
+          "Canonical Company Name": "Aisin Corporation",
+          "Node ID": "aisin-corporation-18",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Automotive Components",
+          "Company Description": "Manufacturer of automotive parts focusing on powertrain, chassis, and body systems.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Toyoda Gosei Co., Ltd.",
+          "Canonical Company Name": "Toyoda Gosei Co., Ltd.",
+          "Node ID": "toyoda-gosei-co-ltd-19",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Rubber and Plastics",
+          "Company Description": "Specialist in the development and manufacture of rubber and plastic automotive parts and LED lighting.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Sumitomo Electric Industries, Ltd.",
+          "Canonical Company Name": "Sumitomo Electric Industries, Ltd.",
+          "Node ID": "sumitomo-electric-industries-ltd-20",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Electronic Systems",
+          "Company Description": "A producer of electric wires and optical fiber cables, focusing on automotive wiring harnesses and electronics.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Renesas Electronics Corporation",
+          "Canonical Company Name": "Renesas Electronics Corporation",
+          "Node ID": "renesas-electronics-corporation-21",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Semiconductors",
+          "Company Description": "A premier supplier of advanced semiconductor solutions including microcontrollers and system-on-chip products.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Canonical Company Name": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Node ID": "taiwan-semiconductor-manufacturing-company-tsmc-22",
+          "Country": "Taiwan",
+          "Latitude": 23.6978,
+          "Longitude": 120.9605,
+          "Product Category": "IC Foundry",
+          "Company Description": "The world's largest dedicated independent semiconductor foundry, manufacturing advanced logic and SoC wafers.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Canonical Company Name": "Shin-Etsu Chemical Co., Ltd.",
+          "Node ID": "shin-etsu-chemical-co-ltd-23",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Silicon Wafers",
+          "Company Description": "Global leader in the production of high-purity monocrystalline silicon wafers used as semiconductor substrates.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "ASE Group (Advanced Semiconductor Engineering)",
+          "Canonical Company Name": "ASE Group (Advanced Semiconductor Engineering)",
+          "Node ID": "ase-group-advanced-semiconductor-engineering-24",
+          "Country": "Taiwan",
+          "Latitude": 23.6978,
+          "Longitude": 120.9605,
+          "Product Category": "OSAT Services",
+          "Company Description": "Provider of semiconductor assembly and testing (OSAT) services, focusing on advanced packaging solutions.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "G-TEKT Corporation",
+          "Canonical Company Name": "G-TEKT Corporation",
+          "Node ID": "g-tekt-corporation-25",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Metal Stamping",
+          "Company Description": "Specialist in the manufacturing of auto body frames and precision metal stamped components.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Nippon Steel Corporation (3)",
+          "Canonical Company Name": "Nippon Steel Corporation",
+          "Node ID": "nippon-steel-corporation-26",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Steel and Metals",
+          "Company Description": "A global leader in steel production, supplying high-grade automotive steel sheets and specialty materials.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "Rio Tinto (2)",
+          "Canonical Company Name": "Rio Tinto",
+          "Node ID": "rio-tinto-27",
+          "Country": "Australia",
+          "Latitude": -25.274398,
+          "Longitude": 133.775136,
+          "Product Category": "Mining and Minerals",
+          "Company Description": "A leading global mining group focusing on the extraction of iron ore, aluminum, and copper.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "BHP Group",
+          "Canonical Company Name": "BHP Group",
+          "Node ID": "bhp-group-28",
+          "Country": "Australia",
+          "Latitude": -25.274398,
+          "Longitude": 133.775136,
+          "Product Category": "Mining and Resources",
+          "Company Description": "A world-leading resources company extracting minerals and energy resources including coal and iron ore.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "Vale S.A. (2)",
+          "Canonical Company Name": "Vale S.A.",
+          "Node ID": "vale-s-a-29",
+          "Country": "Brazil",
+          "Latitude": -14.235,
+          "Longitude": -51.9253,
+          "Product Category": "Mining and Metals",
+          "Company Description": "One of the largest logistics operators in Brazil and the world's largest producer of iron ore and pellets.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "UACJ Corporation",
+          "Canonical Company Name": "UACJ Corporation",
+          "Node ID": "uacj-corporation-30",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Aluminum Products",
+          "Company Description": "A comprehensive aluminum manufacturer providing lightweight aluminum sheets and extrusions for automotive weight reduction.",
+          "Tier": 2,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        },
+        {
+          "Company Name": "UACJ (Thailand) Co., Ltd.",
+          "Canonical Company Name": "UACJ (Thailand) Co., Ltd.",
+          "Node ID": "uacj-thailand-co-ltd-31",
+          "Country": "Thailand",
+          "Latitude": 15.87,
+          "Longitude": 100.99,
+          "Product Category": "Flat-Rolled Aluminum",
+          "Company Description": "A major production hub specializing in high-quality aluminum sheet and plate for the Asian and North American markets.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "UACJ Extrusion (Thailand) Co., Ltd.",
+          "Canonical Company Name": "UACJ Extrusion (Thailand) Co., Ltd.",
+          "Node ID": "uacj-extrusion-thailand-co-ltd-32",
+          "Country": "Thailand",
+          "Latitude": 15.87,
+          "Longitude": 100.99,
+          "Product Category": "Aluminum Extrusions",
+          "Company Description": "Manufacturer of precision aluminum extrusions used in air conditioning units and automotive thermal management systems.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        },
+        {
+          "Company Name": "UACJ Foil Corporation",
+          "Canonical Company Name": "UACJ Foil Corporation",
+          "Node ID": "uacj-foil-corporation-33",
+          "Country": "Japan",
+          "Latitude": 36.2048,
+          "Longitude": 138.2529,
+          "Product Category": "Aluminum Foil",
+          "Company Description": "Produces a wide range of foil products including high-purity foils for electrolytic capacitors and lithium-ion batteries.",
+          "Tier": 3,
+          "Source": "llm-fallback",
+          "Confidence": "low"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Honda",
+          "Company2": "Musashi Seimitsu Industry Co., Ltd.",
+          "Product": "Transmission Gears",
+          "Product Description": "High-precision gears, camshafts, and shafts used in automotive transmissions.",
+          "HSN Code of Products": "8483.40",
+          "Possible Shipment Route": "Toyohashi, Japan to Marysville, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Musashi Seimitsu Industry Co., Ltd.",
+          "Company2": "Nippon Steel Corporation",
+          "Product": "Special Alloy Steel Bars",
+          "Product Description": "High-tensile steel bars used for forging camshafts and transmission gears.",
+          "HSN Code of Products": "7228.30",
+          "Possible Shipment Route": "Port of Nagoya, Japan to Port of Savannah, USA (Musashi Auto Parts Michigan)",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation",
+          "Company2": "Rio Tinto",
+          "Product": "Iron Ore Fines",
+          "Product Description": "High-grade iron ore used as the primary raw material in the blast furnace steelmaking process.",
+          "HSN Code of Products": "2601.11",
+          "Possible Shipment Route": "Port Hedland, Australia to Kimitsu Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation",
+          "Company2": "Vale S.A.",
+          "Product": "Iron Ore Pellets",
+          "Product Description": "Agglomerated iron ore pellets used to improve efficiency in steel production facilities.",
+          "HSN Code of Products": "2601.12",
+          "Possible Shipment Route": "Port of Tubar\u00e3o, Brazil to Oita Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation",
+          "Company2": "BHP Group Limited",
+          "Product": "Coking Coal",
+          "Product Description": "High-quality metallurgical coal used to produce coke for fuel and as a reducing agent in blast furnaces.",
+          "HSN Code of Products": "2701.12",
+          "Possible Shipment Route": "Hay Point, Australia to Nagoya Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Musashi Seimitsu Industry Co., Ltd.",
+          "Company2": "JTEKT Corporation",
+          "Product": "Tapered Roller Bearings",
+          "Product Description": "Precision bearings integrated into differential and gearbox assemblies.",
+          "HSN Code of Products": "8482.20",
+          "Possible Shipment Route": "Port of Osaka, Japan to Port of Chennai, India (Musashi Auto Parts India)",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "JTEKT Corporation",
+          "Company2": "Koyo Bearings North America LLC",
+          "Product": "Tapered Roller Bearings",
+          "Product Description": "High-performance tapered roller bearings used in automotive wheel hubs and transmissions.",
+          "HSN Code of Products": "8482.20",
+          "Possible Shipment Route": "Greenville, SC to JTEKT Distribution Centers",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "JTEKT Corporation",
+          "Company2": "Nippon Steel Corporation (2)",
+          "Product": "Specialty Steel Bars",
+          "Product Description": "Cold-finished steel bars and rods used for manufacturing steering shafts and bearing races.",
+          "HSN Code of Products": "7228.30",
+          "Possible Shipment Route": "Nagoya, Japan to JTEKT Manufacturing Plants",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "JTEKT Corporation",
+          "Company2": "JTEKT Automotive Tennessee-Vonore",
+          "Product": "Electric Power Steering Gear",
+          "Product Description": "Electronic rack and pinion assemblies for passenger vehicles.",
+          "HSN Code of Products": "8708.94",
+          "Possible Shipment Route": "Vonore, TN to North American OEM Assembly Plants",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Musashi Seimitsu Industry Co., Ltd.",
+          "Company2": "Mitsui & Co., Ltd.",
+          "Product": "Aluminum Alloy Ingots",
+          "Product Description": "Raw aluminum material for casting transmission cases and engine components.",
+          "HSN Code of Products": "7601.20",
+          "Possible Shipment Route": "Port of Yokohama, Japan to Port of Santos, Brazil (Musashi da Amazonia)",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Mitsui & Co., Ltd.",
+          "Company2": "Petroleo Brasileiro S.A.",
+          "Product": "Crude Petroleum Oil",
+          "Product Description": "Crude petroleum oils and oils obtained from bituminous minerals.",
+          "HSN Code of Products": "2709.00",
+          "Possible Shipment Route": "Port of Santos, Brazil to Port of Yokohama, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Mitsui & Co., Ltd.",
+          "Company2": "BASF SE",
+          "Product": "Specialty Chemicals",
+          "Product Description": "Prepared binders for foundry moulds or cores; chemical products and preparations.",
+          "HSN Code of Products": "3824.99",
+          "Possible Shipment Route": "Port of Hamburg, Germany to Port of Tokyo, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Mitsui & Co., Ltd.",
+          "Company2": "ArcelorMittal",
+          "Product": "Flat-rolled Iron or Steel",
+          "Product Description": "Flat-rolled products of iron or non-alloy steel, hot-rolled, not clad, plated or coated.",
+          "HSN Code of Products": "7208.39",
+          "Possible Shipment Route": "Port of Antwerp, Belgium to various Mitsui logistics hubs",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Honda",
+          "Company2": "Denso Corporation",
+          "Product": "Fuel Injection Systems",
+          "Product Description": "Advanced fuel injectors and electronic fuel pump modules for combustion engines.",
+          "HSN Code of Products": "8409.91",
+          "Possible Shipment Route": "Nagoya, Japan to Torrance, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Toyota Industries Corporation",
+          "Product": "Air Conditioning Compressors",
+          "Product Description": "Variable displacement and fixed type compressors for automotive HVAC systems.",
+          "HSN Code of Products": "8414.30",
+          "Possible Shipment Route": "Kariya, Japan to Los Angeles, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Industries Corporation",
+          "Company2": "Denso Corporation (2)",
+          "Product": "Air Conditioning System Components",
+          "Product Description": "Compressor assemblies, evaporators, and control valves for vehicle HVAC systems.",
+          "HSN Code of Products": "8414.30",
+          "Possible Shipment Route": "Nagoya, Japan to Los Angeles, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Industries Corporation",
+          "Company2": "Aisin Corporation",
+          "Product": "Transmission Assemblies",
+          "Product Description": "Manual and automatic transmissions for industrial vehicles and passenger cars.",
+          "HSN Code of Products": "8708.40",
+          "Possible Shipment Route": "Nagoya, Japan to Savannah, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Toyota Industries Corporation",
+          "Company2": "Toyoda Gosei Co., Ltd.",
+          "Product": "Sealing and Interior Parts",
+          "Product Description": "Weatherstrips, gaskets, and interior trim components for material handling equipment.",
+          "HSN Code of Products": "4016.93",
+          "Possible Shipment Route": "Yokkaichi, Japan to Tacoma, USA",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Sumitomo Electric Industries, Ltd.",
+          "Product": "Wiring Harnesses",
+          "Product Description": "Insulated electric conductors and wiring assemblies for vehicle electrical distribution.",
+          "HSN Code of Products": "8544.30",
+          "Possible Shipment Route": "Haiphong, Vietnam to Nagoya, Japan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Denso Corporation",
+          "Company2": "Renesas Electronics Corporation",
+          "Product": "Microcontrollers",
+          "Product Description": "Integrated circuits for automotive electronic control units and powertrain management.",
+          "HSN Code of Products": "8542.31",
+          "Possible Shipment Route": "Tokyo, Japan to Maryville, TN, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Renesas Electronics Corporation",
+          "Company2": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+          "Product": "Monolithic Integrated Circuits",
+          "Product Description": "Silicon wafers containing complex logic and microcontroller circuitry fabricated on advanced process nodes.",
+          "HSN Code of Products": "8542.31",
+          "Possible Shipment Route": "Hsinchu, Taiwan to Narita, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Renesas Electronics Corporation",
+          "Company2": "Shin-Etsu Chemical Co., Ltd.",
+          "Product": "Silicon Wafers",
+          "Product Description": "High-purity polished and epitaxial silicon wafers for semiconductor device fabrication.",
+          "HSN Code of Products": "3818.00",
+          "Possible Shipment Route": "Niigata, Japan to various Renesas Fabrication Facilities",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Renesas Electronics Corporation",
+          "Company2": "ASE Group (Advanced Semiconductor Engineering)",
+          "Product": "Assembled Integrated Circuits",
+          "Product Description": "Packaging and final testing services for semiconductor devices including BGA and QFP formats.",
+          "HSN Code of Products": "8542.39",
+          "Possible Shipment Route": "Kaohsiung, Taiwan to Renesas Distribution Centers",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Honda",
+          "Company2": "G-TEKT Corporation",
+          "Product": "Body Frame Components",
+          "Product Description": "High-tensile steel frame parts, pillars, and structural body reinforcements.",
+          "HSN Code of Products": "8708.29",
+          "Possible Shipment Route": "Saitama, Japan to Greensburg, USA",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "G-TEKT Corporation",
+          "Company2": "Nippon Steel Corporation (3)",
+          "Product": "High-tensile Steel Sheets",
+          "Product Description": "Hot-rolled and cold-rolled steel coils specifically treated for automotive body stamping applications.",
+          "HSN Code of Products": "7208.39",
+          "Possible Shipment Route": "Nagoya, Japan to Saitama, Japan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation (3)",
+          "Company2": "Rio Tinto (2)",
+          "Product": "Iron Ore",
+          "Product Description": "High-grade iron ore fines and lumps for blast furnace operations.",
+          "HSN Code of Products": "2601.11",
+          "Possible Shipment Route": "Port Hedland, Australia to Oita Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation (3)",
+          "Company2": "BHP Group",
+          "Product": "Metallurgical Coal",
+          "Product Description": "Coking coal used as a fuel and reducing agent in steel production.",
+          "HSN Code of Products": "2701.12",
+          "Possible Shipment Route": "Hay Point, Australia to Kimitsu Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "Nippon Steel Corporation (3)",
+          "Company2": "Vale S.A. (2)",
+          "Product": "Iron Ore Pellets",
+          "Product Description": "Agglomerated iron ore pellets for use in steel mill blast furnaces.",
+          "HSN Code of Products": "2601.12",
+          "Possible Shipment Route": "Port of Tubar\u00e3o, Brazil to Kashima Port, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "G-TEKT Corporation",
+          "Company2": "UACJ Corporation",
+          "Product": "Aluminum Alloy Sheets",
+          "Product Description": "Lightweight aluminum panels used for hoods, roofs, and other weight-sensitive automotive structures.",
+          "HSN Code of Products": "7606.12",
+          "Possible Shipment Route": "Nagoya, Japan to Hamamatsu, Japan",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "UACJ Corporation",
+          "Company2": "UACJ (Thailand) Co., Ltd.",
+          "Product": "Rolled Aluminum Sheet",
+          "Product Description": "Aluminum alloy sheets used primarily for beverage can body and end stock and automotive body panels.",
+          "HSN Code of Products": "7606.12",
+          "Possible Shipment Route": "Laem Chabang, Thailand to Nagoya, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "UACJ Corporation",
+          "Company2": "UACJ Extrusion (Thailand) Co., Ltd.",
+          "Product": "Aluminum Profiles",
+          "Product Description": "Custom extruded aluminum profiles and tubing for industrial and automotive cooling applications.",
+          "HSN Code of Products": "7604.21",
+          "Possible Shipment Route": "Bangkok, Thailand to Osaka, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        },
+        {
+          "Company1": "UACJ Corporation",
+          "Company2": "UACJ Foil Corporation",
+          "Product": "Aluminum Foil",
+          "Product Description": "Ultra-thin aluminum foil for food packaging and electronic component shielding.",
+          "HSN Code of Products": "7607.11",
+          "Possible Shipment Route": "Kusatsu, Japan to Tokyo, Japan",
+          "Source": "llm-fallback",
+          "Confidence": "low",
+          "Prune Reason": ""
+        }
+      ]
+    }
+  }
+]

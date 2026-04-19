@@ -55,7 +55,13 @@ function SupplyChainMapViewInner({
   const posById = useMemo(() => {
     const m = new Map<string, { lng: number; lat: number }>();
     for (const n of nodes) {
-      m.set(n.id, getLngLatForSupplyNode(n.data.country, n.id));
+      const hasBackendCoords =
+        Number.isFinite(n.data.latitude) && Number.isFinite(n.data.longitude);
+      if (hasBackendCoords) {
+        m.set(n.id, { lat: Number(n.data.latitude), lng: Number(n.data.longitude) });
+      } else {
+        m.set(n.id, getLngLatForSupplyNode(n.data.country, n.id));
+      }
     }
     return m;
   }, [nodes]);

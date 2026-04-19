@@ -189,80 +189,48 @@ function computePathHighlight(
 }
 
 function normalizeHsn(code: string): string {
-  return code.replace(/\s+/g, '').trim();
+  return code.replace(/\D/g, '');
 }
 
-/** All node ids in the subtree rooted at `focusId` (includes that node). */
-function collectSubtreeNodeIds(focusId: string, edges: Edge[]): Set<string> {
-  const children = new Map<string, string[]>();
-  for (const e of edges) {
-    const s = String(e.source);
-    const t = String(e.target);
-    if (!children.has(s)) children.set(s, []);
-    children.get(s)!.push(t);
-  }
-  for (const arr of children.values()) arr.sort((a, b) => a.localeCompare(b));
-  const ids = new Set<string>();
-  const stack = [focusId];
-  while (stack.length) {
-    const u = stack.pop()!;
-    ids.add(u);
-    for (const v of children.get(u) ?? []) stack.push(v);
-  }
-  return ids;
+function hsnPrefix4(code: string): string {
+  return normalizeHsn(code).slice(0, 4);
 }
 
-/**
- * Paths for an HSN scoped to the subtree rooted at `focusId` (clicked company):
- * upstream to that node, downstream only within its subtree.
- */
+function edgeHsnPrefix4(edge: Edge): string {
+  const raw = String((edge as { data?: { hsnCode?: string } }).data?.hsnCode ?? '');
+  return hsnPrefix4(raw);
+}
+
+/** Highlight anchor-root branches whose Tier-0 outgoing edge HSN matches selected product HSN. */
 function computeProductSupplyHighlight(
   productHsnNormalized: string | null,
-  nodes: Node<SupplyNodeData>[],
-  focusId: string,
+  rootId: string,
   edges: Edge[]
 ): PathHighlight | null {
   if (!productHsnNormalized) return null;
-  const { parent, children } = buildParentChildMaps(edges);
-  const subtreeIds = collectSubtreeNodeIds(focusId, edges);
+  const { children } = buildParentChildMaps(edges);
   const nodeIds = new Set<string>();
   const edgeIds = new Set<string>();
+  const selectedPrefix = hsnPrefix4(productHsnNormalized);
 
-  const seedIds = nodes
-    .filter(
-      (n) =>
-        subtreeIds.has(n.id) && normalizeHsn(n.data.hsnCode) === productHsnNormalized
-    )
-    .map((n) => n.id);
-
+  const rootMatchingEdges = edges.filter(
+    (e) => String(e.source) === rootId && edgeHsnPrefix4(e) === selectedPrefix
+  );
+  const seedIds = rootMatchingEdges.map((e) => String(e.target));
   if (seedIds.length === 0) return { edgeIds: new Set(), nodeIds: new Set() };
 
-  const addEdge = (s: string, t: string) => {
-    const edge = edges.find((e) => e.source === s && e.target === t);
-    if (edge) edgeIds.add(edge.id);
-  };
+  nodeIds.add(rootId);
+  for (const e of rootMatchingEdges) edgeIds.add(e.id);
 
   for (const seed of seedIds) {
-    let cur = seed;
-    nodeIds.add(cur);
-    while (cur !== focusId) {
-      const p = parent.get(cur);
-      if (!p) break;
-      addEdge(p, cur);
-      nodeIds.add(p);
-      cur = p;
-    }
-
+    nodeIds.add(seed);
     const stack = [...(children.get(seed) ?? [])];
     while (stack.length) {
       const u = stack.pop()!;
-      if (!subtreeIds.has(u)) continue;
       nodeIds.add(u);
-      const p = parent.get(u);
-      if (p !== undefined) addEdge(p, u);
-      for (const v of children.get(u) ?? []) {
-        if (subtreeIds.has(v)) stack.push(v);
-      }
+      const parentEdge = edges.find((e) => String(e.target) === u);
+      if (parentEdge) edgeIds.add(parentEdge.id);
+      for (const v of children.get(u) ?? []) stack.push(v);
     }
   }
 
@@ -286,15 +254,11 @@ function BirdsEyesFlow() {
   const [activeRootId, setActiveRootId] = useState<string>(SEED_ROOT_ID);
   /** Normalized HSN — highlights every route in the tree tied to that code. */
   const [selectedProductHsn, setSelectedProductHsn] = useState<string | null>(null);
+  const [rootHsnOptions, setRootHsnOptions] = useState<string[]>([]);
   const rfRef = useRef<ReactFlowInstance<KnowledgeFlowNode, Edge> | null>(null);
 
   /** Sidebar + product scope: selected node, or graph root after clearing selection. */
   const overviewCompanyId = selectedId ?? activeRootId;
-
-  const overviewSubtreeIds = useMemo(
-    () => collectSubtreeNodeIds(overviewCompanyId, edges),
-    [overviewCompanyId, edges]
-  );
 
   const overviewNode = useMemo(
     () => nodes.find((n) => n.id === overviewCompanyId) ?? null,
@@ -322,23 +286,31 @@ function BirdsEyesFlow() {
         throw new Error(`Failed to fetch supply chain data: ${response.statusText}`);
       }
       const data = await response.json();
-      const { nodes: newNodes, edges: newEdges, rootId: newRootId } = transformBackendDataToGraph(data);
+      const {
+        nodes: newNodes,
+        edges: newEdges,
+        rootId: newRootId,
+        hsnOptions,
+      } = transformBackendDataToGraph(data);
       
       setNodes(newNodes);
       setEdges(newEdges);
       setActiveRootId(newRootId);
       setSelectedId(newRootId);
+      setQuery('');
       setLockedPathSourceId(null);
       setHoveredId(null);
       setSelectedProductHsn(null);
+      setRootHsnOptions(hsnOptions);
       
       // Auto-fit the view after a short delay to allow React Flow to render
       setTimeout(() => {
         rfRef.current?.fitView({ padding: 0.38, duration: 800 });
       }, 100);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || 'An unexpected error occurred');
+      const message = err instanceof Error ? err.message : 'An unexpected error occurred';
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -352,33 +324,55 @@ function BirdsEyesFlow() {
   );
 
   const productPathHighlight = useMemo(
-    () => computeProductSupplyHighlight(selectedProductHsn, nodes, overviewCompanyId, edges),
-    [selectedProductHsn, nodes, overviewCompanyId, edges]
+    () => computeProductSupplyHighlight(selectedProductHsn, activeRootId, edges),
+    [selectedProductHsn, activeRootId, edges]
   );
 
   const pathHighlight = selectedProductHsn ? productPathHighlight : nodePathHighlight;
 
-  const productRows = useMemo(() => {
-    const map = new Map<
-      string,
-      { key: string; hsnDisplay: string; commodity: string; hsnNormalized: string }
-    >();
-    for (const n of nodes) {
-      if (!overviewSubtreeIds.has(n.id)) continue;
-      const raw = n.data.hsnCode?.trim() ?? '';
-      if (!raw) continue;
-      const hsnNormalized = normalizeHsn(raw);
-      const key = `${hsnNormalized}|${n.data.commodity}`;
-      if (!map.has(key))
-        map.set(key, {
-          key,
+  const productRows = useMemo(
+    () => {
+      const nodeById = new Map(nodes.map((n) => [String(n.id), n]));
+      const map = new Map<
+        string,
+        {
+          key: string;
+          hsnDisplay: string;
+          hsnNormalized: string;
+          category: string;
+          nodeCount: number;
+        }
+      >();
+      for (const raw of rootHsnOptions) {
+        const norm = normalizeHsn(raw);
+        if (!norm || map.has(norm)) continue;
+        const prefix = hsnPrefix4(norm);
+        const rootEdgesForHsn = edges.filter(
+          (e) => String(e.source) === activeRootId && edgeHsnPrefix4(e) === prefix
+        );
+        if (rootEdgesForHsn.length === 0) continue;
+
+        const commodities = rootEdgesForHsn
+          .map((e) => nodeById.get(String(e.target))?.data.commodity ?? '')
+          .filter((x) => x && x !== 'N/A');
+        const uniqueCommodities = [...new Set(commodities)];
+        const category =
+          uniqueCommodities.length > 0
+            ? uniqueCommodities.slice(0, 2).join(' | ')
+            : 'Mapped product category';
+
+        map.set(norm, {
+          key: norm,
           hsnDisplay: raw,
-          commodity: n.data.commodity,
-          hsnNormalized,
+          hsnNormalized: norm,
+          category,
+          nodeCount: rootEdgesForHsn.length,
         });
-    }
-    return [...map.values()].sort((a, b) => a.hsnDisplay.localeCompare(b.hsnDisplay));
-  }, [nodes, overviewSubtreeIds]);
+      }
+      return [...map.values()];
+    },
+    [rootHsnOptions, edges, nodes, activeRootId]
+  );
 
   const tierOneSuppliers = useMemo(() => {
     const ids = edges.filter((e) => e.source === overviewCompanyId).map((e) => String(e.target));
@@ -718,41 +712,44 @@ function BirdsEyesFlow() {
             <div>
               <h3 className="sy-type-title text-white">Products</h3>
               <p className="sy-type-caption mt-1 text-zinc-500">
-                HSNs in this company’s branch—select one to highlight routes scoped to this subtree (graph &
-                map).
+                Tier-0 company HSN options from backend. Select one to highlight matching branches in graph/map.
               </p>
             </div>
             <ul className="flex flex-col gap-2">
-              {productRows.map((row) => {
-                const active = selectedProductHsn === row.hsnNormalized;
-                return (
-                  <li key={row.key}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setLockedPathSourceId(null);
-                        setHoveredId(null);
-                        setSelectedProductHsn((prev) =>
-                          prev === row.hsnNormalized ? null : row.hsnNormalized
-                        );
-                        queueMicrotask(() => rfRef.current?.fitView({ padding: 0.14, duration: 480 }));
-                      }}
-                      className={`flex w-full flex-col gap-0.5 rounded-xl border px-3.5 py-3 text-left transition-all ${
-                        active
-                          ? 'border-[#00E8FF]/40 bg-[#00E8FF]/12 shadow-[0_0_24px_-8px_rgba(0,232,255,0.55)]'
-                          : 'border-white/[0.08] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
-                      }`}
-                    >
-                      <span className="font-mono sy-type-ui font-semibold text-[#00E8FF]">
-                        {row.hsnDisplay}
-                      </span>
-                      <span className="sy-type-body leading-snug text-zinc-300">
-                        {row.commodity}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
+              {productRows.length === 0 ? (
+                <li className="sy-type-body text-zinc-500">
+                  No HSN options received yet. Search a company to load tier-0 products.
+                </li>
+              ) : (
+                productRows.map((row) => {
+                  const active = selectedProductHsn === row.hsnNormalized;
+                  return (
+                    <li key={row.key}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setLockedPathSourceId(null);
+                          setHoveredId(null);
+                          setSelectedProductHsn((prev) =>
+                            prev === row.hsnNormalized ? null : row.hsnNormalized
+                          );
+                          queueMicrotask(() => rfRef.current?.fitView({ padding: 0.14, duration: 480 }));
+                        }}
+                        className={`flex w-full flex-col gap-0.5 rounded-xl border px-3.5 py-3 text-left transition-all ${
+                          active
+                            ? 'border-[#00E8FF]/40 bg-[#00E8FF]/12 shadow-[0_0_24px_-8px_rgba(0,232,255,0.55)]'
+                            : 'border-white/[0.08] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
+                        }`}
+                      >
+                        <span className="font-mono sy-type-ui font-semibold text-[#00E8FF]">
+                          {row.hsnDisplay}
+                        </span>
+                        <span className="sy-type-body leading-snug text-zinc-300">{row.category}</span>
+                      </button>
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </section>
 

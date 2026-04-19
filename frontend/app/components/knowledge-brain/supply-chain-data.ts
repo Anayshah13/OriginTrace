@@ -11,6 +11,8 @@ export const PRODUCT_ANCHOR = 'AC traction motors (multi-phase, >750W)';
 export type SupplyNodeData = {
   label: string;
   country: string;
+  latitude?: number;
+  longitude?: number;
   hsnCode: string;
   commodity: string;
   about: string;
@@ -799,6 +801,8 @@ export function buildSupplyChainGraph(): {
 export type BackendNode = {
   'Company Name': string;
   Country: string;
+  Latitude?: number | string;
+  Longitude?: number | string;
   'Product Category': string;
   'Company Description': string;
   Tier: number;
@@ -815,6 +819,8 @@ export type BackendEdge = {
 
 export type BackendData = {
   top_products: string[];
+  hsn_options?: string[];
+  selected_anchor_hsn?: string;
   nodes: BackendNode[];
   edges: BackendEdge[];
 };
@@ -823,6 +829,7 @@ export function transformBackendDataToGraph(data: BackendData): {
   nodes: Node<SupplyNodeData>[];
   edges: Edge[];
   rootId: string;
+  hsnOptions: string[];
 } {
   const { nodes: backendNodes, edges: backendEdges } = data;
 
@@ -847,6 +854,7 @@ export function transformBackendDataToGraph(data: BackendData): {
       source: be.Company1,
       target: be.Company2,
       type: 'straight' as const,
+      data: { hsnCode: be['HSN Code of Products'] },
       animated: false,
       style: { stroke: CYAN, strokeWidth: 1.15, opacity: 0.38 },
     };
@@ -871,6 +879,11 @@ export function transformBackendDataToGraph(data: BackendData): {
     const accent = tierAccent(bn.Tier);
     const { dx, dy } = organicOffset(id, bn.Tier, 0.42);
 
+    const latNum =
+      typeof bn.Latitude === 'number' ? bn.Latitude : Number(bn.Latitude);
+    const lngNum =
+      typeof bn.Longitude === 'number' ? bn.Longitude : Number(bn.Longitude);
+
     return {
       id,
       type: 'knowledge' as const,
@@ -882,6 +895,8 @@ export function transformBackendDataToGraph(data: BackendData): {
       data: {
         label: bn['Company Name'],
         country: bn.Country || 'Unknown',
+        latitude: Number.isFinite(latNum) ? latNum : undefined,
+        longitude: Number.isFinite(lngNum) ? lngNum : undefined,
         hsnCode: nodeHsnMap.get(id) || 'N/A',
         commodity: bn['Product Category'] || 'N/A',
         about: bn['Company Description'] || 'N/A',
@@ -893,5 +908,5 @@ export function transformBackendDataToGraph(data: BackendData): {
     };
   });
 
-  return { nodes, edges, rootId };
+  return { nodes, edges, rootId, hsnOptions: data.hsn_options ?? [] };
 }
