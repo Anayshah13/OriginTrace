@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 import json
 import logging
 if __package__:
@@ -767,6 +767,66 @@ def get_supply_chain_data(
 
     store.upsert(company_name, data, effective_tier, limit)
     return data
+
+
+def get_company_suppliers_slice(company_name: str, start: int = 0, end: int = 5) -> dict[str, Any]:
+    """
+    Fetches a specific slice of suppliers for a company.
+    Used for incremental node expansion in the frontend.
+    """
+    bom_tree = BomTree(BOM_PATH)
+    pipeline = BomRecursivePipeline(bom_tree)
+
+    try:
+        snapshot = pipeline._fetch_company_snapshot(company_name)
+    except Exception as e:
+        logger.warning("Failed to fetch snapshot for %s: %s", company_name, e)
+        snapshot = {}
+
+    relationships = snapshot.get("relationships", []) or []
+    sliced_rels = relationships[start:end]
+
+    graph = GraphBuilder()
+    focus_company = snapshot.get("focus_company", {}) or {}
+
+    root_display = graph.add_node(
+        name=company_name,
+        tier=0,  # Relative tier; frontend will adjust
+        country=focus_company.get("country") or "Unknown",
+        category=focus_company.get("product_category") or "N/A",
+        description=focus_company.get("description") or f"{company_name} company details.",
+        source="expansion",
+        confidence="medium",
+    )
+
+    for rel in sliced_rels:
+        cand = pipeline._candidate_from_relationship(rel, source="cbp-reverse", default_conf="medium")
+        if not cand:
+            continue
+
+        child_name = cand.get("name") or "Unknown"
+        child_display = graph.add_node(
+            name=child_name,
+            tier=1,
+            country=cand.get("country") or "Unknown",
+            category=cand.get("category") or "N/A",
+            description=cand.get("description") or "",
+            source=cand.get("source") or "unknown",
+            confidence=cand.get("confidence") or "low",
+        )
+
+        graph.add_edge(
+            source=root_display,
+            target=child_display,
+            product=cand.get("product") or "Various",
+            description=cand.get("product_description") or "N/A",
+            hsn=cand.get("hsn") or "N/A",
+            route=cand.get("route") or "N/A",
+            source_label=cand.get("source") or "unknown",
+            confidence=cand.get("confidence") or "low",
+        )
+
+    return graph.to_json("")
 
 
 def main():

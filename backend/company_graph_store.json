@@ -2547,5 +2547,78 @@
         }
       ]
     }
+  },
+  {
+    "company_key": "apple",
+    "company_input": "Apple",
+    "selected_anchor_hsn": "8504.40",
+    "max_tier": 1,
+    "limit": 1,
+    "updated_at": "2026-04-19T04:47:29.135470Z",
+    "payload": {
+      "top_products": [
+        "8504.40 - Static converters (Power Adapters)",
+        "8517.62 - Wireless communication devices (AirPods/Headphones)",
+        "8471.60 - Input/output units (Keyboards/Trackpads)",
+        "8471.30 - Portable automatic data processing machines (Laptops)",
+        "8544.42 - Insulated electric conductors (USB Cables)"
+      ],
+      "hsn_options": [
+        "8504.40",
+        "8504",
+        "8517.62",
+        "8517",
+        "8544.42",
+        "8544",
+        "8471.60",
+        "8471",
+        "8518.30",
+        "8518",
+        "8471.50",
+        "8471.30"
+      ],
+      "selected_anchor_hsn": "8504.40",
+      "nodes": [
+        {
+          "Company Name": "Apple",
+          "Canonical Company Name": "Apple",
+          "Node ID": "apple-1",
+          "Country": "United States",
+          "Latitude": 39.8283,
+          "Longitude": -98.5795,
+          "Product Category": "Consumer Electronics",
+          "Company Description": "A global technology company that designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories.",
+          "Tier": 0,
+          "Source": "user-input",
+          "Confidence": "anchor"
+        },
+        {
+          "Company Name": "Hon Hai Precision Industrial (Foxconn)",
+          "Canonical Company Name": "Hon Hai Precision Industrial (Foxconn)",
+          "Node ID": "hon-hai-precision-industrial-foxconn-2",
+          "Country": "China",
+          "Latitude": 35.0,
+          "Longitude": 105.0,
+          "Product Category": "Electronics Manufacturing",
+          "Company Description": "The world's largest contract electronics manufacturer and a primary assembler for Apple devices.",
+          "Tier": 1,
+          "Source": "cbp-reverse",
+          "Confidence": "medium"
+        }
+      ],
+      "edges": [
+        {
+          "Company1": "Apple",
+          "Company2": "Hon Hai Precision Industrial (Foxconn)",
+          "Product": "USB Power Adapters",
+          "Product Description": "Electric motors, power adapters, and various machinery components for electronics.",
+          "HSN Code of Products": "8504.40",
+          "Possible Shipment Route": "China to United States via Hong Kong",
+          "Source": "cbp-reverse",
+          "Confidence": "medium",
+          "Prune Reason": ""
+        }
+      ]
+    }
   }
 ]

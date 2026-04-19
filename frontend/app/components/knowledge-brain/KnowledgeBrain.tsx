@@ -55,16 +55,17 @@ const PATH_LOCK_CLEAR_ZOOM = 0.32;
 type KnowledgeFlowNode = Node<SupplyNodeData, 'knowledge'>;
 
 const KnowledgeNode = memo(function KnowledgeNode({
+  id,
   data,
   selected,
 }: NodeProps<KnowledgeFlowNode>) {
   const accent = data.accentColor || CYAN;
   const t = data.tier;
   const size =
-    t === 0 ? 'size-[58px]' : t <= 2 ? 'size-12' : t <= 4 ? 'size-11' : 'size-[38px]';
+    t === 0 ? 'size-[92px]' : t <= 2 ? 'size-[72px]' : t <= 4 ? 'size-[64px]' : 'size-[52px]';
   const ring =
     t === 0
-      ? 'ring-2 ring-[#00E8FF]/45 ring-offset-2 ring-offset-white dark:ring-offset-[#06080c]'
+      ? 'ring-[3.5px] ring-[#00E8FF]/45 ring-offset-[3px] ring-offset-white dark:ring-offset-[#06080c]'
       : '';
   const pathGlow = data.pathHighlight;
 
@@ -74,7 +75,7 @@ const KnowledgeNode = memo(function KnowledgeNode({
     pathGlow ? 0.72 : selected ? 0.38 : 0.22;
 
   return (
-    <div className="group flex max-w-[180px] flex-col items-center gap-1.5">
+    <div className="group flex max-w-[240px] flex-col items-center gap-2">
       <Handle
         type="target"
         position={Position.Top}
@@ -83,14 +84,14 @@ const KnowledgeNode = memo(function KnowledgeNode({
       <div className="relative flex flex-col items-center overflow-visible">
         {/* Wide ambient halo — always visible so tiers read as luminous */}
         <div
-          className="pointer-events-none absolute -inset-8 scale-110 rounded-full blur-3xl transition-opacity duration-300 ease-out motion-safe:group-hover:opacity-90"
+          className="pointer-events-none absolute -inset-14 scale-125 rounded-full blur-[48px] transition-opacity duration-300 ease-out motion-safe:group-hover:opacity-90"
           style={{
             background: `radial-gradient(circle at 50% 45%, ${accent} 0%, transparent 68%)`,
             opacity: haloOuter,
           }}
         />
         <div
-          className="pointer-events-none absolute -inset-3 rounded-full blur-2xl transition-opacity duration-300 ease-out motion-safe:group-hover:opacity-80"
+          className="pointer-events-none absolute -inset-6 rounded-full blur-[32px] transition-opacity duration-300 ease-out motion-safe:group-hover:opacity-80"
           style={{
             background: accent,
             opacity: haloInner,
@@ -108,18 +109,30 @@ const KnowledgeNode = memo(function KnowledgeNode({
           }}
         >
           <div
-            className={`rounded-full bg-white shadow-[0_0_14px_rgba(255,255,255,0.95)] ${
-              t === 0 ? 'size-3' : t <= 2 ? 'size-2.5' : 'size-2'
+            className={`rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.95)] ${
+              t === 0 ? 'size-4' : t <= 2 ? 'size-3.5' : 'size-3'
             }`}
           />
         </div>
       </div>
-      <span className="line-clamp-2 w-full select-none text-center text-[13px] font-semibold leading-snug tracking-tight text-zinc-900 [text-shadow:0_1px_2px_rgba(255,255,255,0.8)] dark:text-zinc-50 dark:[text-shadow:0_1px_12px_rgba(0,0,0,0.92),0_0_18px_rgba(0,0,0,0.55)]">
+      <span className="line-clamp-2 w-full select-none text-center text-[16px] font-bold leading-snug tracking-tight text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.8)] dark:[text-shadow:0_2px_16px_rgba(0,0,0,0.95)]">
         {data.label}
       </span>
-      <span className="font-mono text-[10px] leading-none tracking-tight text-zinc-600 dark:text-zinc-300 dark:[text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
+      <span className="font-mono text-[13px] font-medium leading-none tracking-tight text-zinc-400 dark:text-zinc-300">
         {data.hsnCode}
       </span>
+      {selected && !data.isRoot && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            data.onExpand?.(id, data.label);
+          }}
+          className="pointer-events-auto mt-2 flex items-center gap-1 rounded-full border border-[#00E8FF]/30 bg-[#00E8FF]/10 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-[#00E8FF] transition-all hover:bg-[#00E8FF]/20 active:scale-95"
+        >
+          <Network size={10} />
+          Expand
+        </button>
+      )}
       <Handle
         type="source"
         position={Position.Bottom}
@@ -343,6 +356,74 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
     }
   }, []);
 
+  const handleExpandNode = useCallback(async (nodeId: string, companyName: string) => {
+    setIsLoading(true);
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const childCount = edges.filter(e => e.source === nodeId).length;
+      const start = childCount;
+      const end = start + 5;
+
+      const response = await fetch(`${baseUrl}/company/${encodeURIComponent(companyName)}/suppliers?start=${start}&end=${end}`);
+      if (!response.ok) throw new Error('Failed to fetch suppliers');
+      
+      const data = await response.json();
+      const { nodes: newNodes, edges: newEdges } = transformBackendDataToGraph(data);
+
+      const parentNode = nodes.find(n => n.id === nodeId);
+      if (!parentNode) return;
+
+      const parentTier = parentNode.data.tier;
+      
+      // Filter out root from incoming and adjust tiers/ids for the rest
+      const filteredNodes = newNodes
+        .filter(n => n.id !== companyName) // Backend uses company name as ID
+        .map((n, idx, arr) => {
+          // Explicit hierarchical positioning: centered below parent
+          const TIER_GAP_Y = 340;
+          const X_SCALE = 260;
+          const totalWidth = (arr.length - 1) * X_SCALE;
+          const startX = parentNode.position.x - totalWidth / 2;
+          const x = startX + idx * X_SCALE;
+          const y = parentNode.position.y + TIER_GAP_Y;
+
+          return {
+            ...n,
+            id: `${nodeId}-${n.id}`, 
+            position: { x, y },
+            data: {
+              ...n.data,
+              tier: parentTier + 1,
+              accentColor: tierAccent(parentTier + 1)
+            }
+          };
+        });
+
+      const filteredEdges = newEdges
+        .filter(e => e.source === companyName) // Only take edges from the "expansion root"
+        .map(e => ({
+          ...e,
+          id: `e-${nodeId}-${nodeId}-${e.target}`,
+          source: nodeId,
+          target: `${nodeId}-${e.target}`,
+          style: { ...e.style, stroke: tierAccent(parentTier + 1) }
+        }));
+
+      if (filteredNodes.length === 0) {
+        setError("No more suppliers found.");
+        return;
+      }
+
+      setNodes(nds => [...nds, ...filteredNodes]);
+      setEdges(eds => [...eds, ...filteredEdges]);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [nodes, edges, setNodes, setEdges]);
+
   const initialFetchDone = useRef<string | null>(null);
   useEffect(() => {
     const q = initialQuery?.trim();
@@ -490,12 +571,13 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
         data: {
           ...n.data,
           pathHighlight: pathHighlightOn,
+          onExpand: handleExpandNode,
         },
         style: { ...n.style, opacity },
       };
       return node;
     });
-  }, [nodes, query, pathHighlight, lockedPathSourceId, selectedProductHsn, revealMaxTier]);
+  }, [nodes, query, pathHighlight, lockedPathSourceId, selectedProductHsn, revealMaxTier, handleExpandNode]);
 
   const displayEdges = useMemo(() => {
     const hi = pathHighlight?.edgeIds;
@@ -515,7 +597,7 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
         style: {
           ...e.style,
           stroke: tierStroke,
-          strokeWidth: highlighted ? 3.35 : dimmed ? 1.25 : 2.15,
+          strokeWidth: highlighted ? 4.5 : dimmed ? 1.5 : 2.8,
           opacity,
           filter: dimmed ? undefined : edgeGlowFilter(tierStroke),
         },
@@ -641,7 +723,7 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
             defaultEdgeOptions={{
               type: 'straight',
               animated: false,
-              style: { strokeWidth: 2.05, opacity: 0.8 },
+              style: { strokeWidth: 2.8, opacity: 0.8 },
             }}
             className="!bg-[#06080c]"
             onInit={(inst) => {

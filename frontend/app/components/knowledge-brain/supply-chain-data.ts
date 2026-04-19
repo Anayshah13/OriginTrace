@@ -23,6 +23,7 @@ export type SupplyNodeData = {
   pathHighlight?: boolean;
   /** Parent company name for panel context */
   parentLabel?: string;
+  onExpand?: (nodeId: string, companyName: string) => void;
 };
 
 type Raw = Omit<SupplyNodeData, 'pathHighlight' | 'accentColor'> & {
@@ -65,10 +66,11 @@ function organicOffset(
 ): { dx: number; dy: number } {
   const u = hashUnit(id, 'x');
   const v = hashUnit(id, 'y');
-  const wave = Math.sin(tier * 1.17 + u * 6.28) * 22 * spread;
+  // Reduced wave amplitude and base jitter for cleaner hierarchy
+  const wave = Math.sin(tier * 1.17 + u * 6.28) * 12 * spread;
   return {
-    dx: ((u - 0.5) * 82 + wave) * spread,
-    dy: ((v - 0.5) * 38 + Math.cos(tier * 0.88) * 16) * spread,
+    dx: ((u - 0.5) * 42 + wave) * spread,
+    dy: ((v - 0.5) * 22 + Math.cos(tier * 0.88) * 8) * spread,
   };
 }
 
@@ -772,8 +774,8 @@ export function buildSupplyChainGraph(): {
 
   const xMap = layoutTreeX(rootId, children);
   /** Vertical / horizontal spacing — larger keeps sibling labels from colliding. */
-  const TIER_GAP_Y = 228;
-  const X_SCALE = 172;
+  const TIER_GAP_Y = 340;
+  const X_SCALE = 260;
 
   const nodes: Node<SupplyNodeData>[] = RAW.map((r) => {
     const { id, parentId, ...rest } = r;
@@ -871,8 +873,8 @@ export function transformBackendDataToGraph(data: BackendData): {
 
   const xMap = layoutTreeX(rootId, children);
   /** Extra gaps for long company names + straight edges meeting at parent handles. */
-  const TIER_GAP_Y = 216;
-  const X_SCALE = 182;
+  const TIER_GAP_Y = 340;
+  const X_SCALE = 260;
 
   const nodes: Node<SupplyNodeData>[] = backendNodes.map((bn) => {
     const id = bn['Company Name'];

@@ -1,18 +1,20 @@
-﻿from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.concurrency import run_in_threadpool
-from get_data import get_supply_chain_data
+from get_data import get_supply_chain_data, get_company_suppliers_slice
 import os
+from pathlib import Path
+from cache_manager import PersistentCache
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 
 if __package__:
-    from .get_data import get_supply_chain_data
+    from .get_data import get_supply_chain_data, get_company_suppliers_slice
 else:
     # Running as `uvicorn main:app` with cwd = backend/
-    from get_data import get_supply_chain_data
+    from get_data import get_supply_chain_data, get_company_suppliers_slice
 
 app = FastAPI(
     title="Synergy Supply Chain API",
@@ -29,6 +31,9 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
+CACHE_PATH = Path(__file__).parent / "request_cache.json"
+request_cache = PersistentCache(CACHE_PATH)
+
 
 @app.get("/")
 def read_root():
@@ -36,10 +41,17 @@ def read_root():
 
 
 @app.get("/test")
-def test():
+async def test():
     """Quick connectivity test with a shallow tier."""
+    cache_key = "test"
+    cached = request_cache.get(cache_key)
+    if cached:
+        return cached
+
     try:
-        return get_supply_chain_data("Apple", depth=1, limit=1)
+        data = await run_in_threadpool(get_supply_chain_data, "Apple", 1, 1)
+        request_cache.set(cache_key, data)
+        return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -60,6 +72,11 @@ async def get_company_graph(
     - limit: Max suppliers to follow per layer
     - anchor_hsn: Optional user-selected HSN anchor
     """
+    cache_key = f"company_{name}_d{depth}_t{max_tier}_l{limit}_h{anchor_hsn}"
+    cached = request_cache.get(cache_key)
+    if cached:
+        return cached
+
     try:
         effective_max_tier = max_tier if max_tier is not None else depth
         data = await run_in_threadpool(
@@ -70,6 +87,35 @@ async def get_company_graph(
             anchor_hsn,
             effective_max_tier,
         )
+        request_cache.set(cache_key, data)
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/company/{name}/suppliers")
+async def get_suppliers_slice(
+    name: str,
+    start: int = Query(0, ge=0),
+    end: int = Query(5, ge=1),
+):
+    """
+    Returns a slice of suppliers for a specific company node.
+    Used for incremental 'Expand More' functionality.
+    """
+    cache_key = f"expand_{name}_s{start}_e{end}"
+    cached = request_cache.get(cache_key)
+    if cached:
+        return cached
+
+    try:
+        data = await run_in_threadpool(
+            get_company_suppliers_slice,
+            name,
+            start,
+            end,
+        )
+        request_cache.set(cache_key, data)
         return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
