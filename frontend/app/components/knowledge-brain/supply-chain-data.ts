@@ -772,8 +772,8 @@ export function buildSupplyChainGraph(): {
 
   const xMap = layoutTreeX(rootId, children);
   /** Vertical / horizontal spacing — larger keeps sibling labels from colliding. */
-  const TIER_GAP_Y = 188;
-  const X_SCALE = 148;
+  const TIER_GAP_Y = 228;
+  const X_SCALE = 172;
 
   const nodes: Node<SupplyNodeData>[] = RAW.map((r) => {
     const { id, parentId, ...rest } = r;
@@ -871,8 +871,8 @@ export function transformBackendDataToGraph(data: BackendData): {
 
   const xMap = layoutTreeX(rootId, children);
   /** Extra gaps for long company names + straight edges meeting at parent handles. */
-  const TIER_GAP_Y = 176;
-  const X_SCALE = 156;
+  const TIER_GAP_Y = 216;
+  const X_SCALE = 182;
 
   const nodes: Node<SupplyNodeData>[] = backendNodes.map((bn) => {
     const id = bn['Company Name'];

@@ -1,48 +1,33 @@
 import Link from "next/link";
 
-import { LandingMapSection } from "@/components/landing/landing-map-section";
-import { LandingHero } from "@/components/landing/landing-hero";
+import { GlobalTraceCoolTrails } from "@/components/landing/global-trace-cool-trails";
+import { GlobalTraceHeader } from "@/components/landing/global-trace-header";
+import { GlobalTraceHero } from "@/components/landing/global-trace-hero";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-full">
-      <header className="sticky top-0 z-20 border-b border-white/[0.06] bg-[#030306]/85 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:h-16 sm:px-6">
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-[-0.02em] text-white"
-            style={{ fontFamily: "var(--font-landing-display), ui-sans-serif" }}
-          >
-            Synergy
-          </Link>
-          <Link
-            href="/dashboard"
-            className="rounded-xl bg-sky-400 px-5 py-2.5 text-sm font-semibold text-zinc-950 shadow-[0_0_40px_-12px_rgba(56,189,248,0.65)] transition hover:bg-sky-300"
-            style={{ fontFamily: "var(--font-landing-display), ui-sans-serif" }}
-          >
-            Get started
-          </Link>
-        </div>
-      </header>
-
-      <main>
-        <LandingHero />
-        <LandingMapSection />
+    <div className="relative min-h-full bg-[#05070A]">
+      <GlobalTraceCoolTrails />
+      <GlobalTraceHeader />
+      <main className="relative">
+        <GlobalTraceHero />
       </main>
-
-      <footer className="relative z-10 border-t border-white/[0.06] py-8 text-center">
-        <p
-          className="font-mono text-[0.65rem] text-white/30"
-          style={{ fontFamily: "var(--font-landing-mono), ui-monospace" }}
-        >
+      <footer className="relative z-10 border-t border-white/[0.06] py-10 text-center">
+        <p className="text-[0.65rem] tracking-[0.25em] text-[#6b7280]">
           <Link
             href="/dashboard"
-            className="text-white/45 underline-offset-4 hover:text-white/70"
+            className="text-[#00F2FF]/75 transition hover:text-[#00F2FF]"
           >
-            Dashboard
+            Launch console
           </Link>
-          <span className="mx-2 text-white/20">·</span>
-          <span className="text-white/35">Supply chain trace</span>
+          <span className="mx-3 text-[#3f3f46]">·</span>
+          <Link href="/docs" className="hover:text-[#a0a0a0]">
+            Docs
+          </Link>
+          <span className="mx-3 text-[#3f3f46]">·</span>
+          <Link href="/api-docs" className="hover:text-[#a0a0a0]">
+            API
+          </Link>
         </p>
       </footer>
     </div>
