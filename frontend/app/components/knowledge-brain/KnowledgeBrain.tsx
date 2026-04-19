@@ -693,7 +693,8 @@ function BirdsEyesFlow({ initialQuery }: { initialQuery?: string }) {
             onMoveEnd={(_evt, viewport) => {
               if (viewport.zoom < PATH_LOCK_CLEAR_ZOOM) {
                 setLockedPathSourceId(null);
-                setSelectedProductHsn(null);
+                // We do NOT clear selectedProductHsn here because product highlights are global filters
+                // and often require zooming out to see the whole path.
               }
             }}
             onNodeClick={(_, node) => {
