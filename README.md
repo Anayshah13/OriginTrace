@@ -19,7 +19,13 @@
   Watch the full walkthrough of OriginTrace in action, featuring recursive mapping and risk intelligence analysis.
 </blockquote>
 
-<a href="assets/demo.mp4">▶ Watch Demo</a>
+<iframe width="800" height="450"
+  src="https://www.youtube.com/embed/5Cn_dlQGsbM"
+  title="OriginTrace Demo"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
 
 <hr>
 
